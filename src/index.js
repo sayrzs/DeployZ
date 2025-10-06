@@ -1,0 +1,133 @@
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const mime = require('mime-types');
+const chokidar = require('chokidar');
+const WebSocket = require('ws');
+
+const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+const webroot = path.resolve(config.webroot);
+const clients = new Set();
+const liveReloadPort = 35729;
+
+function sendFile(res, filePath) {
+    const fullPath = path.join(webroot, filePath);
+  
+    fs.stat(fullPath, (err, stats) => {
+        if (err || !stats.isFile()) {
+            res.writeHead(404);
+            return res.end('File not found');
+        }
+    
+        const mimeType = mime.lookup(fullPath) || 'application/octet-stream';
+        res.writeHead(200, { 'Content-Type': mimeType });
+    
+        const readStream = fs.createReadStream(fullPath);
+        readStream.pipe(res);
+    });
+}
+
+function setupLiveReload() {
+    const livereloadServer = http.createServer((req, res) => {
+        if (req.url === '/livereload.js') {
+            res.writeHead(200, { 'Content-Type': 'application/javascript' });
+            res.end(`
+                (function() {
+                    let socket = new WebSocket('ws://localhost:${liveReloadPort}');
+                    socket.onmessage = function(event) {
+                        if (event.data === 'reload') {
+                            window.location.reload();
+                        }
+                    };
+                    socket.onclose = function() {
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    };
+                })();
+            `);
+        } else {
+            res.writeHead(404);
+            res.end();
+        }
+    });
+  
+    livereloadServer.listen(liveReloadPort);
+  
+    const wss = new WebSocket.Server({ port: liveReloadPort + 1 });
+  
+    wss.on('connection', ws => {
+        clients.add(ws);
+        ws.on('close', () => clients.delete(ws));
+    });
+  
+    const watcher = chokidar.watch(webroot, { ignored: /node_modules/ });
+    watcher.on('change', () => {
+        clients.forEach(ws => {
+            if (ws.readyState === 1) {
+                ws.send('reload');
+            }
+        });
+    });
+}
+
+function injectLiveReload(content) {
+    if (!config.liveReload) return content;
+    const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
+    return content.replace('</body>', script + '</body>');
+}
+
+function logRequest(req, res, startTime) {
+    const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    const timestamp = new Date().toISOString();
+    const method = req.method;
+    const url = req.url;
+    const statusCode = res.statusCode;
+    const userAgent = req.headers['user-agent'] || '-';
+    const referer = req.headers['referer'] || '-';
+    const responseTime = Date.now() - startTime;
+    
+    console.log(`${clientIP} - - [${timestamp}] "${method} ${url} HTTP/1.1" ${statusCode} - "${referer}" "${userAgent}" ${responseTime}ms`);
+}
+
+const server = http.createServer((req, res) => {
+    const startTime = Date.now();
+    
+    let filePath = req.url === '/' ? '' : req.url;
+    filePath = filePath.split('?')[0];
+  
+    if (config.routes[req.url]) {
+        filePath = config.routes[req.url];
+    }
+  
+    const fullPath = path.join(webroot, filePath);
+    const ext = path.extname(fullPath).toLowerCase();
+  
+    if (ext === '.html' && config.liveReload) {
+        fs.readFile(fullPath, 'utf8', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end('File not found');
+                logRequest(req, res, startTime);
+                return;
+            }
+            const modifiedContent = injectLiveReload(data);
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(modifiedContent);
+            logRequest(req, res, startTime);
+        });
+    } else {
+        sendFile(res, filePath);
+        res.on('finish', () => {
+            logRequest(req, res, startTime);
+        });
+    }
+});
+
+if (config.liveReload) {
+    setupLiveReload();
+}
+
+server.listen(config.port, () => {
+    console.log(`Server running at http://localhost:${config.port}`);
+});

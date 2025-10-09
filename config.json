@@ -1,8 +1,12 @@
 {
-  "port": 3000,
-  "webroot": "webroot",
-  "routes": {
-    "/": "index.html"
-  },
-  "liveReload": true
+    "port": 3000,
+    "webroot": "webroot",
+    "routes": {
+        "/": "index.html"
+    },
+    "domains": {
+        "sayrz.com": "index.html",
+        "sayrz.wispbyte.org": "index.html"
+    },
+    "liveReload": true
 }

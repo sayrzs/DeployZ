@@ -23,6 +23,25 @@ webroot/
 
 **LIVE RELOAD** automatically __refreshes__ your browser when you make __changes__ to files in the `webroot` directory. This helps you see updates instantly without manually reloading the page. (YOU CAN DISABLE/ENABLE THIS FEATURE VIA `config.json`)
 
+## Per-Domain Pages
+
+You can show a different HTML file for each domain using the `domains` section in `config.json`.
+
+For example:
+
+```json
+{
+	"domains": {
+		"sayrz.com": "sayrz.html",
+		"sayrz.wispbyte.org": "index.html"
+	}
+}
+```
+
+This will serve `sayrz.html` for requests to `sayrz.com` and `index.html` for `sayrz.wispbyte.org`.
+
+To add or remove domains, edit the `domains` section in `config.json`.
+
 ## Usage
 
 - Place HTML files in the `webroot` directory

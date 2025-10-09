@@ -29,7 +29,7 @@ function sendFile(res, filePath) {
     // Prevent serving files from config directory
     if (fullPath.includes('/config/')) {
         res.writeHead(403);
-        return res.end('Forbidden');
+        return res.end('Forbidden'); // You can edit that from "Forbidden" to "Hello World!" or anything else! 
     }
     fs.stat(fullPath, (err, stats) => {
         if (err || !stats.isFile()) {

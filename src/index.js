@@ -9,7 +9,7 @@ const WebSocket = require('ws');
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 let webroot = path.resolve(config.webroot);
-// Watch config file and reload on change
+// Watch config file and reload onto change
 chokidar.watch(configPath).on('change', () => {
     try {
         const newConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));

@@ -99,18 +99,35 @@ function logRequest(req, res, startTime) {
 // Create HTTP server to serve files and handle live reload
 const server = http.createServer((req, res) => {
     const startTime = Date.now();
-    
+
+    // Get the hostname from the request headers
+    const host = req.headers.host ? req.headers.host.split(':')[0] : '';
+
     let filePath = req.url === '/' ? '' : req.url;
     filePath = filePath.split('?')[0];
-  
-    // Support custom routes from config
-    if (config.routes[req.url]) {
+
+    // Log the actual Host header for every request
+    console.log(`[DEBUG] Host header: ${req.headers.host}`);
+
+    let domainMatched = false;
+    // Per-domain HTML mapping: if config.domains exists and matches host, use that file
+    if (config.domains && config.domains[host]) {
+        filePath = config.domains[host];
+        domainMatched = true;
+    } else if (config.routes[req.url]) {
+        // Support custom routes from config
         filePath = config.routes[req.url];
+    } else if (req.url === '/') {
+        // Fallback to index.html for root if nothing matches
+        filePath = 'index.html';
     }
-  
+
     const fullPath = path.join(webroot, filePath);
     const ext = path.extname(fullPath).toLowerCase();
-  
+
+    // Log host and selected file for debugging
+    console.log(`[DEBUG] Host: ${host} | Domain matched: ${domainMatched} | Serving file: ${filePath}`);
+
     // Inject live reload script for HTML files
     if (ext === '.html' && config.liveReload) {
         fs.readFile(fullPath, 'utf8', (err, data) => {

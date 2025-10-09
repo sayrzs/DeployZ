@@ -9,7 +9,7 @@ _Hosted on [wispbyte.com](https://wispbyte.com)_
 
 ## What is Live Reload?
 
-**LIVE RELOAD** automatically __refreshes__ your browser when you make __changes__ to files in the `webroot` directory. This helps you see updates instantly without manually reloading the page. (YOU CAN DISABLE/ENABLE THIS FEATURE VIA `config.json`)
+**LIVE RELOAD** automatically __refreshes__ your browser when you make __changes__ to files in the `webroot` directory. This helps you see updates instantly without manually reloading the page. (YOU CAN DISABLE/ENABLE THIS FEATURE VIA `config.json` KEEP IN MIND THIS WONT WORK ON THE PORT)
 
 ## Per-Domain Pages
 

@@ -1,4 +1,4 @@
-# sayrz.com
+# DeployZ
 ## Live Preview
 
 You can view the live preview of this site at:

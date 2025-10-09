@@ -5,11 +5,13 @@ const mime = require('mime-types');
 const chokidar = require('chokidar');
 const WebSocket = require('ws');
 
+// Load configuration and set up variables
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const webroot = path.resolve(config.webroot);
-const clients = new Set();
-const liveReloadPort = 35729;
+const clients = new Set(); // Store connected WebSocket clients
+const liveReloadPort = 35729; // Port for live reload server
 
+// Serve static files from webroot
 function sendFile(res, filePath) {
     const fullPath = path.join(webroot, filePath);
   
@@ -27,6 +29,7 @@ function sendFile(res, filePath) {
     });
 }
 
+// Set up live reload server and WebSocket for auto-refresh
 function setupLiveReload() {
     const livereloadServer = http.createServer((req, res) => {
         if (req.url === '/livereload.js') {
@@ -61,6 +64,7 @@ function setupLiveReload() {
         ws.on('close', () => clients.delete(ws));
     });
   
+    // Watch for file changes and notify clients
     const watcher = chokidar.watch(webroot, { ignored: /node_modules/ });
     watcher.on('change', () => {
         clients.forEach(ws => {
@@ -71,12 +75,14 @@ function setupLiveReload() {
     });
 }
 
+// Inject live reload script into HTML
 function injectLiveReload(content) {
     if (!config.liveReload) return content;
     const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
     return content.replace('</body>', script + '</body>');
 }
 
+// Log HTTP requests to the console
 function logRequest(req, res, startTime) {
     const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
     const timestamp = new Date().toISOString();
@@ -90,12 +96,14 @@ function logRequest(req, res, startTime) {
     console.log(`${clientIP} - - [${timestamp}] "${method} ${url} HTTP/1.1" ${statusCode} - "${referer}" "${userAgent}" ${responseTime}ms`);
 }
 
+// Create HTTP server to serve files and handle live reload
 const server = http.createServer((req, res) => {
     const startTime = Date.now();
     
     let filePath = req.url === '/' ? '' : req.url;
     filePath = filePath.split('?')[0];
   
+    // Support custom routes from config
     if (config.routes[req.url]) {
         filePath = config.routes[req.url];
     }
@@ -103,6 +111,7 @@ const server = http.createServer((req, res) => {
     const fullPath = path.join(webroot, filePath);
     const ext = path.extname(fullPath).toLowerCase();
   
+    // Inject live reload script for HTML files
     if (ext === '.html' && config.liveReload) {
         fs.readFile(fullPath, 'utf8', (err, data) => {
             if (err) {
@@ -124,10 +133,12 @@ const server = http.createServer((req, res) => {
     }
 });
 
+// Start live reload server if enabled
 if (config.liveReload) {
     setupLiveReload();
 }
 
+// Start the HTTP server
 server.listen(config.port, () => {
     console.log(`Server running at http://localhost:${config.port}`);
 });

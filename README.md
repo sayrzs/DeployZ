@@ -19,10 +19,14 @@ webroot/
 		docs.html
 ```
 
+## What is Live Reload?
+
+**LIVE RELOAD** automatically __refreshes__ your browser when you make __changes__ to files in the `webroot` directory. This helps you see updates instantly without manually reloading the page. (YOU CAN DISABLE/ENABLE THIS FEATURE VIA `config.json`)
+
 ## Usage
 
 - Place HTML files in the `webroot` directory
-- Run Node.js code from `index.js`
+- Run `index.js` from **Node.js** using console command --> `npm start` ^ `npm run dev`
 - Add dependencies to `package.json`
 
 ## Commands

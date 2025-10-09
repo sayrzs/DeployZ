@@ -7,18 +7,6 @@ You can view the live preview of this site at:
 
 _Hosted on [wispbyte.com](https://wispbyte.com)_
 
-## Project Structure
-
-```
-config.json
-index.js
-package.json
-README.md
-webroot/
-		index.html
-		docs.html
-```
-
 ## What is Live Reload?
 
 **LIVE RELOAD** automatically __refreshes__ your browser when you make __changes__ to files in the `webroot` directory. This helps you see updates instantly without manually reloading the page. (YOU CAN DISABLE/ENABLE THIS FEATURE VIA `config.json`)
@@ -27,19 +15,7 @@ webroot/
 
 You can show a different HTML file for each domain using the `domains` section in `config.json`.
 
-For example:
-
-```json
-{
-	"domains": {
-		"sayrz.com": "sayrz.html",
-		"sayrz.wispbyte.org": "index.html"
-	}
-}
-```
-
-This will serve `sayrz.html` for requests to `sayrz.com` and `index.html` for `sayrz.wispbyte.org`.
-
+## How to add domains
 To add or remove domains, edit the `domains` section in `config.json`.
 
 ## Usage

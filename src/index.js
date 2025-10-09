@@ -5,25 +5,39 @@ const mime = require('mime-types');
 const chokidar = require('chokidar');
 const WebSocket = require('ws');
 
-// Load configuration and set up variables
-const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
-const webroot = path.resolve(config.webroot);
+// Set up variables
+const configPath = path.resolve(__dirname, '../config/config.json');
+let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+let webroot = path.resolve(config.webroot);
+// Watch config file and reload on change
+chokidar.watch(configPath).on('change', () => {
+    try {
+        const newConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        config = newConfig;
+        webroot = path.resolve(config.webroot);
+        console.log('[INFO] Config reloaded');
+    } catch (e) {
+        console.error('[ERROR] Failed to reload config, keeping previous config:', e);
+    }
+});
 const clients = new Set(); // Store connected WebSocket clients
 const liveReloadPort = 35729; // Port for live reload server
 
-// Serve static files from webroot
+// Serve static files from webroot, but block config directory
 function sendFile(res, filePath) {
     const fullPath = path.join(webroot, filePath);
-  
+    // Prevent serving files from config directory
+    if (fullPath.includes('/config/')) {
+        res.writeHead(403);
+        return res.end('Forbidden');
+    }
     fs.stat(fullPath, (err, stats) => {
         if (err || !stats.isFile()) {
             res.writeHead(404);
             return res.end('File not found');
         }
-    
         const mimeType = mime.lookup(fullPath) || 'application/octet-stream';
         res.writeHead(200, { 'Content-Type': mimeType });
-    
         const readStream = fs.createReadStream(fullPath);
         readStream.pipe(res);
     });
@@ -76,7 +90,7 @@ function setupLiveReload() {
 }
 
 // Inject live reload script into HTML
-function injectLiveReload(content) {
+function injectLiveReload(content, config) {
     if (!config.liveReload) return content;
     const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
     return content.replace('</body>', script + '</body>');
@@ -137,7 +151,7 @@ const server = http.createServer((req, res) => {
                 logRequest(req, res, startTime);
                 return;
             }
-            const modifiedContent = injectLiveReload(data);
+            const modifiedContent = injectLiveReload(data, config);
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(modifiedContent);
             logRequest(req, res, startTime);

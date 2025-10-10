@@ -3,145 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeployZ - Lightweight Node.js Deployment Tool</title>
-    
-    <!-- Meta Tags (EMBED FOR TELEGRAM AND DISCORD AND ALL OF THAT STUFF) -->
-    <meta name="description" content="DeployZ is a lightweight, blazing-fast Node.js deployment tool that simplifies the deployment process for modern applications.">
-    <meta name="keywords" content="Node.js, deployment, tool, lightweight, fast, deploy, CI/CD, automation">
-    <meta name="author" content="Sayrz Studio">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
-    
-    <!-- Open Graph Meta(FaceBOOK AND THESE SHIT) Tags -->
-    <meta property="og:title" content="DeployZ - Lightweight Node.js Deployment Tool">
-    <meta property="og:description" content="DeployZ is a lightweight, blazing-fast Node.js deployment tool that simplifies the deployment process for modern applications.">
-    <meta property="og:image" content="https://github.com/sayrzs/sayrz.com/raw/main/assets/og-image.png">
-    <meta property="og:url" content="https://deployz.sayrz.com">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="DeployZ">
-    
-    <!-- Twitter/X Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DeployZ - Lightweight Node.js Deployment Tool">
-    <meta name="twitter:description" content="DeployZ is a lightweight, blazing-fast Node.js deployment tool that simplifies the deployment process for modern applications.">
-    <meta name="twitter:image" content="https://github.com/sayrzs/sayrz.com/raw/main/assets/twitter-card.png">
-    <meta name="twitter:creator" content="@sayrzstudio">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://deployz.sayrz.com">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://github.com/sayrzs/sayrz.com/raw/main/assets/favicon.ico">
-    <link rel="apple-touch-icon" href="https://github.com/sayrzs/sayrz.com/raw/main/assets/apple-touch-icon.png">
-    
-    <!-- Stylesheets -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>DeployZ - Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body data-theme="dark">
-    <!-- Matrix Rain Canvas -->
-    <canvas class="matrix-rain" id="matrixRain"></canvas>
-    
-    <!-- Theme Switcher -->
-    <div class="theme-switcher">
-        <button class="theme-btn" onclick="toggleThemeDropdown()">
-            <i class="fas fa-palette"></i>
-        </button>
-        <div class="theme-dropdown" id="themeDropdown">
-            <div class="theme-option active" onclick="setTheme('dark')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #9333ea, #6366f1);"></div>
-                <span>Dark Purple</span>
-            </div>
-            <div class="theme-option" onclick="setTheme('matrix')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #00ff41, #008f11);"></div>
-                <span>Matrix</span>
-            </div>
-            <div class="theme-option" onclick="setTheme('dracula')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #bd93f9, #ff79c6);"></div>
-                <span>Dracula</span>
-            </div>
-            <div class="theme-option" onclick="setTheme('nord')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #88c0d0, #5e81ac);"></div>
-                <span>Nord Dark</span>
-            </div>
-            <div class="theme-option" onclick="setTheme('cyberpunk')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #ff00ff, #00ffff);"></div>
-                <span>Cyberpunk</span>
-            </div>
-            <div class="theme-option" onclick="setTheme('monokai')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #f92672, #66d9ef);"></div>
-                <span>Monokai</span>
-            </div>
-            <div class="theme-option" onclick="setTheme('github-dark')">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #58a6ff, #1f6feb);"></div>
-                <span>GitHub Dark</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="hero-section text-center">
-                    <h1 class="display-4">DeployZ</h1>
-                    <p class="lead">A lightweight, blazing-fast Node.js deployment tool</p>
-                    <div class="hero-buttons">
-                        <a href="https://github.com/sayrzs/sayrz.com" target="_blank" class="github-btn">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
+<body data-theme="github">
+    <!-- Loader removed -->
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <i class="fas fa-rocket"></i>
+                DeployZ
+            </a>
+            <div class="theme-switcher">
+                <button class="theme-button" id="theme-button">
+                    <i class="fas fa-palette"></i>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="theme-dropdown" id="theme-dropdown">
+                    <div class="theme-option active" data-theme="github" data-name="GitHub">
+                        <i class="fab fa-github"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #0d1117"></div>
+                            <div class="theme-color" style="background: #161b22"></div>
+                            <div class="theme-color" style="background: #58a6ff"></div>
+                        </div>
+                        <span class="theme-name">GitHub</span>
+                    </div>
+                    <div class="theme-option" data-theme="matrix" data-name="Matrix">
+                        <i class="fas fa-code"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #0a0a0a"></div>
+                            <div class="theme-color" style="background: #00ff41"></div>
+                            <div class="theme-color" style="background: #00cc33"></div>
+                        </div>
+                        <span class="theme-name">Matrix</span>
+                    </div>
+                    <div class="theme-option" data-theme="dracula" data-name="Dracula">
+                        <i class="fas fa-moon"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #282a36"></div>
+                            <div class="theme-color" style="background: #bd93f9"></div>
+                            <div class="theme-color" style="background: #ff79c6"></div>
+                        </div>
+                        <span class="theme-name">Dracula</span>
+                    </div>
+                    <div class="theme-option" data-theme="nord" data-name="Nord">
+                        <i class="fas fa-snowflake"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #2e3440"></div>
+                            <div class="theme-color" style="background: #88c0d0"></div>
+                            <div class="theme-color" style="background: #81a1c1"></div>
+                        </div>
+                        <span class="theme-name">Nord</span>
+                    </div>
+                    <div class="theme-option" data-theme="discord" data-name="Discord">
+                        <i class="fab fa-discord"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #36393f"></div>
+                            <div class="theme-color" style="background: #7289da"></div>
+                            <div class="theme-color" style="background: #5a6ebf"></div>
+                        </div>
+                        <span class="theme-name">Discord</span>
+                    </div>
+                    <div class="theme-option" data-theme="monokai" data-name="Monokai">
+                        <i class="fas fa-fire"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #272822"></div>
+                            <div class="theme-color" style="background: #a6e22e"></div>
+                            <div class="theme-color" style="background: #f8f8f2"></div>
+                        </div>
+                        <span class="theme-name">Monokai</span>
+                    </div>
+                    <div class="theme-option" data-theme="onedark" data-name="One Dark">
+                        <i class="fas fa-adjust"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #282c34"></div>
+                            <div class="theme-color" style="background: #61afef"></div>
+                            <div class="theme-color" style="background: #528fcc"></div>
+                        </div>
+                        <span class="theme-name">One Dark</span>
+                    </div>
+                    <div class="theme-option" data-theme="vscode" data-name="VS Code">
+                        <i class="fas fa-code"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #1e1e1e"></div>
+                            <div class="theme-color" style="background: #007acc"></div>
+                            <div class="theme-color" style="background: #005a9e"></div>
+                        </div>
+                        <span class="theme-name">VS Code</span>
+                    </div>
+                    <div class="theme-option" data-theme="solarized-dark" data-name="Solarized Dark">
+                        <i class="fas fa-sun"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #002b36"></div>
+                            <div class="theme-color" style="background: #268bd2"></div>
+                            <div class="theme-color" style="background: #2aa198"></div>
+                        </div>
+                        <span class="theme-name">Solarized Dark</span>
+                    </div>
+                    <div class="theme-option" data-theme="gruvbox-dark" data-name="Gruvbox Dark">
+                        <i class="fas fa-box"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #282828"></div>
+                            <div class="theme-color" style="background: #fb4934"></div>
+                            <div class="theme-color" style="background: #ebdbb2"></div>
+                        </div>
+                        <span class="theme-name">Gruvbox Dark</span>
+                    </div>
+                    <div class="theme-option" data-theme="cyberpunk" data-name="Cyberpunk">
+                        <i class="fas fa-robot"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #0a0e27"></div>
+                            <div class="theme-color" style="background: #ff00ff"></div>
+                            <div class="theme-color" style="background: #ff00aa"></div>
+                        </div>
+                        <span class="theme-name">Cyberpunk</span>
+                    </div>
+                    <div class="theme-option" data-theme="rose-pine" data-name="Rose Pine">
+                        <i class="fas fa-leaf"></i>
+                        <div class="theme-colors">
+                            <div class="theme-color" style="background: #191724"></div>
+                            <div class="theme-color" style="background: #ebbcba"></div>
+                            <div class="theme-color" style="background: #f6c177"></div>
+                        </div>
+                        <span class="theme-name">Rose Pine</span>
                     </div>
                 </div>
-                
-                <div class="info-section">
-                    <h2><i class="fas fa-info-circle me-2"></i>Support</h2>
-                    <p>Need help with DeployZ? We're here to assist you!</p>
-                    <p>For bug reports, feature requests, or general questions, please <a href="https://github.com/sayrzs/sayrz.com/issues" target="_blank">open an issue</a> on GitHub. Our team actively monitors and responds to all issues.</p>
+            </div>
+        </div>
+    </nav>
+
+    <section class="docs">
+        <div class="docs-container">
+            <div class="docs-header">
+                <h1 class="docs-title">Documentation</h1>
+                <p class="docs-subtitle">Everything you need to know about DeployZ</p>
+            </div>
+            
+            <div class="doc-card">
+                <h2 class="doc-title">
+                    <i class="fas fa-life-ring"></i>
+                    Support
+                </h2>
+                <div class="doc-content">
+                    <p>Need help with DeployZ? We're here to assist you! Our comprehensive support system ensures you get the help you need when you need it.</p>
+                    <p>For bug reports, feature requests, or general questions, please <a href="https://github.com/sayrzs/deployz" target="_blank" rel="noopener noreferrer">open an issue on GitHub</a>. Our team actively monitors and responds to all issues within 24 hours.</p>
                     
                     <h3>Common Issues</h3>
-                    <p><strong>Build Errors:</strong> Check that your build command works locally before deployment.</p>
-                    
-                    <h2><i class="fas fa-certificate me-2"></i>License</h2>
-                    <p>DeployZ is licensed under the MIT License. This means you're free to use, modify, and distribute this software for both commercial and non-commercial purposes.</p>
-                    <p>The full license text can be found in the <a href="https://github.com/sayrzs/sayrz.com/blob/main/LICENSE" target="_blank">LICENSE</a> file in the repository.</p>
-                    
-                    <h2><i class="fas fa-hands-helping me-2"></i>Contributing</h2>
+                    <p><strong>Build Errors:</strong> Check that your build command works locally before deployment. Ensure all dependencies are properly installed and your build script is correctly configured.</p>
+                    <p><strong>Deployment Failures:</strong> Verify your environment variables and configuration settings. Double-check your API keys and connection strings.</p>
+                    <p><strong>Performance Issues:</strong> Review your application's resource usage and optimize accordingly. Consider implementing caching strategies and database optimizations.</p>
+                    <p><strong>SSL Certificate Problems:</strong> Ensure your domain is properly configured and SSL certificates are valid. Check your DNS settings and certificate renewal dates.</p>
+                </div>
+            </div>
+
+            <div class="doc-card">
+                <h2 class="doc-title">
+                    <i class="fas fa-balance-scale"></i>
+                    License
+                </h2>
+                <div class="doc-content">
+                    <p>DeployZ is licensed under the MIT License. This permissive license means you're free to use, modify, and distribute this software for both commercial and non-commercial purposes.</p>
+                    <p>The MIT License is a short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.</p>
+                    <p>The full license text can be found in the LICENSE file in the repository. We believe in open source and encourage contributions from the community.</p>
+                </div>
+            </div>
+
+            <div class="doc-card">
+                <h2 class="doc-title">
+                    <i class="fas fa-hands-helping"></i>
+                    Contributing
+                </h2>
+                <div class="doc-content">
                     <p>We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is greatly appreciated.</p>
-                    <p>To get started:</p>
+                    <p>To get started with contributing:</p>
                     <ol>
-                        <li>Fork the repository</li>
+                        <li>Fork the repository from our GitHub page</li>
                         <li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
-                        <li>Commit your changes (<code>git commit -m 'Add some amazing feature'</code>)</li>
+                        <li>Commit your changes with a descriptive message (<code>git commit -m 'Add some amazing feature'</code>)</li>
                         <li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
-                        <li>Open a Pull Request</li>
+                        <li>Open a Pull Request with a detailed description of your changes</li>
                     </ol>
-                    <p>Please ensure your code follows our coding standards and includes appropriate tests.</p>
+                    <p>Please ensure your code follows our coding standards and includes appropriate tests. We use ESLint and Prettier for code formatting, and Jest for testing. All pull requests must pass our CI/CD pipeline before merging.</p>
+                    
+                    <h3>Development Guidelines</h3>
+                    <p>Follow our contribution guidelines to ensure your pull request is accepted. We value clean, well-documented code and comprehensive test coverage. Before submitting, please run all tests and ensure your code doesn't break existing functionality.</p>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>DeployZ</h5>
-                    <p>Created by Sayrz Studio</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p>&copy; 2025 Sayrz. All rights reserved.</p>
-                    <a href="https://github.com/sayrzs/sayrz.com" target="_blank" class="text-white">
-                        <i class="fab fa-github fa-2x"></i>
-                    </a>
-                </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                DeployZ
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/sayrzs/deployz" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/sayrzs/deployz" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                <p><strong>DeployZ</strong></p>
+                <p>Created by Sayrz Studio</p>
+                <p>© 2025 Sayrz. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span class="toast-message" id="toast-message">Theme changed</span>
+    </div>
+    <script> const themeButton=document.getElementById("theme-button"),themeDropdown=document.getElementById("theme-dropdown"),themeOptions=document.querySelectorAll(".theme-option"),body=document.body,toast=document.getElementById("toast"),toastMessage=document.getElementById("toast-message");function showToast(t){toastMessage.textContent=t,toast.classList.add("show"),setTimeout((()=>{toast.classList.remove("show")}),3e3)}themeButton.addEventListener("click",(function(t){t.stopPropagation(),themeDropdown.classList.toggle("active")})),document.addEventListener("click",(function(t){themeButton.contains(t.target)||themeDropdown.contains(t.target)||themeDropdown.classList.remove("active")})),themeOptions.forEach((t=>{t.addEventListener("click",(function(){const t=this.getAttribute("data-theme"),e=this.getAttribute("data-name");body.setAttribute("data-theme",t),themeOptions.forEach((t=>t.classList.remove("active"))),this.classList.add("active"),themeDropdown.classList.remove("active"),localStorage.setItem("deployz-theme",t),showToast(`Theme changed to ${e}`)}))}));const savedTheme=localStorage.getItem("deployz-theme");savedTheme&&(body.setAttribute("data-theme",savedTheme),themeOptions.forEach((t=>{t.getAttribute("data-theme")===savedTheme?t.classList.add("active"):t.classList.remove("active")}))),window.addEventListener("scroll",(function(){const t=document.querySelector(".navbar");window.scrollY>50?t.style.backgroundColor="var(--surface-color)":t.style.backgroundColor="var(--navbar-bg)"})); </script>
 </body>
 </html>

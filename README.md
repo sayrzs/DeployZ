@@ -3,7 +3,7 @@
 
 You can view the live preview of this site at:
 
-[https://sayrz.wispbyte.org/](https://sayrz.wispbyte.org/)
+[https://sayrz.wispbyte.org/](https://deployz.wispbyte.org/)
 
 _Hosted on [wispbyte.com](https://wispbyte.com)_
 

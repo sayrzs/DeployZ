@@ -3,9 +3,9 @@
 
 You can view the live preview of this site at:
 
-[https://sayrz.wispbyte.org/](https://deployz.wispbyte.org/)
+[Preview](https://deployz.wispbyte.org/)
 
-_Hosted on [wispbyte.com](https://wispbyte.com)_
+_Hosted on [WispByte](https://wispbyte.com)_
 
 ## What is Live Reload?
 

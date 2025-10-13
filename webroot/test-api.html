@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>Backend API Test</h1>
+
+    <h2>Test GET Request</h2>
+    <button onclick="testGet()">Test GET /api/hello</button>
+    <div id="getResult" class="result">Click the button to test GET request</div>
+
+    <h2>Test POST Request</h2>
+    <input type="text" id="postData" placeholder="Enter JSON data" value='{"name": "World", "message": "Hello from frontend!"}'>
+    <button onclick="testPost()">Test POST /api/hello</button>
+    <div id="postResult" class="result">Click the button to test POST request</div>
+
+    <h2>Test Blocked File Access</h2>
+    <p>Try accessing <a href="scripts/script.js" target="_blank">scripts/script.js</a> (should be blocked)</p>
+
+    <script>
+        async function testGet() {
+            const resultDiv = document.getElementById('getResult');
+            try {
+                const response = await fetch('/api/hello');
+                const data = await response.json();
+                resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                resultDiv.innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testPost() {
+            const resultDiv = document.getElementById('postResult');
+            const inputData = document.getElementById('postData').value;
+
+            try {
+                const response = await fetch('/api/hello', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: inputData
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                resultDiv.innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

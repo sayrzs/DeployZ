@@ -4,6 +4,7 @@ const path = require('path');
 const mime = require('mime-types');
 const chokidar = require('chokidar');
 const WebSocket = require('ws');
+const { minimatch } = require('minimatch');
 
 // Set up for variables
 const configPath = path.resolve(__dirname, '../config/config.json');
@@ -23,13 +24,53 @@ chokidar.watch(configPath).on('change', () => {
 const clients = new Set(); // Store connected WebSocket clients
 const liveReloadPort = 35729; // Port for live reload server
 
-// Serve static files from webroot, but block config directory
-function sendFile(res, filePath) {
+// Function to check if a file is blocked
+function isFileBlocked(filePath, config, req) {
+    if (!config.blockFeature || !config.blockedFiles) return false;
+    const normalizedPath = filePath.replace(/^\/+/, ''); // Remove leading slashes
+
+    // Never block .css files
+    if (path.extname(normalizedPath) === '.css') return false;
+
+    // Check if file matches any blocked pattern
+    const isBlocked = config.blockedFiles.some(pattern => minimatch(normalizedPath, pattern));
+
+    return isBlocked;
+}
+
+// Function to log blocked access attempts
+function logBlockedAccess(req, filePath) {
+    if (!config.logsEnabled) return;
+    const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    const timestamp = new Date().toISOString();
+    const method = req.method;
+    const url = req.url;
+    const userAgent = req.headers['user-agent'] || '-';
+    const logEntry = `${timestamp} [BLOCKED] ${clientIP} "${method} ${url}" "${userAgent}"\n`;
+    const logFile = path.join(__dirname, '../logs/blocked_access.log');
+    fs.appendFile(logFile, logEntry, (err) => {
+        if (err) console.error('[ERROR] Failed to write to blocked access log:', err);
+    });
+}
+
+// Function to log all requests (deprecated, now handled in logRequest)
+function logAllRequests(req, res, startTime) {
+    // This function is no longer used, logging is handled in logRequest
+}
+
+// Serve static files from webroot, but block config directory and blocked files
+function sendFile(res, filePath, req, config) {
     const fullPath = path.join(webroot, filePath);
     // Prevent serving files from config directory
     if (fullPath.includes('/config/')) {
         res.writeHead(403);
-        return res.end('Forbidden'); // You can edit that from "Forbidden" to "Hello World!" or anything else! 
+        return res.end('Forbidden');
+    }
+    // Check if file is blocked
+    if (isFileBlocked(filePath, config, req)) {
+        logBlockedAccess(req, filePath);
+        res.writeHead(403); // You can change this to 404 if preferred
+        return res.end('Access Denied: File is blocked');
     }
     fs.stat(fullPath, (err, stats) => {
         if (err || !stats.isFile()) {
@@ -96,7 +137,7 @@ function injectLiveReload(content, config) {
     return content.replace('</body>', script + '</body>');
 }
 
-// Log HTTP requests to the console
+// Log HTTP requests to the console and file
 function logRequest(req, res, startTime) {
     const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
     const timestamp = new Date().toISOString();
@@ -106,8 +147,26 @@ function logRequest(req, res, startTime) {
     const userAgent = req.headers['user-agent'] || '-';
     const referer = req.headers['referer'] || '-';
     const responseTime = Date.now() - startTime;
-    
+    const logEntry = `${timestamp} ${clientIP} "${method} ${url} HTTP/1.1" ${statusCode} - "${referer}" "${userAgent}" ${responseTime}ms\n`;
+
     console.log(`${clientIP} - - [${timestamp}] "${method} ${url} HTTP/1.1" ${statusCode} - "${referer}" "${userAgent}" ${responseTime}ms`);
+
+    // Log to requests.log if enabled
+    if (config.requestLogsEnabled) {
+        const logDir = path.join(__dirname, '../logs');
+        const logFile = path.join(logDir, 'requests.log');
+
+        // Ensure logs directory exists
+        if (!fs.existsSync(logDir)) {
+            fs.mkdirSync(logDir, { recursive: true });
+        }
+
+        try {
+            fs.appendFileSync(logFile, logEntry);
+        } catch (err) {
+            console.error('[ERROR] Failed to write to requests log:', err);
+        }
+    }
 }
 
 // Create HTTP server to serve files and handle live reload
@@ -156,8 +215,37 @@ const server = http.createServer((req, res) => {
             res.end(modifiedContent);
             logRequest(req, res, startTime);
         });
+    } else if (req.url.startsWith('/api/')) {
+        // Handle API requests by executing scripts from /scripts/
+        const scriptPath = req.url.replace('/api/', '');
+        const fullScriptPath = path.join(__dirname, '../scripts', scriptPath + '.js');
+        fs.access(fullScriptPath, fs.constants.F_OK, (err) => {
+            if (err) {
+                res.writeHead(404);
+                res.end('API endpoint not found');
+                logRequest(req, res, startTime);
+                return;
+            }
+            try {
+                const scriptModule = require(fullScriptPath);
+                if (typeof scriptModule.handleRequest === 'function') {
+                    scriptModule.handleRequest(req, res, () => {
+                        logRequest(req, res, startTime);
+                    });
+                } else {
+                    res.writeHead(500);
+                    res.end('Script does not export handleRequest function');
+                    logRequest(req, res, startTime);
+                }
+            } catch (error) {
+                console.error('[ERROR] Failed to execute script:', error);
+                res.writeHead(500);
+                res.end('Internal server error');
+                logRequest(req, res, startTime);
+            }
+        });
     } else {
-        sendFile(res, filePath);
+        sendFile(res, filePath, req, config);
         res.on('finish', () => {
             logRequest(req, res, startTime);
         });

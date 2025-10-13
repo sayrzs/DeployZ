@@ -1,4 +1,6 @@
 # DeployZ
+## Support
+[Our doscord](https://discord.gg/XmffUUgx)
 ## Live Preview
 
 You can view the live preview of this site at:

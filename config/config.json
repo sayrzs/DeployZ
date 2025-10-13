@@ -8,5 +8,9 @@
         "sayrz.com": "index.html",
         "sayrz.wispbyte.org": "index.html"
     },
-    "liveReload": true
+    "liveReload": true,
+    "blockFeature": true,
+    "blockedFiles": ["scripts/hello.js"],
+    "logsEnabled": true,
+    "requestLogsEnabled": true
 }

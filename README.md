@@ -18,6 +18,13 @@ You can show a different HTML file for each domain using the `domains` section i
 ## How to add domains
 To add or remove domains, edit the `domains` section in `config.json`.
 
+## File Blocking and Logging
+
+Block specific files from public access and log requests.
+
+- **Block Files**: Set `blockFeature: true` and add patterns to `blockedFiles` array in `config.json`. CSS files cannot be blocked.
+- **Logs**: Enable `logsEnabled` for blocked access logs, `requestLogsEnabled` for all request logs. Logs saved to `logs/` directory.
+
 ## Usage
 
 - Place HTML files in the `webroot` directory

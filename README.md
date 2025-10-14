@@ -1,6 +1,8 @@
 # DeployZ
+## Warning 
+- There's a release its called DeployZ-security release its not the latest bc we are testing everything we've added into that release
 ## Support
-[Our doscord](https://discord.gg/XmffUUgx)
+[Our Discord](https://discord.gg/XmffUUgx)
 ## Live Preview
 
 You can view the live preview of this site at:

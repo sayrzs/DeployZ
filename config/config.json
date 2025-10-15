@@ -10,7 +10,7 @@
     },
     "liveReload": true,
     "blockFeature": true,
-    "blockedFiles": ["scripts/hello.js"],
+    "blockedFiles": ["api/hello.js"],
     "logsEnabled": true,
     "requestLogsEnabled": true
 }

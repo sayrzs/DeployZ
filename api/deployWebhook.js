@@ -23,32 +23,9 @@ export default async function handler(req, res) {
 
             console.log('Parsed webhook data:', { name, environment, url, state });
 
-            // Colors based on status
-            const colors = {
-                success: 0x57f287, // GREEN
-                failed: 0xed4245,  // RED
-                created: 0x5865f2  // BLURPLE
-            };
-
-            const color =
-                state === "READY" ? colors.success :
-                state === "ERROR" ? colors.failed :
-                colors.created;
-
+            // Simple test message
             const data = {
-                embeds: [
-                    {
-                        title: "New Vercel Deployment",
-                        description: `Project **${name || "Unknown"}** just deployed!!`,
-                        color,
-                        fields: [
-                            { name: "Environment", value: environment || "Production", inline: true },
-                            { name: "URL", value: url || "N/A", inline: true }
-                        ],
-                        footer: { text: "Powered by Vercel × Sayrz Studio" },
-                        timestamp: new Date().toISOString()
-                    }
-                ]
+                content: `Hello there! New deployment: ${name || "Unknown"} - ${state || "Unknown"}`
             };
 
             const response = await fetch(webhookURL, {

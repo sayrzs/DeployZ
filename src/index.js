@@ -10,6 +10,9 @@ const { minimatch } = require('minimatch');
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 let webroot = path.resolve(config.webroot);
+// Debugging logs
+console.log('[DEBUG] Webroot path:', webroot);
+console.log('[DEBUG] Current directory:', __dirname);
 // Watch config file and reload onto change (if valid JSON) - only in local development
 if (!process.env.VERCEL) {
     chokidar.watch(configPath).on('change', () => {
@@ -202,6 +205,7 @@ const server = http.createServer((req, res) => {
 
     // Log host and selected file for debugging
     console.log(`[DEBUG] Host: ${host} | Domain matched: ${domainMatched} | Serving file: ${filePath}`);
+    console.log(`[DEBUG] Full path: ${fullPath} | Webroot: ${webroot}`);
 
     // Inject live reload script for HTML files - only in local development
     if (ext === '.html' && config.liveReload && !process.env.VERCEL) {

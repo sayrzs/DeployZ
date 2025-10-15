@@ -1,15 +1,11 @@
 # DeployZ
-## ~~Warning~~
-- ~~There's a DeployZ-security release its not the latest bc we are testing everything we've added into that release~~
-## Support
-[Our Discord](https://discord.gg/XmffUUgx)
 ## Live Preview
 
 You can view the live preview of this site at:
 
 [Preview](https://deployz.wispbyte.org/)
 
-_Hosted on [WispByte](https://wispbyte.com)_
+_Hosted on [WispByte](https://wispbyte.com) or [Vercel](https://deploy-z.vercel.app) (fully supported)_
 
 ## What is Live Reload?
 
@@ -22,7 +18,7 @@ You can show a different HTML file for each domain using the `domains` section i
 ## How to add domains
 To add or remove domains, edit the `domains` section in `config.json`.
 
-## File Blocking and Logging
+## File Blocking and Logging (NEW)
 
 Block specific files from public access and log requests.
 
@@ -46,3 +42,6 @@ Block specific files from public access and log requests.
 	```bash
 	npm run dev
 	```
+
+## Support
+[Our Discord](https://discord.gg/XmffUUgx)

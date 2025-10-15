@@ -1,3 +1,7 @@
+// =============================
+// DELET THAT FILE IF YOU'RE NOT USING VERCEL
+// SENDS A DISCORD WEBHOOK WHEN A NEW DEPLOYMENT IS MADE
+// =============================
 const fetch = require("node-fetch");
 
 module.exports = async (req, res) => {

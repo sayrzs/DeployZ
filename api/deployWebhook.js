@@ -2,7 +2,7 @@
 // DELET THAT FILE IF YOU'RE NOT USING VERCEL
 // SENDS A DISCORD WEBHOOK WHEN A NEW DEPLOYMENT IS MADE
 // =============================
-export default async function handler(req, res) {
+export default function handler(req, res) {
     // Response headers
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow CORS for frontend requests
@@ -13,11 +13,8 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log('Webhook received:', { method: req.method, body: req.body });
         try {
-            const webhookURL = process.env.DISCORD_WEBHOOK_URL;
-            if (!webhookURL) {
-                console.error('DISCORD_WEBHOOK_URL environment variable not set');
-                return res.status(500).json({ error: "Discord webhook not configured" });
-            }
+            const webhookURL = "https://discord.com/api/webhooks/1426223430050648114/rSVUcJp_vPhaDlIkjZ5vxag0Ti8l7udkcXnbi9DJJVCYcnG3Qtjobz8nKRUw8YO5pQ9w";
+            console.log('Using hardcoded webhook URL for testing');
 
             const { name, environment, url, state } = req.body || {};
 
@@ -28,20 +25,22 @@ export default async function handler(req, res) {
                 content: `Hello there! New deployment: ${name || "Unknown"} - ${state || "Unknown"}`
             };
 
-            const response = await fetch(webhookURL, {
+            fetch(webhookURL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(`Webhook failed: ${response.statusText}`);
+                }
+                console.log('Webhook sent successfully');
+                res.status(200).json({ ok: true });
+            }).catch(err => {
+                console.error("Error sending webhook:", err);
+                res.status(500).json({ error: "Internal Server Error" });
             });
-
-            if (!response.ok) {
-                throw new Error(`Webhook failed: ${response.statusText}`);
-            }
-
-            console.log('Webhook sent successfully');
-            res.status(200).json({ ok: true });
         } catch (err) {
-            console.error("Error sending webhook:", err);
+            console.error("Error in try block:", err);
             res.status(500).json({ error: "Internal Server Error" });
         }
     } else if (req.method === 'OPTIONS') {

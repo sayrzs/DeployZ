@@ -218,9 +218,9 @@ const server = http.createServer((req, res) => {
             logRequest(req, res, startTime);
         });
     } else if (req.url.startsWith('/api/')) {
-        // Handle API requests by executing scripts from /scripts/
+        // Handle API requests by executing scripts from /api/
         const scriptPath = req.url.replace('/api/', '');
-        const fullScriptPath = path.join(__dirname, '../scripts', scriptPath + '.js');
+        const fullScriptPath = path.join(__dirname, '../api', scriptPath + '.js');
         fs.access(fullScriptPath, fs.constants.F_OK, (err) => {
             if (err) {
                 res.writeHead(404);

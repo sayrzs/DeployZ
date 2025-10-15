@@ -11,13 +11,17 @@ export default async function handler(req, res) {
 
     // Handle different HTTP methods
     if (req.method === 'POST') {
+        console.log('Webhook received:', { method: req.method, body: req.body });
         try {
             const webhookURL = process.env.DISCORD_WEBHOOK_URL;
             if (!webhookURL) {
+                console.error('DISCORD_WEBHOOK_URL environment variable not set');
                 return res.status(500).json({ error: "Discord webhook not configured" });
             }
 
             const { name, environment, url, state } = req.body || {};
+
+            console.log('Parsed webhook data:', { name, environment, url, state });
 
             // Colors based on status
             const colors = {
@@ -57,6 +61,7 @@ export default async function handler(req, res) {
                 throw new Error(`Webhook failed: ${response.statusText}`);
             }
 
+            console.log('Webhook sent successfully');
             res.status(200).json({ ok: true });
         } catch (err) {
             console.error("Error sending webhook:", err);

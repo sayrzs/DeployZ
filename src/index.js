@@ -259,11 +259,13 @@ if (config.liveReload && !process.env.VERCEL) {
     setupLiveReload();
 }
 
-// Start the HTTP server
+// Export for Vercel
 if (process.env.VERCEL) {
-    // Export for Vercel serverless
-    module.exports = server;
+    module.exports = (req, res) => {
+        server.emit('request', req, res);
+    };
 } else {
+    // Local development
     server.listen(config.port, () => {
         console.log(`Server running at http://localhost:${config.port}`);
     });

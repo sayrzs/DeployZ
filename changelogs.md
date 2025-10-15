@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.1.0 - Enhanced Security Features (2025-10-13)
+## Version 1.1.0 - Enhanced Security Features (2025-10-16 UPDATED!)
 
 ### New Features
 - **File Blocking**: Block specific files with wildcards. CSS files never blocked.
@@ -14,11 +14,12 @@
 - `requestLogsEnabled`: Enable all request logs (default: true)
 
 ### Files Added
-- `scripts/` directory
+- `api/` directory
 - `logs/` directory
 - `logs/requests.log`
 
 ### Files Modified
 - `config/config.json`
 - `src/index.js`
+- `api/hello.js`
 - `package.json`

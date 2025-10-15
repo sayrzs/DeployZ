@@ -10,17 +10,19 @@ const { minimatch } = require('minimatch');
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 let webroot = path.resolve(config.webroot);
-// Watch config file and reload onto change (if valid JSON)
-chokidar.watch(configPath).on('change', () => {
-    try {
-        const newConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        config = newConfig;
-        webroot = path.resolve(config.webroot);
-        console.log('[INFO] Config reloaded');
-    } catch (e) {
-        console.error('[ERROR] Failed to reload config, keeping previous config:', e);
-    }
-});
+// Watch config file and reload onto change (if valid JSON) - only in local development
+if (!process.env.VERCEL) {
+    chokidar.watch(configPath).on('change', () => {
+        try {
+            const newConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            config = newConfig;
+            webroot = path.resolve(config.webroot);
+            console.log('[INFO] Config reloaded');
+        } catch (e) {
+            console.error('[ERROR] Failed to reload config, keeping previous config:', e);
+        }
+    });
+}
 const clients = new Set(); // Store connected WebSocket clients
 const liveReloadPort = 35729; // Port for live reload server
 
@@ -130,9 +132,9 @@ function setupLiveReload() {
     });
 }
 
-// Inject live reload script into HTML
+// Inject live reload script into HTML - only in local development
 function injectLiveReload(content, config) {
-    if (!config.liveReload) return content;
+    if (!config.liveReload || process.env.VERCEL) return content;
     const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
     return content.replace('</body>', script + '</body>');
 }
@@ -201,8 +203,8 @@ const server = http.createServer((req, res) => {
     // Log host and selected file for debugging
     console.log(`[DEBUG] Host: ${host} | Domain matched: ${domainMatched} | Serving file: ${filePath}`);
 
-    // Inject live reload script for HTML files
-    if (ext === '.html' && config.liveReload) {
+    // Inject live reload script for HTML files - only in local development
+    if (ext === '.html' && config.liveReload && !process.env.VERCEL) {
         fs.readFile(fullPath, 'utf8', (err, data) => {
             if (err) {
                 res.writeHead(404);
@@ -252,12 +254,17 @@ const server = http.createServer((req, res) => {
     }
 });
 
-// Start live reload server if enabled
-if (config.liveReload) {
+// Start live reload server if enabled - only in local development
+if (config.liveReload && !process.env.VERCEL) {
     setupLiveReload();
 }
 
 // Start the HTTP server
-server.listen(config.port, () => {
-    console.log(`Server running at http://localhost:${config.port}`);
-});
+if (process.env.VERCEL) {
+    // Export for Vercel serverless
+    module.exports = server;
+} else {
+    server.listen(config.port, () => {
+        console.log(`Server running at http://localhost:${config.port}`);
+    });
+}

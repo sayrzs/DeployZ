@@ -19,6 +19,7 @@
     "static",
     "server",
     "live-reload",
+    "vercel",
     "nodejs"
   ],
   "license": "MIT"

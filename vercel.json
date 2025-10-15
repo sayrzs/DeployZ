@@ -16,7 +16,7 @@
       "dest": "/webroot/$1"
     }
   ],
-  "functions": {
+  "routes": {
     "api/**/*.js": {
       "runtime": "nodejs18.x"
     }

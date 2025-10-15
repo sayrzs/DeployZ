@@ -3,46 +3,574 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Test Page</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .result { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
-        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
-        input { padding: 8px; margin: 5px; width: 200px; }
-    </style>
+    <title>API Test Page - DeployZ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta property="og:title" content="API Test Page - DeployZ" />
+    <meta property="og:description" content="Test your DeployZ API endpoints with this interactive testing tool." />
+    <meta property="og:url" content="https://github.com/sayrzs/deployz" />
+    <meta property="og:image" content="https://github.com/sayrzs/deployz/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="API Test Page - DeployZ" />
+    <meta name="twitter:description" content="Test your DeployZ API endpoints with this interactive testing tool." />
+    <meta name="twitter:image" content="https://github.com/sayrzs/deployz/logo.png" />
+    <meta name="telegram:channel" content="@deployz" />
+    <meta name="discord:server" content="https://discord.gg/fJqzvnFkpq" />
+    <link rel="stylesheet" href="index.css">
 </head>
-<body>
-    <h1>Backend API Test</h1>
+<body data-theme="github">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-rocket"></i>
+                DeployZ
+            </a>
+            <div class="theme-switcher">
+                <button class="theme-button" id="theme-button">
+                    <i class="fas fa-palette"></i>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="theme-dropdown" id="theme-dropdown">
+                    <div class="theme-grid-container">
+                        <!-- Page 1: First 8 themes -->
+                        <div class="theme-page active" id="page-0">
+                            <div class="theme-option active" data-theme="github" data-name="GitHub">
+                                <i class="fab fa-github"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #0d1117"></div>
+                                    <div class="theme-color" style="background: #161b22"></div>
+                                    <div class="theme-color" style="background: #58a6ff"></div>
+                                </div>
+                                <span class="theme-name">GitHub</span>
+                            </div>
+                            <div class="theme-option" data-theme="matrix" data-name="Matrix">
+                                <i class="fas fa-code"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #0a0a0a"></div>
+                                    <div class="theme-color" style="background: #00ff41"></div>
+                                    <div class="theme-color" style="background: #00cc33"></div>
+                                </div>
+                                <span class="theme-name">Matrix</span>
+                            </div>
+                            <div class="theme-option" data-theme="dracula" data-name="Dracula">
+                                <i class="fas fa-moon"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #282a36"></div>
+                                    <div class="theme-color" style="background: #bd93f9"></div>
+                                    <div class="theme-color" style="background: #ff79c6"></div>
+                                </div>
+                                <span class="theme-name">Dracula</span>
+                            </div>
+                            <div class="theme-option" data-theme="nord" data-name="Nord">
+                                <i class="fas fa-snowflake"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #2e3440"></div>
+                                    <div class="theme-color" style="background: #88c0d0"></div>
+                                    <div class="theme-color" style="background: #81a1c1"></div>
+                                </div>
+                                <span class="theme-name">Nord</span>
+                            </div>
+                            <div class="theme-option" data-theme="discord" data-name="Discord">
+                                <i class="fab fa-discord"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #36393f"></div>
+                                    <div class="theme-color" style="background: #7289da"></div>
+                                    <div class="theme-color" style="background: #5a6ebf"></div>
+                                </div>
+                                <span class="theme-name">Discord</span>
+                            </div>
+                            <div class="theme-option" data-theme="monokai" data-name="Monokai">
+                                <i class="fas fa-fire"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #272822"></div>
+                                    <div class="theme-color" style="background: #a6e22e"></div>
+                                    <div class="theme-color" style="background: #f8f8f2"></div>
+                                </div>
+                                <span class="theme-name">Monokai</span>
+                            </div>
+                            <div class="theme-option" data-theme="onedark" data-name="One Dark">
+                                <i class="fas fa-adjust"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #282c34"></div>
+                                    <div class="theme-color" style="background: #61afef"></div>
+                                    <div class="theme-color" style="background: #528fcc"></div>
+                                </div>
+                                <span class="theme-name">One Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="vscode" data-name="VS Code">
+                                <i class="fas fa-code"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #1e1e1e"></div>
+                                    <div class="theme-color" style="background: #007acc"></div>
+                                    <div class="theme-color" style="background: #005a9e"></div>
+                                </div>
+                                <span class="theme-name">VS Code</span>
+                            </div>
+                        </div>
+                        <!-- Page 2: Next 8 themes -->
+                        <div class="theme-page" id="page-1">
+                            <div class="theme-option" data-theme="solarized-dark" data-name="Solarized Dark">
+                                <i class="fas fa-sun"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #002b36"></div>
+                                    <div class="theme-color" style="background: #268bd2"></div>
+                                    <div class="theme-color" style="background: #2aa198"></div>
+                                </div>
+                                <span class="theme-name">Solarized Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="gruvbox-dark" data-name="Gruvbox Dark">
+                                <i class="fas fa-box"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #282828"></div>
+                                    <div class="theme-color" style="background: #fb4934"></div>
+                                    <div class="theme-color" style="background: #ebdbb2"></div>
+                                </div>
+                                <span class="theme-name">Gruvbox Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="cyberpunk" data-name="Cyberpunk">
+                                <i class="fas fa-robot"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #0a0e27"></div>
+                                    <div class="theme-color" style="background: #ff00ff"></div>
+                                    <div class="theme-color" style="background: #ff00aa"></div>
+                                </div>
+                                <span class="theme-name">Cyberpunk</span>
+                            </div>
+                            <div class="theme-option" data-theme="rose-pine" data-name="Rose Pine">
+                                <i class="fas fa-leaf"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #191724"></div>
+                                    <div class="theme-color" style="background: #ebbcba"></div>
+                                    <div class="theme-color" style="background: #f6c177"></div>
+                                </div>
+                                <span class="theme-name">Rose Pine</span>
+                            </div>
+                            <div class="theme-option" data-theme="atom-one-dark" data-name="Atom One Dark">
+                                <i class="fab fa-atom"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #21252b"></div>
+                                    <div class="theme-color" style="background: #e06c75"></div>
+                                    <div class="theme-color" style="background: #be5046"></div>
+                                </div>
+                                <span class="theme-name">Atom One Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="material-dark" data-name="Material Dark">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #121212"></div>
+                                    <div class="theme-color" style="background: #bb86fc"></div>
+                                    <div class="theme-color" style="background: #3700b3"></div>
+                                </div>
+                                <span class="theme-name">Material Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="palenight" data-name="Palenight">
+                                <i class="fas fa-moon"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #292d3e"></div>
+                                    <div class="theme-color" style="background: #82aaff"></div>
+                                    <div class="theme-color" style="background: #5c7bd9"></div>
+                                </div>
+                                <span class="theme-name">Palenight</span>
+                            </div>
+                            <div class="theme-option" data-theme="night-owl" data-name="Night Owl">
+                                <i class="fas fa-owl"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #011627"></div>
+                                    <div class="theme-color" style="background: #7fdbca"></div>
+                                    <div class="theme-color" style="background: #5ebdab"></div>
+                                </div>
+                                <span class="theme-name">Night Owl</span>
+                            </div>
+                        </div>
+                        <!-- Page 3: Last 8 themes -->
+                        <div class="theme-page" id="page-2">
+                            <div class="theme-option" data-theme="synthwave-84" data-name="Synthwave '84">
+                                <i class="fas fa-music"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #2a2139"></div>
+                                    <div class="theme-color" style="background: #f92aad"></div>
+                                    <div class="theme-color" style="background: #e8457c"></div>
+                                </div>
+                                <span class="theme-name">Synthwave '84</span>
+                            </div>
+                            <div class="theme-option" data-theme="github-high-contrast" data-name="GitHub High Contrast">
+                                <i class="fab fa-github"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #010409"></div>
+                                    <div class="theme-color" style="background: #58a6ff"></div>
+                                    <div class="theme-color" style="background: #79c0ff"></div>
+                                </div>
+                                <span class="theme-name">GitHub High Contrast</span>
+                            </div>
+                            <div class="theme-option" data-theme="ayu-dark" data-name="Ayu Dark">
+                                <i class="fas fa-adjust"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #0f1419"></div>
+                                    <div class="theme-color" style="background: #ffcc66"></div>
+                                    <div class="theme-color" style="background: #ffb347"></div>
+                                </div>
+                                <span class="theme-name">Ayu Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="catppuccin-mocha" data-name="Catppuccin Mocha">
+                                <i class="fas fa-coffee"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #1e1e2e"></div>
+                                    <div class="theme-color" style="background: #f38ba8"></div>
+                                    <div class="theme-color" style="background: #eba0ac"></div>
+                                </div>
+                                <span class="theme-name">Catppuccin Mocha</span>
+                            </div>
+                            <div class="theme-option" data-theme="gotham" data-name="Gotham">
+                                <i class="fas fa-city"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #0c1014"></div>
+                                    <div class="theme-color" style="background: #4e89ae"></div>
+                                    <div class="theme-color" style="background: #3a6b8a"></div>
+                                </div>
+                                <span class="theme-name">Gotham</span>
+                            </div>
+                            <div class="theme-option" data-theme="one-pro" data-name="One Pro">
+                                <i class="fas fa-briefcase"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #232830"></div>
+                                    <div class="theme-color" style="background: #2aacb8"></div>
+                                    <div class="theme-color" style="background: #1e8a94"></div>
+                                </div>
+                                <span class="theme-name">One Pro</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark-plus" data-name="Dark+">
+                                <i class="fas fa-plus"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #1a1d23"></div>
+                                    <div class="theme-color" style="background: #569cd6"></div>
+                                    <div class="theme-color" style="background: #4a8bc2"></div>
+                                </div>
+                                <span class="theme-name">Dark+</span>
+                            </div>
+                            <div class="theme-option" data-theme="neon" data-name="Neon">
+                                <i class="fas fa-bolt"></i>
+                                <div class="theme-colors">
+                                    <div class="theme-color" style="background: #0a0a0a"></div>
+                                    <div class="theme-color" style="background: #00ffff"></div>
+                                    <div class="theme-color" style="background: #00cccc"></div>
+                                </div>
+                                <span class="theme-name">Neon</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="theme-navigation">
+                        <button class="theme-arrow" id="prev-arrow" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="theme-pagination">
+                            <div class="theme-dot active" data-page="0"></div>
+                            <div class="theme-dot" data-page="1"></div>
+                            <div class="theme-dot" data-page="2"></div>
+                        </div>
+                        <button class="theme-arrow" id="next-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <h2>Test GET Request</h2>
-    <button onclick="testGet()">Test GET /api/hello</button>
-    <div id="getResult" class="result">Click the button to test GET request</div>
+    <section class="docs">
+        <div class="docs-container">
+            <div class="docs-header">
+                <h1 class="docs-title">API Test Page</h1>
+                <p class="docs-subtitle">Test your DeployZ API endpoints interactively</p>
+            </div>
 
-    <h2>Test POST Request</h2>
-    <input type="text" id="postData" placeholder="Enter JSON data" value='{"name": "World", "message": "Hello from frontend!"}'>
-    <button onclick="testPost()">Test POST /api/hello</button>
-    <div id="postResult" class="result">Click the button to test POST request</div>
+            <div class="doc-card">
+                <h2 class="doc-title">
+                    <i class="fas fa-flask"></i>
+                    Test GET Request
+                </h2>
+                <div class="doc-content">
+                    <p>Test the GET endpoint to retrieve data from your API.</p>
+                    <button class="test-button" onclick="testGet()">Test GET /api/hello</button>
+                    <div id="getResult" class="result">Click the button to test GET request</div>
+                </div>
+            </div>
 
-    <h2>Test Blocked File Access</h2>
-    <p>Try accessing <a href="scripts/script.js" target="_blank">scripts/script.js</a> (should be blocked)</p>
+            <div class="doc-card">
+                <h2 class="doc-title">
+                    <i class="fas fa-paper-plane"></i>
+                    Test POST Request
+                </h2>
+                <div class="doc-content">
+                    <p>Test the POST endpoint by sending JSON data to your API.</p>
+                    <input type="text" id="postData" placeholder="Enter JSON data" value='{"name": "World", "message": "Hello from frontend!"}' class="test-input">
+                    <button class="test-button" onclick="testPost()">Test POST /api/hello</button>
+                    <div id="postResult" class="result">Click the button to test POST request</div>
+                </div>
+            </div>
+
+            <div class="doc-card">
+                <h2 class="doc-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Test Blocked File Access
+                </h2>
+                <div class="doc-content">
+                    <p>Verify that sensitive files are properly blocked from direct access.</p>
+                    <p>Try accessing <a href="api/hello.js" target="_blank" rel="noopener noreferrer">api/hello.js</a> (should be blocked)</p>
+                    <div id="blockedResult" class="result">Testing access...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                DeployZ
+            </div>
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+                <a href="#" class="footer-link">Contributing</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/sayrzs/deployz" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                <p><strong>DeployZ</strong></p>
+                <p>Created by Sayrz Studio</p>
+                <p>© 2025 Sayrz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span class="toast-message" id="toast-message">Theme changed</span>
+    </div>
 
     <script>
+        const themeButton = document.getElementById("theme-button");
+        const themeDropdown = document.getElementById("theme-dropdown");
+        const themePages = document.querySelectorAll(".theme-page");
+        const themeOptions = document.querySelectorAll(".theme-option");
+        const themeDots = document.querySelectorAll(".theme-dot");
+        const prevArrow = document.getElementById("prev-arrow");
+        const nextArrow = document.getElementById("next-arrow");
+        const body = document.body;
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toast-message");
+
+        let currentPage = 0;
+        const totalPages = themePages.length;
+
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
+        function showPage(page) {
+            currentPage = page;
+
+            // Hide all pages
+            themePages.forEach(p => {
+                p.classList.remove("active");
+            });
+
+            // Show current page
+            themePages[page].classList.add("active");
+
+            // Update dots
+            themeDots.forEach((dot, index) => {
+                if (index === page) {
+                    dot.classList.add("active");
+                } else {
+                    dot.classList.remove("active");
+                }
+            });
+
+            // Update arrows
+            prevArrow.disabled = page === 0;
+            nextArrow.disabled = page === totalPages - 1;
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                showPage(currentPage + 1);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                showPage(currentPage - 1);
+            }
+        }
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const themeGridContainer = document.querySelector(".theme-grid-container");
+
+        themeGridContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        themeGridContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next page
+                    nextPage();
+                } else {
+                    // Swipe right - previous page
+                    prevPage();
+                }
+            }
+        }
+
+        themeButton.addEventListener("click", function(event) {
+            event.stopPropagation();
+            themeDropdown.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!themeButton.contains(event.target) && !themeDropdown.contains(event.target)) {
+                themeDropdown.classList.remove("active");
+            }
+        });
+
+        themeOptions.forEach(option => {
+            option.addEventListener("click", function() {
+                const theme = this.getAttribute("data-theme");
+                const themeName = this.getAttribute("data-name");
+
+                body.setAttribute("data-theme", theme);
+
+                themeOptions.forEach(opt => opt.classList.remove("active"));
+                this.classList.add("active");
+
+                themeDropdown.classList.remove("active");
+
+                localStorage.setItem("deployz-theme", theme);
+
+                showToast(`Theme changed to ${themeName}`);
+            });
+        });
+
+        themeDots.forEach(dot => {
+            dot.addEventListener("click", function() {
+                const page = parseInt(this.getAttribute("data-page"));
+                showPage(page);
+            });
+        });
+
+        prevArrow.addEventListener("click", prevPage);
+        nextArrow.addEventListener("click", nextPage);
+
+        // Keyboard navigation
+        document.addEventListener("keydown", function(e) {
+            if (themeDropdown.classList.contains("active")) {
+                if (e.key === "ArrowLeft") {
+                    prevPage();
+                } else if (e.key === "ArrowRight") {
+                    nextPage();
+                }
+            }
+        });
+
+        const savedTheme = localStorage.getItem("deployz-theme");
+        if (savedTheme) {
+            body.setAttribute("data-theme", savedTheme);
+            themeOptions.forEach(option => {
+                if (option.getAttribute("data-theme") === savedTheme) {
+                    option.classList.add("active");
+                    // Find which page this theme is on
+                    const parentPage = option.closest('.theme-page');
+                    if (parentPage) {
+                        const pageIndex = parseInt(parentPage.id.replace('page-', ''));
+                        showPage(pageIndex);
+                    }
+                } else {
+                    option.classList.remove("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", function() {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = "var(--surface-color)";
+            } else {
+                navbar.style.backgroundColor = "var(--navbar-bg)";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const yearSpan = document.getElementById("copyright-year");
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+
+        // API Testing Functions
         async function testGet() {
             const resultDiv = document.getElementById('getResult');
+            const button = document.querySelector('button[onclick="testGet()"]');
+            const originalText = button.innerHTML;
+
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+            button.disabled = true;
+            resultDiv.innerHTML = '<div style="color: var(--accent-color);"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
+
             try {
                 const response = await fetch('/api/hello');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
                 const data = await response.json();
-                resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                resultDiv.innerHTML = '<pre style="color: var(--accent-color);">' + JSON.stringify(data, null, 2) + '</pre>';
             } catch (error) {
-                resultDiv.innerHTML = 'Error: ' + error.message;
+                resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: ' + error.message + '</div>';
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
             }
         }
 
         async function testPost() {
             const resultDiv = document.getElementById('postResult');
             const inputData = document.getElementById('postData').value;
+            const button = document.querySelector('button[onclick="testPost()"]');
+            const originalText = button.innerHTML;
+
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+            button.disabled = true;
+            resultDiv.innerHTML = '<div style="color: var(--accent-color);"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
 
             try {
+                // Validate JSON
+                JSON.parse(inputData);
+
                 const response = await fetch('/api/hello', {
                     method: 'POST',
                     headers: {
@@ -50,12 +578,48 @@
                     },
                     body: inputData
                 });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
                 const data = await response.json();
-                resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                resultDiv.innerHTML = '<pre style="color: var(--accent-color);">' + JSON.stringify(data, null, 2) + '</pre>';
             } catch (error) {
-                resultDiv.innerHTML = 'Error: ' + error.message;
+                if (error instanceof SyntaxError) {
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: Invalid JSON format</div>';
+                } else {
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: ' + error.message + '</div>';
+                }
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
             }
         }
+
+        // Test blocked file access
+        async function testBlockedAccess() {
+            const resultDiv = document.getElementById('blockedResult');
+            if (!resultDiv) return;
+
+            resultDiv.innerHTML = '<div style="color: var(--accent-color);"><i class="fas fa-spinner fa-spin"></i> Testing access...</div>';
+
+            try {
+                const response = await fetch('/api/hello.js');
+                if (response.ok) {
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Warning: File is accessible (security issue!)</div>';
+                } else {
+                    resultDiv.innerHTML = '<div style="color: #4ecdc4;"><i class="fas fa-shield-alt"></i> Success: File is properly blocked</div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div style="color: #4ecdc4;"><i class="fas fa-shield-alt"></i> Success: File is properly blocked</div>';
+            }
+        }
+
+        // Auto-test blocked access on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            testBlockedAccess();
+        });
     </script>
 </body>
 </html>

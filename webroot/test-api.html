@@ -544,11 +544,19 @@
 
             try {
                 const response = await fetch('/api/hello');
+                const responseText = await response.text();
+
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: HTTP ' + response.status + ' - ' + responseText + '</div>';
+                    return;
                 }
-                const data = await response.json();
-                resultDiv.innerHTML = '<pre style="color: var(--accent-color);">' + JSON.stringify(data, null, 2) + '</pre>';
+
+                try {
+                    const data = JSON.parse(responseText);
+                    resultDiv.innerHTML = '<div style="color: #4ecdc4;"><i class="fas fa-check-circle"></i> Success: HTTP ' + response.status + ' - ' + JSON.stringify(data.message) + '</div>';
+                } catch (jsonError) {
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: Invalid JSON response - ' + responseText + '</div>';
+                }
             } catch (error) {
                 resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: ' + error.message + '</div>';
             } finally {
@@ -579,12 +587,19 @@
                     body: inputData
                 });
 
+                const responseText = await response.text();
+
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: HTTP ' + response.status + ' - ' + responseText + '</div>';
+                    return;
                 }
 
-                const data = await response.json();
-                resultDiv.innerHTML = '<pre style="color: var(--accent-color);">' + JSON.stringify(data, null, 2) + '</pre>';
+                try {
+                    const data = JSON.parse(responseText);
+                    resultDiv.innerHTML = '<div style="color: #4ecdc4;"><i class="fas fa-check-circle"></i> Success: HTTP ' + response.status + ' - ' + JSON.stringify(data.message) + '</div>';
+                } catch (jsonError) {
+                    resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: Invalid JSON response - ' + responseText + '</div>';
+                }
             } catch (error) {
                 if (error instanceof SyntaxError) {
                     resultDiv.innerHTML = '<div style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i> Error: Invalid JSON format</div>';

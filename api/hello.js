@@ -1,51 +1,50 @@
 // Vercel serverless function for /api/hello
 export default function handler(req, res) {
-    // Response headers
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow CORS for frontend requests
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Handle different HTTP methods
-    if (req.method === 'GET') {
-        // Return a simple JSON response
-        const response = {
-            message: 'Hello from the secure backend!',
-            timestamp: new Date().toISOString(),
-            method: req.method,
-            url: req.url,
-            userAgent: req.headers['user-agent'] || 'Unknown',
-            status: 'success'
-        };
-        res.status(200).json(response);
-    } else if (req.method === 'POST') {
-        // Handle POST requests (collect request body)
-        let body;
-        try {
-            body = req.body;
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
+    res.setHeader('Content-Type', 'application/json');
+
+    try {
+        if (req.method === 'GET') {
             const response = {
-                message: 'POST request received!',
-                receivedData: body,
+                message: 'Hello, World!',
                 timestamp: new Date().toISOString(),
+                method: 'GET',
                 status: 'success'
             };
             res.status(200).json(response);
-        } catch (error) {
-            console.error('Error parsing request body:', error);
-            res.status(400).json({
-                error: 'Invalid JSON in request body',
-                details: error.message,
+        } else if (req.method === 'POST') {
+            // For Vercel, req.body is already parsed if Content-Type is application/json
+            const body = req.body || {};
+
+            const response = {
+                message: `Hello, World! You sent: ${JSON.stringify(body)}`,
+                receivedData: body,
+                timestamp: new Date().toISOString(),
+                method: 'POST',
+                status: 'success'
+            };
+            res.status(200).json(response);
+        } else {
+            res.status(405).json({
+                error: 'Method not allowed',
+                allowedMethods: ['GET', 'POST', 'OPTIONS'],
                 status: 'error'
             });
         }
-    } else if (req.method === 'OPTIONS') {
-        // Handle preflight CORS requests
-        res.status(200).end();
-    } else {
-        // Method not allowed
-        res.status(405).json({
-            error: 'Method not allowed',
-            allowedMethods: ['GET', 'POST', 'OPTIONS'],
+    } catch (error) {
+        console.error('API Error:', error);
+        res.status(500).json({
+            error: 'Internal server error',
+            message: error.message,
             status: 'error'
         });
     }

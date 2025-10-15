@@ -6,7 +6,6 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/scripts/(.*)", "dest": "/scripts/$1", "headers": { "Cache-Control": "no-cache" } },
     { "src": "/(.*)", "dest": "/webroot/$1" }
   ]
 }

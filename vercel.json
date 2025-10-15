@@ -1,12 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "src/index.js", "use": "@vercel/node" },
-    { "src": "webroot/**/*", "use": "@vercel/static" }
+    { "src": "webroot/**/*", "use": "@vercel/static" },
+    { "src": "src/index.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/index.html", "dest": "/webroot/index.html" },
-    { "src": "/(.*)", "dest": "/src/index.js" }
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }

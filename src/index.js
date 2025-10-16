@@ -265,9 +265,7 @@ if (config.liveReload && !process.env.VERCEL) {
 
 // Export for Vercel
 if (process.env.VERCEL) {
-    module.exports = (req, res) => {
-        server.emit('request', req, res);
-    };
+    module.exports = server;
 } else {
     // Local development
     server.listen(config.port, () => {

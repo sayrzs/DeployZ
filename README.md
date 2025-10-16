@@ -5,7 +5,7 @@ You can view the live preview of this site at:
 
 [Preview](https://deployz.wispbyte.org/)
 
-_Hosted on [WispByte](https://wispbyte.com) or [Vercel](https://deploy-z.vercel.app) (fully supported)_
+_Hosted on [WispByte](https://wispbyte.com) or [Vercel](https://deploy-z.vercel.app) (fully supported) **still beta feature**_
 
 ## What is Live Reload?
 

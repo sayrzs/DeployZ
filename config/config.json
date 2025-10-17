@@ -14,5 +14,11 @@
     "blockFeature": true,
     "blockedFiles": ["api/hello.js"],
     "logsEnabled": true,
-    "requestLogsEnabled": true
+    "requestLogsEnabled": true,
+    "debugLogsEnabled": true,
+    "debugLogLevel": "info",
+    "redirects": {
+        "old-domain.com": "https://new-domain.com",
+        "www.example.com": "https://example.com"
+    }
 }

@@ -10,19 +10,32 @@ const { minimatch } = require('minimatch');
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 let webroot = path.resolve(config.webroot);
-// Debugging logs
-console.log('[DEBUG] Webroot path:', webroot);
-console.log('[DEBUG] Current directory:', __dirname);
+// Enhanced debug logs
+debugLog('debug', 'Webroot path:', { webroot });
+debugLog('debug', 'Current directory:', { currentDirectory: __dirname });
 // Watch config file and reload onto change (if valid JSON) - only in local development
 if (!process.env.VERCEL) {
+    debugLog('info', 'Setting up config file watcher for automatic reload');
     chokidar.watch(configPath).on('change', () => {
+        debugLog('info', 'Config file change detected, attempting reload...');
         try {
+            const oldWebroot = config.webroot;
+            const oldPort = config.port;
+
             const newConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            const configChanges = {
+                webroot: { from: oldWebroot, to: newConfig.webroot },
+                port: { from: oldPort, to: newConfig.port },
+                domains: { from: Object.keys(config.domains || {}).length, to: Object.keys(newConfig.domains || {}).length },
+                routes: { from: Object.keys(config.routes || {}).length, to: Object.keys(newConfig.routes || {}).length }
+            };
+
             config = newConfig;
             webroot = path.resolve(config.webroot);
-            console.log('[INFO] Config reloaded');
+
+            debugLog('info', 'Config successfully reloaded with changes:', configChanges);
         } catch (e) {
-            console.error('[ERROR] Failed to reload config, keeping previous config:', e);
+            debugLog('error', 'Failed to reload config, keeping previous config:', { error: e.message, configPath });
         }
     });
 }
@@ -61,6 +74,49 @@ function logBlockedAccess(req, filePath) {
 // Function to log all requests (deprecated, now handled in logRequest)
 function logAllRequests(req, res, startTime) {
     // This function is no longer used, logging is handled in logRequest
+}
+
+// Enhanced debug logging function with automatic file creation
+function debugLog(level, message, data = null) {
+    if (!config.debugLogsEnabled) return;
+
+    const logLevels = ['error', 'warn', 'info', 'debug'];
+    const currentLevelIndex = logLevels.indexOf(config.debugLogLevel);
+    const messageLevelIndex = logLevels.indexOf(level);
+
+    // Only log if the message level is <= current level (e.g., if level is 'info', show 'error', 'warn', 'info' but not 'debug')
+    if (messageLevelIndex > currentLevelIndex) return;
+
+    const timestamp = new Date().toISOString();
+    const logEntry = data ?
+        `${timestamp} [${level.toUpperCase()}] ${message} ${JSON.stringify(data)}\n` :
+        `${timestamp} [${level.toUpperCase()}] ${message}\n`;
+
+    // Console output with colors
+    const colors = {
+        error: '\x1b[31m', // Red
+        warn: '\x1b[33m',  // Yellow
+        info: '\x1b[36m',  // Cyan
+        debug: '\x1b[35m'  // Magenta
+    };
+    const resetColor = '\x1b[0m';
+
+    console.log(`${colors[level]}[${level.toUpperCase()}]${resetColor} ${message}${data ? ' ' + JSON.stringify(data) : ''}`);
+
+    // File output
+    const logDir = path.join(__dirname, '../logs');
+    const logFile = path.join(logDir, 'debug.log');
+
+    // Ensure logs directory exists
+    if (!fs.existsSync(logDir)) {
+        fs.mkdirSync(logDir, { recursive: true });
+    }
+
+    try {
+        fs.appendFileSync(logFile, logEntry);
+    } catch (err) {
+        console.error('[ERROR] Failed to write to debug log:', err);
+    }
 }
 
 // Serve static files from webroot, but block config directory and blocked files
@@ -199,15 +255,31 @@ const server = http.createServer((req, res) => {
     let filePath = req.url === '/' ? '' : req.url;
     filePath = filePath.split('?')[0];
 
-    // Log the actual Host header for every request
-    console.log(`[DEBUG] Host header: ${req.headers.host}`);
+    // Enhanced debug logging for host header
+    debugLog('debug', 'Host header received:', { host: req.headers.host });
+
+    // Check for HTTP redirects first
+    if (config.redirects && config.redirects[host]) {
+        const redirectUrl = config.redirects[host];
+        const fullRedirectUrl = redirectUrl.startsWith('http') ? redirectUrl : `https://${redirectUrl}`;
+
+        debugLog('info', `Redirecting ${host} to ${fullRedirectUrl}`);
+
+        res.writeHead(301, {
+            'Location': fullRedirectUrl,
+            'Cache-Control': 'no-cache'
+        });
+        res.end(`Redirecting to ${fullRedirectUrl}`);
+        logRequest(req, res, startTime);
+        return;
+    }
 
     let domainMatched = false;
     let domainWebroot = webroot; // Default to main webroot
     // Per-domain HTML mapping: if config.domains exists and matches host, use that file
     if (config.domains && config.domains[host]) {
         const domainConfig = config.domains[host];
-        console.log(`[DEBUG] Domain config for ${host}:`, domainConfig);
+        debugLog('debug', `Domain config for ${host}:`, domainConfig);
         if (typeof domainConfig === 'object' && domainConfig.webroot) {
             // Handle domain-specific webroot configuration
             domainWebroot = path.resolve(domainConfig.webroot);
@@ -222,7 +294,7 @@ const server = http.createServer((req, res) => {
                 const fileName = pathParts[1]; // Extract just the filename
                 domainWebroot = path.resolve(webroot, domainDir);
                 filePath = fileName; // Use only the filename part
-                console.log(`[DEBUG] Set filePath to: ${filePath}, domainWebroot to: ${domainWebroot}`);
+                debugLog('debug', 'Set filePath and domainWebroot:', { filePath, domainWebroot });
                 domainMatched = true;
             } else {
                 // Simple filename like "index.html"
@@ -233,23 +305,31 @@ const server = http.createServer((req, res) => {
     } else if (config.routes[req.url]) {
         // Support custom routes from config
         filePath = config.routes[req.url];
-        console.log(`[DEBUG] Route matched, filePath set to: ${filePath}`);
+        debugLog('debug', 'Route matched, filePath set:', { filePath });
     } else if (req.url === '/' && !domainMatched) {
         // Fallback to index.html for root if nothing matches AND no domain was matched
         filePath = 'index.html';
-        console.log(`[DEBUG] Fallback to index.html, filePath set to: ${filePath}`);
+        debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
     }
 
-    console.log(`[DEBUG] Final filePath before fullPath calculation: ${filePath}`);
+    debugLog('debug', 'Final filePath before fullPath calculation:', { filePath });
     const fullPath = path.join(webroot, filePath);
     const ext = path.extname(fullPath).toLowerCase();
 
-    // Log host and selected file for debugging
-    console.log(`[DEBUG] Host: ${host} | Domain matched: ${domainMatched} | Serving file: ${filePath}`);
-    console.log(`[DEBUG] domainWebroot: ${domainWebroot} | main webroot: ${webroot}`);
+    // Enhanced debug logging for host and file selection
+    debugLog('debug', 'Request details:', {
+        host,
+        domainMatched,
+        filePath,
+        domainWebroot,
+        mainWebroot: webroot
+    });
     const actualFullPath = path.join(domainWebroot, filePath);
-    console.log(`[DEBUG] Correct full path should be: ${actualFullPath}`);
-    console.log(`[DEBUG] Full path: ${fullPath} | Webroot: ${domainWebroot}`);
+    debugLog('debug', 'Path resolution:', {
+        actualFullPath,
+        fullPath,
+        domainWebroot
+    });
 
     // Inject live reload script for HTML files - only in local development
     if (ext === '.html' && config.liveReload && !process.env.VERCEL) {
@@ -257,7 +337,11 @@ const server = http.createServer((req, res) => {
         const htmlFullPath = filePath.startsWith('./') ?
             path.join(webroot, filePath.substring(2)) :
             path.join(htmlRootDir, filePath);
-        console.log(`[DEBUG] HTML branch - htmlRootDir: ${htmlRootDir}, filePath: ${filePath}, htmlFullPath: ${htmlFullPath}`);
+        debugLog('debug', 'HTML branch processing:', {
+            htmlRootDir,
+            filePath,
+            htmlFullPath
+        });
 
         fs.readFile(htmlFullPath, 'utf8', (err, data) => {
             if (err) {

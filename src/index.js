@@ -218,7 +218,7 @@ const server = http.createServer((req, res) => {
                 // Extract directory from path like "subdir/index.html"
                 const pathParts = domainConfig.split('/');
                 const domainDir = pathParts[0];
-                domainWebroot = path.resolve(domainDir);
+                domainWebroot = path.resolve(webroot, domainDir);
                 filePath = domainConfig;
                 domainMatched = true;
             } else {

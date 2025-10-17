@@ -51,7 +51,7 @@ Redirect domains to other URLs(DOMAINS) with automatic HTTP 301 redirects.
 - **Features**:
   - Automatic HTTP 301 (permanent redirect) responses
   - Supports both HTTP and HTTPS redirect URLs
-  - Logged in `requests.logs`
+  - Logged in `requests.logs` for **tracking**
 
 ## Usage
 

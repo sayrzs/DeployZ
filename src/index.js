@@ -230,8 +230,8 @@ const server = http.createServer((req, res) => {
     } else if (config.routes[req.url]) {
         // Support custom routes from config
         filePath = config.routes[req.url];
-    } else if (req.url === '/') {
-        // Fallback to index.html for root if nothing matches
+    } else if (req.url === '/' && !domainMatched) {
+        // Fallback to index.html for root if nothing matches AND no domain was matched
         filePath = 'index.html';
     }
 

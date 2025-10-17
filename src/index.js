@@ -64,8 +64,23 @@ function logAllRequests(req, res, startTime) {
 }
 
 // Serve static files from webroot, but block config directory and blocked files
-function sendFile(res, filePath, req, config) {
-    const fullPath = path.join(webroot, filePath);
+function sendFile(res, filePath, req, config, domainWebroot = null) {
+    const rootDir = domainWebroot || webroot;
+
+    // Handle "./" prefix to access files from main webroot
+    let fullPath;
+    if (filePath.startsWith('./')) {
+        const relativePath = filePath.substring(2); // Remove "./" prefix
+        fullPath = path.join(webroot, relativePath);
+
+        // Security check: prevent access to config directory even with "./"
+        if (fullPath.includes('/config/') || fullPath.includes('\\config\\')) {
+            res.writeHead(403);
+            return res.end('Forbidden');
+        }
+    } else {
+        fullPath = path.join(rootDir, filePath);
+    }
     // Prevent serving files from config directory
     if (fullPath.includes('/config/')) {
         res.writeHead(403);
@@ -188,10 +203,20 @@ const server = http.createServer((req, res) => {
     console.log(`[DEBUG] Host header: ${req.headers.host}`);
 
     let domainMatched = false;
+    let domainWebroot = webroot; // Default to main webroot
     // Per-domain HTML mapping: if config.domains exists and matches host, use that file
     if (config.domains && config.domains[host]) {
-        filePath = config.domains[host];
-        domainMatched = true;
+        const domainConfig = config.domains[host];
+        if (typeof domainConfig === 'object' && domainConfig.webroot) {
+            // Handle domain-specific webroot configuration
+            domainWebroot = path.resolve(domainConfig.webroot);
+            filePath = domainConfig.index || 'index.html';
+            domainMatched = true;
+        } else if (typeof domainConfig === 'string') {
+            // Handle legacy string configuration
+            filePath = domainConfig;
+            domainMatched = true;
+        }
     } else if (config.routes[req.url]) {
         // Support custom routes from config
         filePath = config.routes[req.url];
@@ -205,11 +230,16 @@ const server = http.createServer((req, res) => {
 
     // Log host and selected file for debugging
     console.log(`[DEBUG] Host: ${host} | Domain matched: ${domainMatched} | Serving file: ${filePath}`);
-    console.log(`[DEBUG] Full path: ${fullPath} | Webroot: ${webroot}`);
+    console.log(`[DEBUG] Full path: ${fullPath} | Webroot: ${domainWebroot}`);
 
     // Inject live reload script for HTML files - only in local development
     if (ext === '.html' && config.liveReload && !process.env.VERCEL) {
-        fs.readFile(fullPath, 'utf8', (err, data) => {
+        const htmlRootDir = domainWebroot || webroot;
+        const htmlFullPath = filePath.startsWith('./') ?
+            path.join(webroot, filePath.substring(2)) :
+            path.join(htmlRootDir, filePath);
+
+        fs.readFile(htmlFullPath, 'utf8', (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.end('File not found');
@@ -251,7 +281,7 @@ const server = http.createServer((req, res) => {
             }
         });
     } else {
-        sendFile(res, filePath, req, config);
+        sendFile(res, filePath, req, config, domainWebroot);
         res.on('finish', () => {
             logRequest(req, res, startTime);
         });

@@ -213,9 +213,19 @@ const server = http.createServer((req, res) => {
             filePath = domainConfig.index || 'index.html';
             domainMatched = true;
         } else if (typeof domainConfig === 'string') {
-            // Handle legacy string configuration
-            filePath = domainConfig;
-            domainMatched = true;
+            // Handle legacy string configuration -extract directory from path
+            if (domainConfig.includes('/')) {
+                // Extract directory from path like "subdir/index.html"
+                const pathParts = domainConfig.split('/');
+                const domainDir = pathParts[0];
+                domainWebroot = path.resolve(domainDir);
+                filePath = domainConfig;
+                domainMatched = true;
+            } else {
+                // Simple filename like "index.html"
+                filePath = domainConfig;
+                domainMatched = true;
+            }
         }
     } else if (config.routes[req.url]) {
         // Support custom routes from config

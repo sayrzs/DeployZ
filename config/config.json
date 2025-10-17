@@ -8,10 +8,7 @@
     "domains": {
         "sayrz.com": "index.html",
         "sayrz.wispbyte.org": "index.html",
-        "pixel-zone.sayrz.com": {
-            "webroot": "pixel-zone",
-            "index": "index.html"
-        }
+        "pixel-zone.sayrz.com": "pixel-zone/index.html"
     },
     "liveReload": true,
     "blockFeature": true,

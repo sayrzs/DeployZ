@@ -207,6 +207,7 @@ const server = http.createServer((req, res) => {
     // Per-domain HTML mapping: if config.domains exists and matches host, use that file
     if (config.domains && config.domains[host]) {
         const domainConfig = config.domains[host];
+        console.log(`[DEBUG] Domain config for ${host}:`, domainConfig);
         if (typeof domainConfig === 'object' && domainConfig.webroot) {
             // Handle domain-specific webroot configuration
             domainWebroot = path.resolve(domainConfig.webroot);
@@ -220,6 +221,7 @@ const server = http.createServer((req, res) => {
                 const domainDir = pathParts[0];
                 domainWebroot = path.resolve(webroot, domainDir);
                 filePath = domainConfig;
+                console.log(`[DEBUG] Set filePath to: ${filePath}, domainWebroot to: ${domainWebroot}`);
                 domainMatched = true;
             } else {
                 // Simple filename like "index.html"
@@ -230,16 +232,22 @@ const server = http.createServer((req, res) => {
     } else if (config.routes[req.url]) {
         // Support custom routes from config
         filePath = config.routes[req.url];
+        console.log(`[DEBUG] Route matched, filePath set to: ${filePath}`);
     } else if (req.url === '/' && !domainMatched) {
         // Fallback to index.html for root if nothing matches AND no domain was matched
         filePath = 'index.html';
+        console.log(`[DEBUG] Fallback to index.html, filePath set to: ${filePath}`);
     }
 
+    console.log(`[DEBUG] Final filePath before fullPath calculation: ${filePath}`);
     const fullPath = path.join(webroot, filePath);
     const ext = path.extname(fullPath).toLowerCase();
 
     // Log host and selected file for debugging
     console.log(`[DEBUG] Host: ${host} | Domain matched: ${domainMatched} | Serving file: ${filePath}`);
+    console.log(`[DEBUG] domainWebroot: ${domainWebroot} | main webroot: ${webroot}`);
+    const actualFullPath = path.join(domainWebroot, filePath);
+    console.log(`[DEBUG] Correct full path should be: ${actualFullPath}`);
     console.log(`[DEBUG] Full path: ${fullPath} | Webroot: ${domainWebroot}`);
 
     // Inject live reload script for HTML files - only in local development
@@ -248,6 +256,7 @@ const server = http.createServer((req, res) => {
         const htmlFullPath = filePath.startsWith('./') ?
             path.join(webroot, filePath.substring(2)) :
             path.join(htmlRootDir, filePath);
+        console.log(`[DEBUG] HTML branch - htmlRootDir: ${htmlRootDir}, filePath: ${filePath}, htmlFullPath: ${htmlFullPath}`);
 
         fs.readFile(htmlFullPath, 'utf8', (err, data) => {
             if (err) {

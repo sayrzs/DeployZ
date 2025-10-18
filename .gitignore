@@ -2,3 +2,4 @@ node_modules/
 requests.log
 blocked_access.log
 package-lock.json
+debug.log

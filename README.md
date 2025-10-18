@@ -1,5 +1,5 @@
 # DeployZ
-## Live Preview
+## Live Preview of DeployZ
 
 You can view the live preview of this site at:
 

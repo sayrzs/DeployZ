@@ -3,7 +3,7 @@
     "webroot": "webroot",
     "routes": {
         "/": "index.html",
-        "/test-api": "test-api.html"
+        "/test-api": "test-api/test-api.html"
     },
     "domains": {
         "sayrz.com": "index.html",

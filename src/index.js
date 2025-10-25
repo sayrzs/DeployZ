@@ -32,7 +32,7 @@ function generateCertificatesIfNeeded() {
 
             // Generate SELF-SIGNED "certificate"
             const attrs = [{ name: 'commonName', value: 'localhost' }];
-            const pems = selfsigned.generate(attrs, { days: 365, keySize: 2048 });
+            const pems = selfsigned.generate(attrs, { days: 365, keySize: 4096 });
 
             // write key.pem and cert.pem
             fs.writeFileSync(keyPath, pems.private);
@@ -285,8 +285,11 @@ function handleRequest(req, res) {
     // Enhanced debug logging for host header
     debugLog('debug', 'Host header received:', { host: req.headers.host });
 
-    // Force HTTPS redirect if autoHttps is enabled and request is HTTP
-    if (config.autoHttps && !req.connection.encrypted) {
+    // Check if the request is already HTTPS via proxy
+    const isHttpsViaProxy = req.headers['x-forwarded-proto'] === 'https' || req.headers['x-forwarded-ssl'] === 'on';
+
+    // Force HTTPS redirect only if autoHttps is enabled, not encrypted, and not via proxy
+    if (config.autoHttps && !req.connection.encrypted && !isHttpsViaProxy) {
         const httpsUrl = `https://${host}${req.url}`;
         debugLog('info', `Redirecting HTTP to HTTPS: ${req.url} -> ${httpsUrl}`);
 

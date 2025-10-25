@@ -1,0 +1,346 @@
+/* ===== MOBILE (< 768px) ===== */
+
+@media (max-width: 768px) {
+    /* Hero Section Mobile */
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-content {
+        padding-right: 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    /* Features Section Mobile */
+    .features-title {
+        font-size: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .feature-card {
+        padding: 30px 20px;
+    }
+
+    /* CTA Section Mobile */
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-title {
+        font-size: 2rem;
+    }
+
+    /* Theme Switcher Mobile */
+    .theme-dropdown {
+        width: 320px;
+        right: -10px;
+    }
+
+    .theme-grid-container {
+        height: 180px;
+    }
+
+    .theme-page {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .theme-option {
+        padding: 12px;
+    }
+
+    .theme-option i {
+        font-size: 1.2rem;
+    }
+
+    .theme-color {
+        width: 12px;
+        height: 12px;
+    }
+
+    .theme-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    /* Toast Mobile */
+    .toast {
+        right: 20px;
+        left: 20px;
+        transform: translateY(100px);
+    }
+
+    .toast.show {
+        transform: translateY(0);
+    }
+
+    /* Legacy Docs Mobile */
+    .docs-title {
+        font-size: 2.5rem;
+    }
+
+    .doc-card {
+        padding: 30px 20px;
+    }
+}
+
+/* ===== SMALL MOBILE (< 480px) ===== */
+
+@media (max-width: 480px) {
+    /* Hero Section Small Mobile */
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    /* Features Section Small Mobile */
+    .features-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-title {
+        font-size: 2rem;
+    }
+
+    /* Theme Switcher Small Mobile */
+    .theme-dropdown {
+        width: 300px;
+    }
+
+    .theme-grid-container {
+        height: 160px;
+    }
+
+    .theme-page {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .theme-option {
+        padding: 10px;
+    }
+
+    .theme-option i {
+        font-size: 1rem;
+    }
+
+    .theme-name {
+        font-size: 0.65rem;
+    }
+
+    /* Navigation Small Mobile */
+    .navbar-container {
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .logo i {
+        font-size: 1.5rem;
+    }
+
+    /* Footer Small Mobile */
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+}
+
+/* ===== TABLET (768px - 1024px) ===== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Hero Section Tablet */
+    .hero-container {
+        gap: 40px;
+    }
+
+    .hero-content {
+        padding-right: 20px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Features Section Tablet */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .feature-card {
+        padding: 35px 25px;
+    }
+
+    /* Theme Switcher Tablet */
+    .theme-dropdown {
+        width: 380px;
+    }
+
+    .theme-grid-container {
+        height: 190px;
+    }
+}
+
+/* ===== LARGE SCREENS (> 1200px) ===== */
+
+@media (min-width: 1201px) {
+    /* Hero Section Large Screens */
+    .hero-container {
+        max-width: 1400px;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+
+    /* Features Section Large Screens */
+    .features-container {
+        max-width: 1400px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+    }
+
+    .feature-card {
+        padding: 45px 35px;
+    }
+
+    /* CTA Section Large Screens */
+    .cta-container {
+        max-width: 1000px;
+    }
+}
+
+/* ===== DARK MODE PREFERENCES ===== */
+
+@media (prefers-color-scheme: dark) {
+    /* Additional dark mode adjustments if needed */
+    /* Most themes are already dark, but this can be used for system preference detection */
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+
+@media (prefers-contrast: high) {
+    /* High contrast adjustments */
+    .theme-option {
+        border: 2px solid var(--border-color);
+    }
+
+    .theme-option.active {
+        border-color: var(--accent-color);
+    }
+
+    .feature-card,
+    .doc-card {
+        border-width: 2px;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Reduce animations for users who prefer less motion */
+    .hero,
+    .features,
+    .cta-section,
+    .navbar,
+    .theme-dropdown,
+    .toast,
+    .feature-card,
+    .doc-card,
+    .cta-button,
+    .test-button,
+    .social-link,
+    .theme-option,
+    .theme-arrow,
+    .theme-dot {
+        transition: none;
+    }
+
+    .loader-spinner {
+        animation: none;
+    }
+
+    .new-badge {
+        animation: none;
+    }
+
+    .theme-page {
+        transition: none;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    /* Hide interactive elements when printing */
+    .navbar,
+    .theme-switcher,
+    .toast,
+    .hero-buttons,
+    .cta-buttons,
+    .social-links {
+        display: none !important;
+    }
+
+    /* Adjust colors for printing */
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .hero,
+    .features,
+    .cta-section {
+        background: white !important;
+    }
+
+    .feature-card,
+    .doc-card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+
+    /* Ensure text is readable */
+    .hero-title .highlight,
+    .feature-icon {
+        color: black !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        background-clip: unset !important;
+    }
+}

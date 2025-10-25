@@ -1,10 +1,12 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const mime = require('mime-types');
 const chokidar = require('chokidar');
 const WebSocket = require('ws');
 const { minimatch } = require('minimatch');
+const selfsigned = require('selfsigned');
 
 // Set up for variables
 const configPath = path.resolve(__dirname, '../config/config.json');
@@ -13,6 +15,35 @@ let webroot = path.resolve(config.webroot);
 // Enhanced debug logs
 debugLog('debug', 'Webroot path:', { webroot });
 debugLog('debug', 'Current directory:', { currentDirectory: __dirname });
+
+// Function to generate self-signed certificates if they don't exist
+function generateCertificatesIfNeeded() {
+    const certDir = path.join(__dirname, '../certs');
+    const keyPath = path.join(certDir, 'key.pem');
+    const certPath = path.join(certDir, 'cert.pem');
+
+    if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
+        debugLog('info', 'SSL certificates not found, generating self-signed certificates...');
+        try {
+            // Ensure certs directory exists
+            if (!fs.existsSync(certDir)) {
+                fs.mkdirSync(certDir, { recursive: true });
+            }
+
+            // Generate SELF-SIGNED "certificate"
+            const attrs = [{ name: 'commonName', value: 'localhost' }];
+            const pems = selfsigned.generate(attrs, { days: 365 });
+
+            // write key.pem and cert.pem
+            fs.writeFileSync(keyPath, pems.private);
+            fs.writeFileSync(certPath, pems.cert);
+
+            debugLog('info', 'SELF-SIGNED SSL certificates generated successfully');
+        } catch (error) {
+            debugLog('error', 'failed to generate SSL certificates:', { error: error.message });
+        }
+    }
+}
 // Watch config file and reload onto change (if valid JSON) - only in local development
 if (!process.env.VERCEL) {
     debugLog('info', 'Setting up config file watcher for automatic reload');
@@ -160,56 +191,18 @@ function sendFile(res, filePath, req, config, domainWebroot = null) {
     });
 }
 
-// Set up live reload server and WebSocket for auto-refresh
-function setupLiveReload() {
-    const livereloadServer = http.createServer((req, res) => {
-        if (req.url === '/livereload.js') {
-            res.writeHead(200, { 'Content-Type': 'application/javascript' });
-            res.end(`
-                (function() {
-                    let socket = new WebSocket('ws://localhost:${liveReloadPort}');
-                    socket.onmessage = function(event) {
-                        if (event.data === 'reload') {
-                            window.location.reload();
-                        }
-                    };
-                    socket.onclose = function() {
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 1000);
-                    };
-                })();
-            `);
-        } else {
-            res.writeHead(404);
-            res.end();
-        }
-    });
-  
-    livereloadServer.listen(liveReloadPort);
-  
-    const wss = new WebSocket.Server({ port: liveReloadPort + 1 });
-  
-    wss.on('connection', ws => {
-        clients.add(ws);
-        ws.on('close', () => clients.delete(ws));
-    });
-  
-    // Watch for file changes and notify clients
-    const watcher = chokidar.watch(webroot, { ignored: /node_modules/ });
-    watcher.on('change', () => {
-        clients.forEach(ws => {
-            if (ws.readyState === 1) {
-                ws.send('reload');
-            }
-        });
-    });
+// Inject live reload script into HTML - only in local development
+function injectLiveReload(content, config) {
+    if (!config.liveReload || process.env.VERCEL) return content;
+    const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
+    return content.replace('</body>', script + '</body>');
 }
 
 // Inject live reload script into HTML - only in local development
 function injectLiveReload(content, config) {
     if (!config.liveReload || process.env.VERCEL) return content;
-    const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
+    const protocol = config.autoHttps ? 'https' : 'http';
+    const script = `<script src="${protocol}://localhost:${liveReloadPort}/livereload.js"></script>`;
     return content.replace('</body>', script + '</body>');
 }
 
@@ -245,8 +238,42 @@ function logRequest(req, res, startTime) {
     }
 }
 
-// Create HTTP server to serve files and handle live reload
-const server = http.createServer((req, res) => {
+// Create HTTP/HTTPS server to serve files and handle live reload
+function createServer() {
+    if (config.autoHttps) {
+        // Generate SSL certificates if they don't exist
+        generateCertificatesIfNeeded();
+
+        // Use existing SSL certificates if available, otherwise fallback to HTTP
+        const certDir = path.join(__dirname, '../certs');
+        const keyPath = path.join(certDir, 'key.pem');
+        const certPath = path.join(certDir, 'cert.pem');
+
+        if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
+            try {
+                const options = {
+                    key: fs.readFileSync(keyPath),
+                    cert: fs.readFileSync(certPath)
+                };
+                return https.createServer(options, handleRequest);
+            } catch (error) {
+                debugLog('error', 'Failed to load SSL certificates:', { error: error.message });
+                debugLog('warn', 'Falling back to HTTP server');
+                return http.createServer(handleRequest);
+            }
+        } else {
+            debugLog('warn', 'SSL certificates not found, falling back to HTTP server');
+            return http.createServer(handleRequest);
+        }
+    } else {
+        return http.createServer(handleRequest);
+    }
+}
+
+const server = createServer();
+
+// Request handler function
+function handleRequest(req, res) {
     const startTime = Date.now();
 
     // Get the hostname from the request headers
@@ -257,6 +284,20 @@ const server = http.createServer((req, res) => {
 
     // Enhanced debug logging for host header
     debugLog('debug', 'Host header received:', { host: req.headers.host });
+
+    // Force HTTPS redirect if autoHttps is enabled and request is HTTP
+    if (config.autoHttps && !req.connection.encrypted) {
+        const httpsUrl = `https://${host}${req.url}`;
+        debugLog('info', `Redirecting HTTP to HTTPS: ${req.url} -> ${httpsUrl}`);
+
+        res.writeHead(301, {
+            'Location': httpsUrl,
+            'Cache-Control': 'no-cache'
+        });
+        res.end(`Redirecting to ${httpsUrl}`);
+        logRequest(req, res, startTime);
+        return;
+    }
 
     // Check for HTTP redirects first
     if (config.redirects && config.redirects[host]) {
@@ -390,11 +431,45 @@ const server = http.createServer((req, res) => {
             logRequest(req, res, startTime);
         });
     }
-});
+}
 
 // Start live reload server if enabled - only in local development
 if (config.liveReload && !process.env.VERCEL) {
-    setupLiveReload();
+    // Simple live reload without WebSocket
+    const protocol = config.autoHttps ? 'https' : 'http';
+    const livereloadServer = (config.autoHttps ? https : http).createServer((req, res) => {
+        if (req.url === '/livereload.js') {
+            res.writeHead(200, { 'Content-Type': 'application/javascript' });
+            res.end(`
+                (function() {
+                    console.log('Live reload enabled');
+                    setInterval(function() {
+                        fetch(window.location.href, { method: 'HEAD' })
+                            .then(response => {
+                                if (response.status === 200) {
+                                    // Page is still accessible, do nothing
+                                }
+                            })
+                            .catch(() => {
+                                // If fetch fails, page might have changed, reload
+                                window.location.reload();
+                            });
+                    }, 1000);
+                })();
+            `);
+        } else {
+            res.writeHead(404);
+            res.end();
+        }
+    });
+
+    livereloadServer.listen(liveReloadPort, (err) => {
+        if (err) {
+            debugLog('warn', 'Live reload server failed to start, continuing without live reload:', { error: err.message });
+            return;
+        }
+        debugLog('info', 'Live reload server started on port', { port: liveReloadPort });
+    });
 }
 
 // Export for Vercel
@@ -404,7 +479,8 @@ if (process.env.VERCEL) {
     };
 } else {
     // Local development
+    const protocol = config.autoHttps ? 'https' : 'http';
     server.listen(config.port, () => {
-        console.log(`Server running at http://localhost:${config.port}`);
+        console.log(`Server running at ${protocol}://localhost:${config.port}`);
     });
 }

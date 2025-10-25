@@ -1,505 +1,12 @@
-        :root {
-            --bg-color: #0d1117;
-            --surface-color: #161b22;
-            --text-primary: #c9d1d9;
-            --text-secondary: #8b949e;
-            --accent-color: #58a6ff;
-            --accent-hover: #79c0ff;
-            --accent-color-alpha: rgba(88, 166, 255, 0.1);
-            --border-color: #30363d;
-            --code-bg: #0d1117;
-            --gradient-start: #0d1117;
-            --gradient-end: #161b22;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --card-bg: #161b22;
-            --navbar-bg: rgba(13, 17, 23, 0.8);
-            --transition-speed: 0.3s;
-            --scrollbar-bg: #0d1117;
-            --scrollbar-thumb: #30363d;
-            --scrollbar-thumb-hover: #58a6ff;
-        }
+/* ===========================================
+   DEPLOYZ MAIN STYLESHEET
+   =========================================== */
 
-        [data-theme="github"] {
-            --bg-color: #0d1117;
-            --surface-color: #161b22;
-            --text-primary: #c9d1d9;
-            --text-secondary: #8b949e;
-            --accent-color: #58a6ff;
-            --accent-hover: #79c0ff;
-            --accent-color-alpha: rgba(88, 166, 255, 0.1);
-            --border-color: #30363d;
-            --code-bg: #0d1117;
-            --gradient-start: #0d1117;
-            --gradient-end: #161b22;
-            --shadow-color: rgba(88, 166, 255, 0.2);
-            --card-bg: #161b22;
-            --navbar-bg: rgba(13, 17, 23, 0.8);
-            --scrollbar-bg: #0d1117;
-            --scrollbar-thumb: #30363d;
-            --scrollbar-thumb-hover: #58a6ff;
-        }
+@import url('themes.css');
+@import url('layout.css');
+@import url('components.css');
+@import url('responsive.css');
 
-        [data-theme="matrix"] {
-            --bg-color: #0a0a0a;
-            --surface-color: #0f0f0f;
-            --text-primary: #00ff41;
-            --text-secondary: #00cc33;
-            --accent-color: #00ff41;
-            --accent-hover: #00cc33;
-            --accent-color-alpha: rgba(0, 255, 65, 0.1);
-            --border-color: #00ff41;
-            --code-bg: #0a0a0a;
-            --gradient-start: #0a0a0a;
-            --gradient-end: #0f0f0f;
-            --shadow-color: rgba(0, 255, 65, 0.2);
-            --card-bg: #0f0f0f;
-            --navbar-bg: rgba(10, 10, 10, 0.8);
-            --scrollbar-bg: #0a0a0a;
-            --scrollbar-thumb: #00ff41;
-            --scrollbar-thumb-hover: #00cc33;
-        }
-
-        [data-theme="dracula"] {
-            --bg-color: #282a36;
-            --surface-color: #44475a;
-            --text-primary: #f8f8f2;
-            --text-secondary: #bd93f9;
-            --accent-color: #bd93f9;
-            --accent-hover: #ff79c6;
-            --accent-color-alpha: rgba(189, 147, 249, 0.1);
-            --border-color: #6272a4;
-            --code-bg: #282a36;
-            --gradient-start: #282a36;
-            --gradient-end: #44475a;
-            --shadow-color: rgba(189, 147, 249, 0.2);
-            --card-bg: #44475a;
-            --navbar-bg: rgba(40, 42, 54, 0.8);
-            --scrollbar-bg: #282a36;
-            --scrollbar-thumb: #bd93f9;
-            --scrollbar-thumb-hover: #ff79c6;
-        }
-
-        [data-theme="nord"] {
-            --bg-color: #2e3440;
-            --surface-color: #3b4252;
-            --text-primary: #d8dee9;
-            --text-secondary: #88c0d0;
-            --accent-color: #88c0d0;
-            --accent-hover: #81a1c1;
-            --accent-color-alpha: rgba(136, 192, 208, 0.1);
-            --border-color: #434c5e;
-            --code-bg: #2e3440;
-            --gradient-start: #2e3440;
-            --gradient-end: #3b4252;
-            --shadow-color: rgba(136, 192, 208, 0.2);
-            --card-bg: #3b4252;
-            --navbar-bg: rgba(46, 52, 64, 0.8);
-            --scrollbar-bg: #2e3440;
-            --scrollbar-thumb: #88c0d0;
-            --scrollbar-thumb-hover: #81a1c1;
-        }
-
-        [data-theme="discord"] {
-            --bg-color: #36393f;
-            --surface-color: #2f3136;
-            --text-primary: #dcddde;
-            --text-secondary: #b9bbbe;
-            --accent-color: #7289da;
-            --accent-hover: #5a6ebf;
-            --accent-color-alpha: rgba(114, 137, 218, 0.1);
-            --border-color: #202225;
-            --code-bg: #2f3136;
-            --gradient-start: #36393f;
-            --gradient-end: #2f3136;
-            --shadow-color: rgba(114, 137, 218, 0.2);
-            --card-bg: #2f3136;
-            --navbar-bg: rgba(54, 57, 63, 0.8);
-            --scrollbar-bg: #36393f;
-            --scrollbar-thumb: #7289da;
-            --scrollbar-thumb-hover: #5a6ebf;
-        }
-
-        [data-theme="monokai"] {
-            --bg-color: #272822;
-            --surface-color: #3e3d32;
-            --text-primary: #f8f8f2;
-            --text-secondary: #75715e;
-            --accent-color: #a6e22e;
-            --accent-hover: #7ec844;
-            --accent-color-alpha: rgba(166, 226, 46, 0.1);
-            --border-color: #75715e;
-            --code-bg: #272822;
-            --gradient-start: #272822;
-            --gradient-end: #3e3d32;
-            --shadow-color: rgba(166, 226, 46, 0.2);
-            --card-bg: #3e3d32;
-            --navbar-bg: rgba(39, 40, 34, 0.8);
-            --scrollbar-bg: #272822;
-            --scrollbar-thumb: #a6e22e;
-            --scrollbar-thumb-hover: #7ec844;
-        }
-
-        [data-theme="onedark"] {
-            --bg-color: #282c34;
-            --surface-color: #21252b;
-            --text-primary: #abb2bf;
-            --text-secondary: #5c6370;
-            --accent-color: #61afef;
-            --accent-hover: #528fcc;
-            --accent-color-alpha: rgba(97, 175, 239, 0.1);
-            --border-color: #3e4451;
-            --code-bg: #282c34;
-            --gradient-start: #282c34;
-            --gradient-end: #21252b;
-            --shadow-color: rgba(97, 175, 239, 0.2);
-            --card-bg: #21252b;
-            --navbar-bg: rgba(40, 44, 52, 0.8);
-            --scrollbar-bg: #282c34;
-            --scrollbar-thumb: #61afef;
-            --scrollbar-thumb-hover: #528fcc;
-        }
-
-        [data-theme="vscode"] {
-            --bg-color: #1e1e1e;
-            --surface-color: #252526;
-            --text-primary: #d4d4d4;
-            --text-secondary: #969696;
-            --accent-color: #007acc;
-            --accent-hover: #005a9e;
-            --accent-color-alpha: rgba(0, 122, 204, 0.1);
-            --border-color: #3e3e42;
-            --code-bg: #1e1e1e;
-            --gradient-start: #1e1e1e;
-            --gradient-end: #252526;
-            --shadow-color: rgba(0, 122, 204, 0.2);
-            --card-bg: #252526;
-            --navbar-bg: rgba(30, 30, 30, 0.8);
-            --scrollbar-bg: #1e1e1e;
-            --scrollbar-thumb: #007acc;
-            --scrollbar-thumb-hover: #005a9e;
-        }
-
-        [data-theme="solarized-dark"] {
-            --bg-color: #002b36;
-            --surface-color: #073642;
-            --text-primary: #839496;
-            --text-secondary: #657b83;
-            --accent-color: #268bd2;
-            --accent-hover: #2aa198;
-            --accent-color-alpha: rgba(38, 139, 210, 0.1);
-            --border-color: #586e75;
-            --code-bg: #002b36;
-            --gradient-start: #002b36;
-            --gradient-end: #073642;
-            --shadow-color: rgba(38, 139, 210, 0.2);
-            --card-bg: #073642;
-            --navbar-bg: rgba(0, 43, 54, 0.8);
-            --scrollbar-bg: #002b36;
-            --scrollbar-thumb: #268bd2;
-            --scrollbar-thumb-hover: #2aa198;
-        }
-
-        [data-theme="gruvbox-dark"] {
-            --bg-color: #282828;
-            --surface-color: #3c3836;
-            --text-primary: #ebdbb2;
-            --text-secondary: #928374;
-            --accent-color: #fb4934;
-            --accent-hover: #cc241d;
-            --accent-color-alpha: rgba(251, 73, 52, 0.1);
-            --border-color: #665c54;
-            --code-bg: #282828;
-            --gradient-start: #282828;
-            --gradient-end: #3c3836;
-            --shadow-color: rgba(251, 73, 52, 0.2);
-            --card-bg: #3c3836;
-            --navbar-bg: rgba(40, 40, 40, 0.8);
-            --scrollbar-bg: #282828;
-            --scrollbar-thumb: #fb4934;
-            --scrollbar-thumb-hover: #cc241d;
-        }
-
-        [data-theme="cyberpunk"] {
-            --bg-color: #0a0e27;
-            --surface-color: #151932;
-            --text-primary: #eee;
-            --text-secondary: #aaa;
-            --accent-color: #ff00ff;
-            --accent-hover: #ff00aa;
-            --accent-color-alpha: rgba(255, 0, 255, 0.1);
-            --border-color: #ff00ff;
-            --code-bg: #0a0e27;
-            --gradient-start: #0a0e27;
-            --gradient-end: #151932;
-            --shadow-color: rgba(255, 0, 255, 0.3);
-            --card-bg: #151932;
-            --navbar-bg: rgba(10, 14, 39, 0.8);
-            --scrollbar-bg: #0a0e27;
-            --scrollbar-thumb: #ff00ff;
-            --scrollbar-thumb-hover: #ff00aa;
-        }
-
-        [data-theme="rose-pine"] {
-            --bg-color: #191724;
-            --surface-color: #1f1d2e;
-            --text-primary: #e0def4;
-            --text-secondary: #908caa;
-            --accent-color: #ebbcba;
-            --accent-hover: #f6c177;
-            --accent-color-alpha: rgba(235, 188, 186, 0.1);
-            --border-color: #6e6a86;
-            --code-bg: #191724;
-            --gradient-start: #191724;
-            --gradient-end: #1f1d2e;
-            --shadow-color: rgba(235, 188, 186, 0.2);
-            --card-bg: #1f1d2e;
-            --navbar-bg: rgba(25, 23, 36, 0.8);
-            --scrollbar-bg: #191724;
-            --scrollbar-thumb: #ebbcba;
-            --scrollbar-thumb-hover: #f6c177;
-        }
-
-        [data-theme="atom-one-dark"] {
-            --bg-color: #21252b;
-            --surface-color: #282c34;
-            --text-primary: #abb2bf;
-            --text-secondary: #8b92a3;
-            --accent-color: #e06c75;
-            --accent-hover: #be5046;
-            --accent-color-alpha: rgba(224, 108, 117, 0.1);
-            --border-color: #3e4451;
-            --code-bg: #21252b;
-            --gradient-start: #21252b;
-            --gradient-end: #282c34;
-            --shadow-color: rgba(224, 108, 117, 0.2);
-            --card-bg: #282c34;
-            --navbar-bg: rgba(33, 37, 43, 0.8);
-            --scrollbar-bg: #21252b;
-            --scrollbar-thumb: #e06c75;
-            --scrollbar-thumb-hover: #be5046;
-        }
-
-        [data-theme="material-dark"] {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-            --accent-color: #bb86fc;
-            --accent-hover: #3700b3;
-            --accent-color-alpha: rgba(187, 134, 252, 0.1);
-            --border-color: #2c2c2c;
-            --code-bg: #121212;
-            --gradient-start: #121212;
-            --gradient-end: #1e1e1e;
-            --shadow-color: rgba(187, 134, 252, 0.2);
-            --card-bg: #1e1e1e;
-            --navbar-bg: rgba(18, 18, 18, 0.8);
-            --scrollbar-bg: #121212;
-            --scrollbar-thumb: #bb86fc;
-            --scrollbar-thumb-hover: #3700b3;
-        }
-
-        [data-theme="palenight"] {
-            --bg-color: #292d3e;
-            --surface-color: #32374c;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a6accd;
-            --accent-color: #82aaff;
-            --accent-hover: #5c7bd9;
-            --accent-color-alpha: rgba(130, 170, 255, 0.1);
-            --border-color: #444267;
-            --code-bg: #292d3e;
-            --gradient-start: #292d3e;
-            --gradient-end: #32374c;
-            --shadow-color: rgba(130, 170, 255, 0.2);
-            --card-bg: #32374c;
-            --navbar-bg: rgba(41, 45, 62, 0.8);
-            --scrollbar-bg: #292d3e;
-            --scrollbar-thumb: #82aaff;
-            --scrollbar-thumb-hover: #5c7bd9;
-        }
-
-        [data-theme="night-owl"] {
-            --bg-color: #011627;
-            --surface-color: #0d2538;
-            --text-primary: #d6deeb;
-            --text-secondary: #637777;
-            --accent-color: #7fdbca;
-            --accent-hover: #5ebdab;
-            --accent-color-alpha: rgba(127, 219, 202, 0.1);
-            --border-color: #1f3a4f;
-            --code-bg: #011627;
-            --gradient-start: #011627;
-            --gradient-end: #0d2538;
-            --shadow-color: rgba(127, 219, 202, 0.2);
-            --card-bg: #0d2538;
-            --navbar-bg: rgba(1, 22, 39, 0.8);
-            --scrollbar-bg: #011627;
-            --scrollbar-thumb: #7fdbca;
-            --scrollbar-thumb-hover: #5ebdab;
-        }
-
-        [data-theme="synthwave-84"] {
-            --bg-color: #2a2139;
-            --surface-color: #3d2f5b;
-            --text-primary: #f8f8f2;
-            --text-secondary: #e0e0e0;
-            --accent-color: #f92aad;
-            --accent-hover: #e8457c;
-            --accent-color-alpha: rgba(249, 42, 173, 0.1);
-            --border-color: #6a4c93;
-            --code-bg: #2a2139;
-            --gradient-start: #2a2139;
-            --gradient-end: #3d2f5b;
-            --shadow-color: rgba(249, 42, 173, 0.3);
-            --card-bg: #3d2f5b;
-            --navbar-bg: rgba(42, 33, 57, 0.8);
-            --scrollbar-bg: #2a2139;
-            --scrollbar-thumb: #f92aad;
-            --scrollbar-thumb-hover: #e8457c;
-        }
-
-        [data-theme="github-high-contrast"] {
-            --bg-color: #010409;
-            --surface-color: #0d1117;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --accent-color: #58a6ff;
-            --accent-hover: #79c0ff;
-            --accent-color-alpha: rgba(88, 166, 255, 0.1);
-            --border-color: #30363d;
-            --code-bg: #010409;
-            --gradient-start: #010409;
-            --gradient-end: #0d1117;
-            --shadow-color: rgba(88, 166, 255, 0.3);
-            --card-bg: #0d1117;
-            --navbar-bg: rgba(1, 4, 9, 0.8);
-            --scrollbar-bg: #010409;
-            --scrollbar-thumb: #58a6ff;
-            --scrollbar-thumb-hover: #79c0ff;
-        }
-
-        [data-theme="ayu-dark"] {
-            --bg-color: #0f1419;
-            --surface-color: #131721;
-            --text-primary: #c5cdd3;
-            --text-secondary: #707a8c;
-            --accent-color: #ffcc66;
-            --accent-hover: #ffb347;
-            --accent-color-alpha: rgba(255, 204, 102, 0.1);
-            --border-color: #1a1f29;
-            --code-bg: #0f1419;
-            --gradient-start: #0f1419;
-            --gradient-end: #131721;
-            --shadow-color: rgba(255, 204, 102, 0.2);
-            --card-bg: #131721;
-            --navbar-bg: rgba(15, 20, 25, 0.8);
-            --scrollbar-bg: #0f1419;
-            --scrollbar-thumb: #ffcc66;
-            --scrollbar-thumb-hover: #ffb347;
-        }
-
-        [data-theme="catppuccin-mocha"] {
-            --bg-color: #1e1e2e;
-            --surface-color: #313244;
-            --text-primary: #cdd6f4;
-            --text-secondary: #a6adc8;
-            --accent-color: #f38ba8;
-            --accent-hover: #eba0ac;
-            --accent-color-alpha: rgba(243, 139, 168, 0.1);
-            --border-color: #45475a;
-            --code-bg: #1e1e2e;
-            --gradient-start: #1e1e2e;
-            --gradient-end: #313244;
-            --shadow-color: rgba(243, 139, 168, 0.2);
-            --card-bg: #313244;
-            --navbar-bg: rgba(30, 30, 46, 0.8);
-            --scrollbar-bg: #1e1e2e;
-            --scrollbar-thumb: #f38ba8;
-            --scrollbar-thumb-hover: #eba0ac;
-        }
-
-        [data-theme="gotham"] {
-            --bg-color: #0c1014;
-            --surface-color: #151920;
-            --text-primary: #99a2b4;
-            --text-secondary: #667380;
-            --accent-color: #4e89ae;
-            --accent-hover: #3a6b8a;
-            --accent-color-alpha: rgba(78, 137, 174, 0.1);
-            --border-color: #1f242c;
-            --code-bg: #0c1014;
-            --gradient-start: #0c1014;
-            --gradient-end: #151920;
-            --shadow-color: rgba(78, 137, 174, 0.2);
-            --card-bg: #151920;
-            --navbar-bg: rgba(12, 16, 20, 0.8);
-            --scrollbar-bg: #0c1014;
-            --scrollbar-thumb: #4e89ae;
-            --scrollbar-thumb-hover: #3a6b8a;
-        }
-
-        [data-theme="one-pro"] {
-            --bg-color: #232830;
-            --surface-color: #2c333b;
-            --text-primary: #e6e6e6;
-            --text-secondary: #a0a0a0;
-            --accent-color: #2aacb8;
-            --accent-hover: #1e8a94;
-            --accent-color-alpha: rgba(42, 172, 184, 0.1);
-            --border-color: #3a414a;
-            --code-bg: #232830;
-            --gradient-start: #232830;
-            --gradient-end: #2c333b;
-            --shadow-color: rgba(42, 172, 184, 0.2);
-            --card-bg: #2c333b;
-            --navbar-bg: rgba(35, 40, 48, 0.8);
-            --scrollbar-bg: #232830;
-            --scrollbar-thumb: #2aacb8;
-            --scrollbar-thumb-hover: #1e8a94;
-        }
-
-        [data-theme="dark-plus"] {
-            --bg-color: #1a1d23;
-            --surface-color: #242830;
-            --text-primary: #e8e8e8;
-            --text-secondary: #a0a0a0;
-            --accent-color: #569cd6;
-            --accent-hover: #4a8bc2;
-            --accent-color-alpha: rgba(86, 156, 214, 0.1);
-            --border-color: #3a3f4b;
-            --code-bg: #1a1d23;
-            --gradient-start: #1a1d23;
-            --gradient-end: #242830;
-            --shadow-color: rgba(86, 156, 214, 0.2);
-            --card-bg: #242830;
-            --navbar-bg: rgba(26, 29, 35, 0.8);
-            --scrollbar-bg: #1a1d23;
-            --scrollbar-thumb: #569cd6;
-            --scrollbar-thumb-hover: #4a8bc2;
-        }
-
-        [data-theme="neon"] {
-            --bg-color: #0a0a0a;
-            --surface-color: #141414;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --accent-color: #00ffff;
-            --accent-hover: #00cccc;
-            --accent-color-alpha: rgba(0, 255, 255, 0.1);
-            --border-color: #00ffff;
-            --code-bg: #0a0a0a;
-            --gradient-start: #0a0a0a;
-            --gradient-end: #141414;
-            --shadow-color: rgba(0, 255, 255, 0.3);
-            --card-bg: #141414;
-            --navbar-bg: rgba(10, 10, 10, 0.8);
-            --scrollbar-bg: #0a0a0a;
-            --scrollbar-thumb: #00ffff;
-            --scrollbar-thumb-hover: #00cccc;
-        }
-
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -1249,6 +756,87 @@
 
         .doc-content li code {
             font-size: 0.9em;
+        }
+
+        .doc-content h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .doc-content h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            margin-top: 1.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .doc-content h4 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .doc-content h5 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .doc-content h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .doc-content ul {
+            list-style: disc;
+            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .doc-content ul li {
+            margin-bottom: 0.25rem;
+            font-size: 1.05rem;
+        }
+
+        .doc-content strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .doc-content blockquote {
+            background-color: var(--bg-secondary);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--border-secondary);
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            width: fit-content;
+        }
+
+        .doc-content blockquote p {
+            color: inherit;
+            margin-bottom: 0;
+        }
+
+        .doc-content hr {
+            border: 0;
+            border-top: 1px solid var(--border-primary);
+            margin: 1.5rem 0;
         }
 
         .new-badge {

@@ -3,3 +3,5 @@ requests.log
 blocked_access.log
 package-lock.json
 debug.log
+certs/
+logs/

@@ -53,11 +53,30 @@ Redirect domains to other URLs(DOMAINS) with automatic HTTP 301 redirects.
   - Supports both HTTP and HTTPS redirect URLs
   - Logged in `requests.logs` for **tracking**
 
+## Auto-HTTPS Feature (NEW)
+
+DeployZ now includes automatic HTTPS support for local development with self-signed certificates.
+
+- **Enable HTTPS**: Set `autoHttps: true` in `config.json` (default: `true`)
+- **Disable HTTPS**: Set `autoHttps: false` to use HTTP only
+- **Certificate Generation**: Self-signed certificates are automatically generated in `certs/` directory
+- **Browser Warning**: Accept the security warning in your browser when using HTTPS locally
+
 ## Usage
 
 - Place HTML files in the `webroot` directory
 - Run `index.js` from **Node.js** using console command --> `npm start` ^ `npm run dev`
 - Add dependencies to `package.json`
+
+## Customizing Your Site
+
+The current `webroot/` directory contains a customized DeployZ website. You can:
+
+1. **Replace the entire content**: Delete everything in `webroot/` and add your own HTML, CSS, JS, and other static files
+2. **Keep the structure**: Modify the existing files to match your needs
+3. **Use as template**: The current setup includes a professional landing page with theme switching
+
+**Note**: The current website is specifically designed for DeployZ's branding and features. When replacing content, ensure your custom site works with the existing server configuration.
 
 ## Commands
 

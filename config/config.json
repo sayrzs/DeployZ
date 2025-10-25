@@ -19,6 +19,7 @@
     "debugLogsEnabled": true,
     "debugLogLevel": "info",
     "autoHttps": true,
+    "proxiedEnvironment": true,
     "redirects": {
         "old-domain.com": "https://new-domain.com",
         "www.example.com": "https://example.com"

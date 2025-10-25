@@ -240,7 +240,11 @@ function logRequest(req, res, startTime) {
 
 // Create HTTP/HTTPS server to serve files and handle live reload
 function createServer() {
-    if (config.autoHttps) {
+    // Disable autoHttps in proxied environments
+    const isProxied = config.proxiedEnvironment;
+    const useHttps = config.autoHttps && !isProxied;
+
+    if (useHttps) {
         // Generate SSL certificates if they don't exist
         generateCertificatesIfNeeded();
 

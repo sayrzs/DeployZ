@@ -32,7 +32,7 @@ function generateCertificatesIfNeeded() {
 
             // Generate SELF-SIGNED "certificate"
             const attrs = [{ name: 'commonName', value: 'localhost' }];
-            const pems = selfsigned.generate(attrs, { days: 365 });
+            const pems = selfsigned.generate(attrs, { days: 365, keySize: 2048 });
 
             // write key.pem and cert.pem
             fs.writeFileSync(keyPath, pems.private);

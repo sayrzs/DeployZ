@@ -20,7 +20,7 @@ function showToast(message) {
         toast.classList.remove("show");
     }, 3000);
 }
-
+// These pages
 function showPage(page) {
     currentPage = page;
     

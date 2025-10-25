@@ -3,7 +3,7 @@
 
 You can view the live preview of this site at:
 
-[Preview](https://deployz.wispbyte.org/)
+[DOCS](https://www.sayrz.com/docs/)
 
 _Hosted on [**WispByte**](https://billing.wispbyte.com/order/forms/a/MzAxNg==) or [**Vercel**](vercel.com) (fully supported) **still beta feature**_
 

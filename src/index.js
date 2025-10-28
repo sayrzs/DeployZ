@@ -11,10 +11,14 @@ const selfsigned = require('selfsigned');
 // Set up for variables
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-let webroot = path.resolve(config.webroot);
-// Enhanced debug logs
-debugLog('debug', 'Webroot path:', { webroot });
-debugLog('debug', 'Current directory:', { currentDirectory: __dirname });
+
+// Determine webroot based on appMode
+let webrootPath = config.webroot;
+if (config.appMode === 'react-app') {
+    webrootPath = 'react-app/dist'; // Vite builds to dist by default
+}
+
+let webroot = path.resolve(webrootPath);
 
 // Function to generate self-signed certificates if they don't exist
 function generateCertificatesIfNeeded() {
@@ -208,6 +212,9 @@ function injectLiveReload(content, config) {
 
 // Log HTTP requests to the console and file
 function logRequest(req, res, startTime) {
+    // Skip logging HEAD requests (live reload polling)
+    if (req.method === 'HEAD') return;
+    
     const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
     const timestamp = new Date().toISOString();
     const method = req.method;

@@ -1,6 +1,7 @@
 {
     "port": 3000,
     "webroot": "webroot",
+    "appMode": "webroot",
     "routes": {
         "/": "index.html",
         "/test-api": "test-api/index.html",
@@ -11,15 +12,15 @@
         "sayrz.com": "index.html",
         "sayrz.wispbyte.org": "index.html"
     },
-    "liveReload": true,
+    "liveReload": false,
     "blockFeature": true,
     "blockedFiles": ["api/hello.js"],
     "logsEnabled": true,
     "requestLogsEnabled": true,
     "debugLogsEnabled": true,
     "debugLogLevel": "info",
-    "autoHttps": true,
-    "proxiedEnvironment": true,
+    "autoHttps": false,
+    "proxiedEnvironment": false,
     "redirects": {
         "old-domain.com": "https://new-domain.com",
         "www.example.com": "https://example.com"

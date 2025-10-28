@@ -7,5 +7,7 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "/src/index.js" },
     { "src": "/(.*)", "dest": "/webroot/$1" }
-  ]
+  ],
+  "buildCommand": "cd react-app && npm install && npm run build",
+  "installCommand": "npm install && cd react-app && npm install"
 }

@@ -1,6 +1,6 @@
 {
-    "port": 13927,
-    "appMode": "webroot",
+    "port": 3000,
+    "appMode": "react-app",
     "routes": {
         "/": "index.html",
         "/test-api": "test-api/index.html",

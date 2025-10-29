@@ -81,7 +81,7 @@ if (!process.env.VERCEL) {
     });
 }
 const clients = new Set(); // Store connected WebSocket clients
-const liveReloadPort = 35729; // Port for live reload server
+const liveReloadPort = 35729;
 
 // Function to check if a file is blocked
 function isFileBlocked(filePath, config, req) {
@@ -356,9 +356,11 @@ function handleRequest(req, res) {
                 domainMatched = true;
             }
         }
-    // Only check routes if not in react-app mode or if it's not the root path
-    } else if (config.routes[req.url] && !(config.appMode === 'react-app' && req.url === '/')) {
-        // Support custom routes from config
+    } else if (config.appMode === 'react-app' && req.url === '/') {
+        filePath = 'index.html';
+        debugLog('debug', 'React-app mode: Serving index.html from dist');
+    } else if (config.routes && config.routes[req.url] && config.appMode !== 'react-app') {
+        // Support custom routes from config ,but not in react-app mode
         filePath = config.routes[req.url];
         debugLog('debug', 'Route matched, filePath set:', { filePath });
     } else if (req.url === '/' && !domainMatched) {

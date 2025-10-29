@@ -1,10 +1,15 @@
 import { useState } from 'react'
-import { Play, Github, Zap, Code, Box, Brush, Rocket, Beaker, Info, Heart } from 'lucide-react'
+import { Play, Github, Zap, Code, Box, Brush, Rocket, Beaker, Info, Heart, Menu, X } from 'lucide-react'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   return (
     <div className="app">
@@ -14,8 +19,23 @@ function App() {
             <img src="logo.png" alt="DeployZ Logo" />
             <span>DeployZ</span>
           </div>
+          <div className="nav-links">
+            <a href="/" className="nav-link">Home</a>
+            <a href="/about" className="nav-link">About</a>
+            <a href="/changelogs" className="nav-link">Changelogs</a>
+          </div>
+          <div className="mobile-menu-button" onClick={toggleMenu}>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </div>
           <ThemeSwitcher />
         </div>
+        {isMenuOpen && (
+          <div className="mobile-menu">
+            <a href="/" className="mobile-nav-link" onClick={toggleMenu}>Home</a>
+            <a href="/about" className="mobile-nav-link" onClick={toggleMenu}>About</a>
+            <a href="/changelogs" className="mobile-nav-link" onClick={toggleMenu}>Changelogs</a>
+          </div>
+        )}
       </nav>
 
       <section className="hero">

@@ -42,6 +42,48 @@
   object-fit: contain;
 }
 
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.mobile-menu-button {
+  display: none;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.mobile-menu {
+  display: none;
+}
+
 /* Hero Section */
 .hero {
   padding: 140px 2rem 100px;
@@ -247,17 +289,28 @@
   transform: scaleX(1);
 }
 
+/* Feature icons color customization */
 .feature-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.5rem;
-  color: var(--bg-color);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+/* Special coloring for specific icons */
+.feature-icon svg:nth-child(1) {
+  color: #ffde59; /* Zap icon - yellow */
+}
+
+.feature-icon svg:nth-child(2) {
+  color: #4caf50; /* Shield icon - green */
+}
+
+.feature-icon svg:nth-child(3) {
+  color: #2196f3; /* RefreshCw icon - blue */
+}
+
+/* Make the Vite icon colorful in the hero badge */
+.hero-badge svg {
+  color: #ffde59; /* Vite yellow color */
 }
 
 .feature-card:hover .feature-icon {
@@ -421,7 +474,40 @@
   .navbar-content {
     padding: 0 1.5rem;
   }
-
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-button {
+    display: block;
+  }
+  
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .mobile-nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .mobile-nav-link:hover {
+    background-color: var(--accent-color-alpha);
+  }
+  
   .hero {
     padding: 120px 1.5rem 80px;
   }
@@ -554,5 +640,100 @@
     height: 28px;
     padding: 8px 12px;
     font-size: 0.85rem;
+  }
+}
+
+/* About page specific styles */
+.content-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-content {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.tech-section {
+  padding: 4rem 2rem;
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tech-card {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.tech-icon {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.tech-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.tech-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-section,
+  .tech-section {
+    padding: 2rem 1rem;
+  }
+  
+  .about-content {
+    padding: 1.5rem;
   }
 }

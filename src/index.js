@@ -66,11 +66,10 @@ if (!process.env.VERCEL) {
             };
 
             config = newConfig;
-            
             // Determine webroot based on appMode (same logic as initial setup)
             let webrootPath = config.webroot || 'webroot'; // Default to 'webroot' if not specified
             if (config.appMode === 'react-app') {
-                webrootPath = 'react-app/dist'; // Vite builds to dist by default
+                webrootPath = 'react-app/dist'; // VITEE builds to dist by default
             }
             
             webroot = path.resolve(webrootPath);
@@ -366,9 +365,6 @@ function handleRequest(req, res) {
         // Fallback to index.html for root if nothing matches AND no domain was matched
         // But only if not in react-app mode (since that's handled by the webroot logic)
         if (config.appMode !== 'react-app') {
-            filePath = 'index.html';
-        } else {
-            // For react-app mode, serve index.html from the dist directory
             filePath = 'index.html';
         }
         debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });

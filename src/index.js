@@ -13,7 +13,7 @@ const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
 // Determine webroot based on appMode
-let webrootPath = config.webroot;
+let webrootPath = config.webroot || 'webroot'; // Default to 'webroot' if not specified
 if (config.appMode === 'react-app') {
     webrootPath = 'react-app/dist'; // Vite builds to dist by default
 }
@@ -27,7 +27,7 @@ function generateCertificatesIfNeeded() {
     const certPath = path.join(certDir, 'cert.pem');
 
     if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
-        debugLog('info', 'SSL certificates not found, generating self-signed certificates...');
+        debugLog('info', 'SSL certificates not found, generating self-signed certificates...(BETA VERSION)');
         try {
             // Ensure certs directory exists
             if (!fs.existsSync(certDir)) {
@@ -66,7 +66,14 @@ if (!process.env.VERCEL) {
             };
 
             config = newConfig;
-            webroot = path.resolve(config.webroot);
+            
+            // Determine webroot based on appMode (same logic as initial setup)
+            let webrootPath = config.webroot || 'webroot'; // Default to 'webroot' if not specified
+            if (config.appMode === 'react-app') {
+                webrootPath = 'react-app/dist'; // Vite builds to dist by default
+            }
+            
+            webroot = path.resolve(webrootPath);
 
             debugLog('info', 'Config successfully reloaded with changes:', configChanges);
         } catch (e) {
@@ -193,13 +200,6 @@ function sendFile(res, filePath, req, config, domainWebroot = null) {
         const readStream = fs.createReadStream(fullPath);
         readStream.pipe(res);
     });
-}
-
-// Inject live reload script into HTML - only in local development
-function injectLiveReload(content, config) {
-    if (!config.liveReload || process.env.VERCEL) return content;
-    const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
-    return content.replace('</body>', script + '</body>');
 }
 
 // Inject live reload script into HTML - only in local development
@@ -357,13 +357,20 @@ function handleRequest(req, res) {
                 domainMatched = true;
             }
         }
-    } else if (config.routes[req.url]) {
+    // Only check routes if not in react-app mode or if it's not the root path
+    } else if (config.routes[req.url] && !(config.appMode === 'react-app' && req.url === '/')) {
         // Support custom routes from config
         filePath = config.routes[req.url];
         debugLog('debug', 'Route matched, filePath set:', { filePath });
     } else if (req.url === '/' && !domainMatched) {
         // Fallback to index.html for root if nothing matches AND no domain was matched
-        filePath = 'index.html';
+        // But only if not in react-app mode (since that's handled by the webroot logic)
+        if (config.appMode !== 'react-app') {
+            filePath = 'index.html';
+        } else {
+            // For react-app mode, serve index.html from the dist directory
+            filePath = 'index.html';
+        }
         debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
     }
 

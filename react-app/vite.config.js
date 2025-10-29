@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: '../webroot/',
-    emptyOutDir: false,
+    outDir: 'dist',
+    emptyOutDir: true,
     assetsDir: 'assets'
   }
 })

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Play, Github, Zap, Code, Cube, PaintBrush, Rocket, Flask, Info, Heart } from 'lucide-react'
+import { Play, Github, Zap, Code, Box, Brush, Rocket, Beaker, Info, Heart } from 'lucide-react'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import './App.css'
 
@@ -11,7 +11,7 @@ function App() {
       <nav className="navbar">
         <div className="navbar-content">
           <div className="logo">
-            <img src="/assets/images/logo.png" alt="DeployZ Logo" />
+            <img src="logo.png" alt="DeployZ Logo" />
             <span>DeployZ</span>
           </div>
           <ThemeSwitcher />
@@ -67,7 +67,7 @@ function App() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <Cube size={32} />
+              <Box size={32} />
             </div>
             <h3>Component Based</h3>
             <p>Clean, modular architecture with reusable components. Easy to customize and extend.</p>
@@ -75,7 +75,7 @@ function App() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <PaintBrush size={32} />
+              <Brush size={32} />
             </div>
             <h3>CSS Variables</h3>
             <p>Theme system built on CSS custom properties. Consistent styling across all components.</p>
@@ -94,7 +94,7 @@ function App() {
       <section className="demo-section">
         <div className="demo-card">
           <h2>
-            <Flask size={28} />
+            <Beaker size={28} />
             <span>Interactive Demo</span>
           </h2>
           <p>Test React's reactivity with this simple counter. Click to increment!</p>

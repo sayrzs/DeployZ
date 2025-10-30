@@ -1,7 +1,7 @@
 /* ===========================================
-   DEPLOYZ THEMES CSS
+   DEPLOYZ THEMES CSS - EXTENDED
    ===========================================
-   FULLYYYYYYYYY UPDATE FOR THEMSES CSS
+   40+ COMPLETE THEME COLLECTION
    =========================================== */
 
 :root {
@@ -44,6 +44,10 @@
     --backdrop-blur: blur(10px);
     --backdrop-blur-strong: blur(20px);
 }
+
+/* ==========================================
+   ORIGINAL THEMES (1-24)
+   ========================================== */
 
 [data-theme="github"] {
     /* GitHub Dark - Professional Blue */
@@ -717,8 +721,12 @@
     --info-color: #00ffff;
 }
 
-/* Premium Theme - Glassmorphic Blue */
+/* ==========================================
+   NEW PREMIUM THEMES (25-40)
+   ========================================== */
+
 [data-theme="glassmorphic"] {
+    /* Glassmorphic - Frosted Glass Blue */
     --bg-color: #0a0f1e;
     --surface-color: #131929;
     --text-primary: #e8eef5;
@@ -745,8 +753,8 @@
     --info-color: #0ea5e9;
 }
 
-/* Minimal Theme - Ultra Clean */
 [data-theme="minimal"] {
+    /* Minimal - Ultra Clean Light */
     --bg-color: #ffffff;
     --surface-color: #f5f5f5;
     --text-primary: #1a1a1a;
@@ -773,8 +781,8 @@
     --info-color: #0066cc;
 }
 
-/* Sunset Theme - Warm Gradient */
 [data-theme="sunset"] {
+    /* Sunset - Warm Gradient */
     --bg-color: #1a1428;
     --surface-color: #2d1b3d;
     --text-primary: #f5e6d3;
@@ -801,8 +809,8 @@
     --info-color: #4ecdc4;
 }
 
-/* Ocean Theme - Deep Blue Water */
 [data-theme="ocean"] {
+    /* Ocean - Deep Blue Water */
     --bg-color: #0b1e2d;
     --surface-color: #1a2f42;
     --text-primary: #d4e4f7;
@@ -827,6 +835,454 @@
     --warning-color: #ffb84d;
     --error-color: #ff6b6b;
     --info-color: #00d4ff;
+}
+
+[data-theme="forest"] {
+    /* Forest - Green & Earthy */
+    --bg-color: #0a1514;
+    --surface-color: #132622;
+    --text-primary: #c8d8d3;
+    --text-secondary: #7a9b94;
+    --accent-color: #5ec83b;
+    --accent-hover: #4ea52f;
+    --accent-color-rgb: 94, 200, 59;
+    --accent-color-alpha: rgba(94, 200, 59, 0.12);
+    --border-color: #1f3a33;
+    --border-secondary: #132622;
+    --bg-secondary: #050a08;
+    --code-bg: #0a1514;
+    --gradient-start: #0a1514;
+    --gradient-end: #132622;
+    --shadow-color: rgba(94, 200, 59, 0.15);
+    --card-bg: #132622;
+    --navbar-bg: rgba(10, 21, 20, 0.95);
+    --scrollbar-bg: #0a1514;
+    --scrollbar-thumb: #5ec83b;
+    --scrollbar-thumb-hover: #4ea52f;
+    --success-color: #5ec83b;
+    --warning-color: #e6b800;
+    --error-color: #ff6b6b;
+    --info-color: #4bc3f3;
+}
+
+[data-theme="midnight-blue"] {
+    /* Midnight Blue - Deep Navy */
+    --bg-color: #0f1419;
+    --surface-color: #1a202c;
+    --text-primary: #cbd5e0;
+    --text-secondary: #718096;
+    --accent-color: #63b3ed;
+    --accent-hover: #4299e1;
+    --accent-color-rgb: 99, 179, 237;
+    --accent-color-alpha: rgba(99, 179, 237, 0.12);
+    --border-color: #2d3748;
+    --border-secondary: #1a202c;
+    --bg-secondary: #070a0d;
+    --code-bg: #0f1419;
+    --gradient-start: #0f1419;
+    --gradient-end: #1a202c;
+    --shadow-color: rgba(99, 179, 237, 0.15);
+    --card-bg: #1a202c;
+    --navbar-bg: rgba(15, 20, 25, 0.95);
+    --scrollbar-bg: #0f1419;
+    --scrollbar-thumb: #63b3ed;
+    --scrollbar-thumb-hover: #4299e1;
+    --success-color: #68d391;
+    --warning-color: #f6ad55;
+    --error-color: #fc8181;
+    --info-color: #63b3ed;
+}
+
+[data-theme="deep-purple"] {
+    /* Deep Purple - Rich Violet */
+    --bg-color: #1a0f2e;
+    --surface-color: #2d1b4e;
+    --text-primary: #e9d5ff;
+    --text-secondary: #c084fc;
+    --accent-color: #c084fc;
+    --accent-hover: #a855f7;
+    --accent-color-rgb: 192, 132, 252;
+    --accent-color-alpha: rgba(192, 132, 252, 0.12);
+    --border-color: #5b21b6;
+    --border-secondary: #2d1b4e;
+    --bg-secondary: #0d0619;
+    --code-bg: #1a0f2e;
+    --gradient-start: #1a0f2e;
+    --gradient-end: #2d1b4e;
+    --shadow-color: rgba(192, 132, 252, 0.15);
+    --card-bg: #2d1b4e;
+    --navbar-bg: rgba(26, 15, 46, 0.95);
+    --scrollbar-bg: #1a0f2e;
+    --scrollbar-thumb: #c084fc;
+    --scrollbar-thumb-hover: #a855f7;
+    --success-color: #86efac;
+    --warning-color: #fbbf24;
+    --error-color: #f87171;
+    --info-color: #c084fc;
+}
+
+[data-theme="crimson"] {
+    /* Crimson - Bold Red */
+    --bg-color: #1a0a0a;
+    --surface-color: #2d1515;
+    --text-primary: #fdd5d7;
+    --text-secondary: #f08b8d;
+    --accent-color: #ff4757;
+    --accent-hover: #ff3838;
+    --accent-color-rgb: 255, 71, 87;
+    --accent-color-alpha: rgba(255, 71, 87, 0.12);
+    --border-color: #7a2a2a;
+    --border-secondary: #2d1515;
+    --bg-secondary: #0d0505;
+    --code-bg: #1a0a0a;
+    --gradient-start: #1a0a0a;
+    --gradient-end: #2d1515;
+    --shadow-color: rgba(255, 71, 87, 0.15);
+    --card-bg: #2d1515;
+    --navbar-bg: rgba(26, 10, 10, 0.95);
+    --scrollbar-bg: #1a0a0a;
+    --scrollbar-thumb: #ff4757;
+    --scrollbar-thumb-hover: #ff3838;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --error-color: #ff4757;
+    --info-color: #3498db;
+}
+
+[data-theme="tropical"] {
+    /* Tropical - Vibrant Colors */
+    --bg-color: #0f2427;
+    --surface-color: #1a3a3f;
+    --text-primary: #d4f1f4;
+    --text-secondary: #7fb3ba;
+    --accent-color: #00f5a0;
+    --accent-hover: #00d97e;
+    --accent-color-rgb: 0, 245, 160;
+    --accent-color-alpha: rgba(0, 245, 160, 0.12);
+    --border-color: #2d5a60;
+    --border-secondary: #1a3a3f;
+    --bg-secondary: #081518;
+    --code-bg: #0f2427;
+    --gradient-start: #0f2427;
+    --gradient-end: #1a3a3f;
+    --shadow-color: rgba(0, 245, 160, 0.15);
+    --card-bg: #1a3a3f;
+    --navbar-bg: rgba(15, 36, 39, 0.95);
+    --scrollbar-bg: #0f2427;
+    --scrollbar-thumb: #00f5a0;
+    --scrollbar-thumb-hover: #00d97e;
+    --success-color: #00f5a0;
+    --warning-color: #ffa502;
+    --error-color: #ff6b6b;
+    --info-color: #00d4ff;
+}
+
+[data-theme="slate-dark"] {
+    /* Slate Dark - Professional Gray */
+    --bg-color: #1e293b;
+    --surface-color: #334155;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-color: #64748b;
+    --accent-hover: #475569;
+    --accent-color-rgb: 100, 116, 139;
+    --accent-color-alpha: rgba(100, 116, 139, 0.12);
+    --border-color: #475569;
+    --border-secondary: #334155;
+    --bg-secondary: #0f172a;
+    --code-bg: #1e293b;
+    --gradient-start: #1e293b;
+    --gradient-end: #334155;
+    --shadow-color: rgba(100, 116, 139, 0.15);
+    --card-bg: #334155;
+    --navbar-bg: rgba(30, 41, 59, 0.95);
+    --scrollbar-bg: #1e293b;
+    --scrollbar-thumb: #64748b;
+    --scrollbar-thumb-hover: #475569;
+    --success-color: #4ade80;
+    --warning-color: #facc15;
+    --error-color: #f87171;
+    --info-color: #64748b;
+}
+
+[data-theme="indigo-night"] {
+    /* Indigo Night - Deep Indigo */
+    --bg-color: #0f0f2e;
+    --surface-color: #1a1a4d;
+    --text-primary: #e0d5ff;
+    --text-secondary: #a5a5d9;
+    --accent-color: #818cf8;
+    --accent-hover: #6366f1;
+    --accent-color-rgb: 129, 140, 248;
+    --accent-color-alpha: rgba(129, 140, 248, 0.12);
+    --border-color: #3730a3;
+    --border-secondary: #1a1a4d;
+    --bg-secondary: #070714;
+    --code-bg: #0f0f2e;
+    --gradient-start: #0f0f2e;
+    --gradient-end: #1a1a4d;
+    --shadow-color: rgba(129, 140, 248, 0.15);
+    --card-bg: #1a1a4d;
+    --navbar-bg: rgba(15, 15, 46, 0.95);
+    --scrollbar-bg: #0f0f2e;
+    --scrollbar-thumb: #818cf8;
+    --scrollbar-thumb-hover: #6366f1;
+    --success-color: #86efac;
+    --warning-color: #fcd34d;
+    --error-color: #fca5a5;
+    --info-color: #818cf8;
+}
+
+[data-theme="charcoal"] {
+    /* Charcoal - Neutral Dark */
+    --bg-color: #1a1a1a;
+    --surface-color: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --accent-color: #9d9d9d;
+    --accent-hover: #7d7d7d;
+    --accent-color-rgb: 157, 157, 157;
+    --accent-color-alpha: rgba(157, 157, 157, 0.12);
+    --border-color: #404040;
+    --border-secondary: #2d2d2d;
+    --bg-secondary: #0f0f0f;
+    --code-bg: #1a1a1a;
+    --gradient-start: #1a1a1a;
+    --gradient-end: #2d2d2d;
+    --shadow-color: rgba(157, 157, 157, 0.15);
+    --card-bg: #2d2d2d;
+    --navbar-bg: rgba(26, 26, 26, 0.95);
+    --scrollbar-bg: #1a1a1a;
+    --scrollbar-thumb: #9d9d9d;
+    --scrollbar-thumb-hover: #7d7d7d;
+    --success-color: #7cb342;
+    --warning-color: #ffa726;
+    --error-color: #ef5350;
+    --info-color: #42a5f5;
+}
+
+[data-theme="amber-night"] {
+    /* Amber Night - Warm Amber */
+    --bg-color: #18140a;
+    --surface-color: #281f13;
+    --text-primary: #fde68a;
+    --text-secondary: #f59e0b;
+    --accent-color: #fbbf24;
+    --accent-hover: #f59e0b;
+    --accent-color-rgb: 251, 191, 36;
+    --accent-color-alpha: rgba(251, 191, 36, 0.12);
+    --border-color: #92400e;
+    --border-secondary: #281f13;
+    --bg-secondary: #0d0a06;
+    --code-bg: #18140a;
+    --gradient-start: #18140a;
+    --gradient-end: #281f13;
+    --shadow-color: rgba(251, 191, 36, 0.15);
+    --card-bg: #281f13;
+    --navbar-bg: rgba(24, 20, 10, 0.95);
+    --scrollbar-bg: #18140a;
+    --scrollbar-thumb: #fbbf24;
+    --scrollbar-thumb-hover: #f59e0b;
+    --success-color: #86efac;
+    --warning-color: #fbbf24;
+    --error-color: #ff6b6b;
+    --info-color: #60a5fa;
+}
+
+[data-theme="lime-spark"] {
+    /* Lime Spark - Electric Lime */
+    --bg-color: #0a0f05;
+    --surface-color: #1a240e;
+    --text-primary: #d0f704;
+    --text-secondary: #84cc16;
+    --accent-color: #bef264;
+    --accent-hover: #84cc16;
+    --accent-color-rgb: 190, 242, 100;
+    --accent-color-alpha: rgba(190, 242, 100, 0.12);
+    --border-color: #4d7c0f;
+    --border-secondary: #1a240e;
+    --bg-secondary: #050708;
+    --code-bg: #0a0f05;
+    --gradient-start: #0a0f05;
+    --gradient-end: #1a240e;
+    --shadow-color: rgba(190, 242, 100, 0.15);
+    --card-bg: #1a240e;
+    --navbar-bg: rgba(10, 15, 5, 0.95);
+    --scrollbar-bg: #0a0f05;
+    --scrollbar-thumb: #bef264;
+    --scrollbar-thumb-hover: #84cc16;
+    --success-color: #bef264;
+    --warning-color: #fbbf24;
+    --error-color: #ff6b6b;
+    --info-color: #22d3ee;
+}
+
+[data-theme="rose-gold"] {
+    /* Rose Gold - Elegant Rose */
+    --bg-color: #170c0c;
+    --surface-color: #2a1515;
+    --text-primary: #fad0c7;
+    --text-secondary: #e5989b;
+    --accent-color: #f5a9a3;
+    --accent-hover: #e89591;
+    --accent-color-rgb: 245, 169, 163;
+    --accent-color-alpha: rgba(245, 169, 163, 0.12);
+    --border-color: #7a3e3e;
+    --border-secondary: #2a1515;
+    --bg-secondary: #0b0606;
+    --code-bg: #170c0c;
+    --gradient-start: #170c0c;
+    --gradient-end: #2a1515;
+    --shadow-color: rgba(245, 169, 163, 0.15);
+    --card-bg: #2a1515;
+    --navbar-bg: rgba(23, 12, 12, 0.95);
+    --scrollbar-bg: #170c0c;
+    --scrollbar-thumb: #f5a9a3;
+    --scrollbar-thumb-hover: #e89591;
+    --success-color: #86efac;
+    --warning-color: #fbbf24;
+    --error-color: #f5a9a3;
+    --info-color: #22d3ee;
+}
+
+[data-theme="teal-zen"] {
+    /* Teal Zen - Calming Teal */
+    --bg-color: #0d1616;
+    --surface-color: #1a2c2c;
+    --text-primary: #c8ebe4;
+    --text-secondary: #6fb5ad;
+    --accent-color: #4dd0e1;
+    --accent-hover: #26a69a;
+    --accent-color-rgb: 77, 208, 225;
+    --accent-color-alpha: rgba(77, 208, 225, 0.12);
+    --border-color: #2d6b6b;
+    --border-secondary: #1a2c2c;
+    --bg-secondary: #081010;
+    --code-bg: #0d1616;
+    --gradient-start: #0d1616;
+    --gradient-end: #1a2c2c;
+    --shadow-color: rgba(77, 208, 225, 0.15);
+    --card-bg: #1a2c2c;
+    --navbar-bg: rgba(13, 22, 22, 0.95);
+    --scrollbar-bg: #0d1616;
+    --scrollbar-thumb: #4dd0e1;
+    --scrollbar-thumb-hover: #26a69a;
+    --success-color: #81c784;
+    --warning-color: #ffb74d;
+    --error-color: #e57373;
+    --info-color: #4dd0e1;
+}
+
+[data-theme="copper-rust"] {
+    /* Copper Rust - Vintage Copper */
+    --bg-color: #1a0f0a;
+    --surface-color: #2d1810;
+    --text-primary: #e8c5bb;
+    --text-secondary: #b5845a;
+    --accent-color: #d4795b;
+    --accent-hover: #c26549;
+    --accent-color-rgb: 212, 121, 91;
+    --accent-color-alpha: rgba(212, 121, 91, 0.12);
+    --border-color: #6b3f2a;
+    --border-secondary: #2d1810;
+    --bg-secondary: #0d0805;
+    --code-bg: #1a0f0a;
+    --gradient-start: #1a0f0a;
+    --gradient-end: #2d1810;
+    --shadow-color: rgba(212, 121, 91, 0.15);
+    --card-bg: #2d1810;
+    --navbar-bg: rgba(26, 15, 10, 0.95);
+    --scrollbar-bg: #1a0f0a;
+    --scrollbar-thumb: #d4795b;
+    --scrollbar-thumb-hover: #c26549;
+    --success-color: #81c784;
+    --warning-color: #ffb74d;
+    --error-color: #d4795b;
+    --info-color: #64b5f6;
+}
+
+[data-theme="void"] {
+    /* Void - Pure Black Abyss */
+    --bg-color: #000000;
+    --surface-color: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --accent-color: #666666;
+    --accent-hover: #444444;
+    --accent-color-rgb: 102, 102, 102;
+    --accent-color-alpha: rgba(102, 102, 102, 0.12);
+    --border-color: #1a1a1a;
+    --border-secondary: #0d0d0d;
+    --bg-secondary: #050505;
+    --code-bg: #000000;
+    --gradient-start: #000000;
+    --gradient-end: #0d0d0d;
+    --shadow-color: rgba(102, 102, 102, 0.15);
+    --card-bg: #0d0d0d;
+    --navbar-bg: rgba(0, 0, 0, 0.95);
+    --scrollbar-bg: #000000;
+    --scrollbar-thumb: #666666;
+    --scrollbar-thumb-hover: #444444;
+    --success-color: #4ade80;
+    --warning-color: #facc15;
+    --error-color: #f87171;
+    --info-color: #60a5fa;
+}
+
+[data-theme="bluebell"] {
+    /* Bluebell - Soft Blue Flower */
+    --bg-color: #0a1128;
+    --surface-color: #161f3a;
+    --text-primary: #d4d9f0;
+    --text-secondary: #8b96c9;
+    --accent-color: #7c9dd9;
+    --accent-hover: #6a84bb;
+    --accent-color-rgb: 124, 157, 217;
+    --accent-color-alpha: rgba(124, 157, 217, 0.12);
+    --border-color: #2a3854;
+    --border-secondary: #161f3a;
+    --bg-secondary: #050818;
+    --code-bg: #0a1128;
+    --gradient-start: #0a1128;
+    --gradient-end: #161f3a;
+    --shadow-color: rgba(124, 157, 217, 0.15);
+    --card-bg: #161f3a;
+    --navbar-bg: rgba(10, 17, 40, 0.95);
+    --scrollbar-bg: #0a1128;
+    --scrollbar-thumb: #7c9dd9;
+    --scrollbar-thumb-hover: #6a84bb;
+    --success-color: #86efac;
+    --warning-color: #fbbf24;
+    --error-color: #ff6b6b;
+    --info-color: #7c9dd9;
+}
+
+[data-theme="coral-reef"] {
+    /* Coral Reef - Ocean Coral */
+    --bg-color: #0a1a1e;
+    --surface-color: #153e47;
+    --text-primary: #d4e6ea;
+    --text-secondary: #7a9ca8;
+    --accent-color: #ff6b6b;
+    --accent-hover: #ff5252;
+    --accent-color-rgb: 255, 107, 107;
+    --accent-color-alpha: rgba(255, 107, 107, 0.12);
+    --border-color: #2d5a6b;
+    --border-secondary: #153e47;
+    --bg-secondary: #050d10;
+    --code-bg: #0a1a1e;
+    --gradient-start: #0a1a1e;
+    --gradient-end: #153e47;
+    --shadow-color: rgba(255, 107, 107, 0.15);
+    --card-bg: #153e47;
+    --navbar-bg: rgba(10, 26, 30, 0.95);
+    --scrollbar-bg: #0a1a1e;
+    --scrollbar-thumb: #ff6b6b;
+    --scrollbar-thumb-hover: #ff5252;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --error-color: #ff6b6b;
+    --info-color: #3498db;
 }
 
 /* ==========================================

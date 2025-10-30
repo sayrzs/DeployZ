@@ -298,6 +298,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: slideInLeft 0.6s ease-out 0.1s both;
+  white-space: nowrap;
 }
 
 .logo:hover {
@@ -308,6 +309,7 @@ body {
 .logo i {
   font-size: 1.8rem;
   animation: swing 2s ease infinite;
+  flex-shrink: 0;
 }
 
 /* ===== THEME SWITCHER ===== */
@@ -331,6 +333,7 @@ body {
   font-weight: 600;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .theme-button::before {
@@ -598,12 +601,14 @@ body {
   font-size: 1.4rem;
   color: var(--accent-color);
   animation: pulse 0.6s ease-out;
+  flex-shrink: 0;
 }
 
 .toast-message {
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: 0.3px;
+  word-wrap: break-word;
 }
 
 /* ===== HERO SECTION ===== */
@@ -643,11 +648,15 @@ body {
   align-items: center;
   position: relative;
   z-index: 1;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .hero-content {
   padding-right: 40px;
   animation: slideInLeft 0.8s ease-out 0.2s both;
+  min-width: 0;
+  word-wrap: break-word;
 }
 
 .hero-title {
@@ -657,6 +666,9 @@ body {
   line-height: 1.1;
   letter-spacing: -1.5px;
   color: var(--text-primary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .hero-title .highlight {
@@ -674,6 +686,8 @@ body {
   margin-bottom: 40px;
   line-height: 1.7;
   animation: slideInLeft 0.8s ease-out 0.3s both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-buttons {
@@ -687,6 +701,7 @@ body {
   display: flex;
   justify-content: center;
   animation: slideInRight 0.8s ease-out 0.3s both;
+  min-width: 0;
 }
 
 .code-preview {
@@ -739,6 +754,7 @@ body {
   border-radius: 50%;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
 }
 
 .code-dots .dot:hover {
@@ -823,6 +839,7 @@ body {
   background-clip: text;
   color: transparent;
   animation: slideInDown 0.8s ease-out 0.1s both;
+  word-wrap: break-word;
 }
 
 .features-subtitle {
@@ -831,6 +848,7 @@ body {
   max-width: 500px;
   margin: 0 auto;
   animation: slideInUp 0.8s ease-out 0.2s both;
+  word-wrap: break-word;
 }
 
 .features-grid {
@@ -898,6 +916,7 @@ body {
   box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.3);
   transition: all 0.4s ease;
   animation: rotateIn 0.8s ease-out both;
+  flex-shrink: 0;
 }
 
 .feature-card:hover .feature-icon {
@@ -911,6 +930,7 @@ body {
   margin-bottom: 16px;
   color: var(--text-primary);
   transition: all 0.3s ease;
+  word-wrap: break-word;
 }
 
 .feature-card:hover .feature-title {
@@ -922,6 +942,7 @@ body {
   line-height: 1.7;
   transition: all 0.3s ease;
   font-size: 1.05rem;
+  word-wrap: break-word;
 }
 
 .feature-card:hover .feature-description {
@@ -966,6 +987,8 @@ body {
   margin-bottom: 24px;
   color: var(--text-primary);
   animation: slideInDown 0.8s ease-out 0.1s both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .cta-description {
@@ -974,6 +997,8 @@ body {
   margin-bottom: 50px;
   line-height: 1.8;
   animation: slideInUp 0.8s ease-out 0.2s both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .cta-buttons {
@@ -998,6 +1023,7 @@ body {
   position: relative;
   overflow: hidden;
   letter-spacing: 0.5px;
+  word-wrap: break-word;
 }
 
 .cta-button::before {
@@ -1053,6 +1079,7 @@ body {
 
 .cta-button i {
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .cta-button:hover i {
@@ -1110,6 +1137,8 @@ body {
   gap: 15px;
   position: relative;
   z-index: 1;
+  flex-wrap: wrap;
+  word-wrap: break-word;
 }
 
 .doc-title i {
@@ -1117,6 +1146,7 @@ body {
   font-size: 2rem;
   transition: all 0.4s ease;
   animation: swing 2s ease infinite;
+  flex-shrink: 0;
 }
 
 .doc-card:hover .doc-title i {
@@ -1127,6 +1157,7 @@ body {
   color: var(--text-secondary);
   position: relative;
   z-index: 1;
+  word-wrap: break-word;
 }
 
 .doc-content h3 {
@@ -1136,6 +1167,7 @@ body {
   margin-bottom: 18px;
   color: var(--text-primary);
   transition: all 0.3s ease;
+  word-wrap: break-word;
 }
 
 .doc-content h3:hover {
@@ -1147,6 +1179,8 @@ body {
   margin-bottom: 20px;
   font-size: 1.05rem;
   line-height: 1.8;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .doc-content a {
@@ -1155,6 +1189,7 @@ body {
   transition: all 0.3s ease;
   position: relative;
   font-weight: 600;
+  word-wrap: break-word;
 }
 
 .doc-content a::after {
@@ -1186,6 +1221,7 @@ body {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   color: var(--accent-color);
   transition: all 0.3s ease;
+  word-break: break-all;
 }
 
 .doc-content code:hover {
@@ -1206,6 +1242,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.6;
   transition: all 0.3s ease;
+  word-wrap: break-word;
 }
 
 .doc-content ol li:hover {
@@ -1232,6 +1269,7 @@ body {
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--border-color);
   color: var(--text-primary);
+  word-wrap: break-word;
 }
 
 .doc-content h2 {
@@ -1242,6 +1280,7 @@ body {
   padding-bottom: 1rem;
   border-bottom: 1.5px solid var(--border-color);
   color: var(--text-primary);
+  word-wrap: break-word;
 }
 
 .doc-content h4 {
@@ -1250,6 +1289,7 @@ body {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-primary);
+  word-wrap: break-word;
 }
 
 .doc-content h5 {
@@ -1258,6 +1298,7 @@ body {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-primary);
+  word-wrap: break-word;
 }
 
 .doc-content h6 {
@@ -1266,6 +1307,7 @@ body {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-primary);
+  word-wrap: break-word;
 }
 
 .doc-content ul {
@@ -1280,6 +1322,7 @@ body {
   padding-left: 28px;
   position: relative;
   transition: all 0.3s ease;
+  word-wrap: break-word;
 }
 
 .doc-content ul li:hover {
@@ -1295,6 +1338,7 @@ body {
   font-size: 1.2rem;
   font-weight: 700;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .doc-content ul li:hover::before {
@@ -1316,6 +1360,7 @@ body {
   color: var(--text-secondary);
   font-style: italic;
   transition: all 0.3s ease;
+  word-wrap: break-word;
 }
 
 .doc-content blockquote:hover {
@@ -1350,6 +1395,8 @@ body {
   animation: pulse 2s ease-in-out infinite;
   box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
   display: inline-block;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .cta-link {
@@ -1369,6 +1416,8 @@ body {
   overflow: hidden;
   letter-spacing: 0.5px;
   box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.3);
+  word-wrap: break-word;
+  flex-wrap: wrap;
 }
 
 .cta-link::before {
@@ -1399,6 +1448,7 @@ body {
 
 .cta-link i {
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .cta-link:hover i {
@@ -1448,6 +1498,8 @@ body {
   background-clip: text;
   animation: slideInDown 0.8s ease-out;
   transition: all 0.3s ease;
+  flex-wrap: wrap;
+  word-wrap: break-word;
 }
 
 .footer-logo:hover {
@@ -1456,6 +1508,7 @@ body {
 
 .footer-logo i {
   animation: swing 2s ease infinite;
+  flex-shrink: 0;
 }
 
 .footer-links {
@@ -1474,6 +1527,7 @@ body {
   font-weight: 600;
   position: relative;
   letter-spacing: 0.5px;
+  word-break: break-word;
 }
 
 .footer-link::after {
@@ -1502,6 +1556,7 @@ body {
   gap: 24px;
   margin-bottom: 40px;
   animation: slideInUp 0.8s ease-out 0.2s both;
+  flex-wrap: wrap;
 }
 
 .social-link {
@@ -1519,6 +1574,7 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .social-link::before {
@@ -1551,6 +1607,7 @@ body {
   animation: slideInUp 0.8s ease-out 0.3s both;
   padding-top: 20px;
   border-top: 1px solid var(--border-color);
+  word-wrap: break-word;
 }
 
 /* ===== TEST API STYLES ===== */
@@ -1572,6 +1629,7 @@ body {
   overflow: hidden;
   letter-spacing: 0.5px;
   box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.3);
+  white-space: nowrap;
 }
 
 .test-button::before {
@@ -1614,6 +1672,7 @@ body {
   margin: 12px 0;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
+  word-wrap: break-word;
 }
 
 .test-input:focus {
@@ -1649,6 +1708,7 @@ body {
 .result pre {
   margin: 0;
   color: var(--accent-color);
+  word-break: break-all;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -1749,10 +1809,12 @@ body {
 @media (max-width: 480px) {
   .hero-title {
     font-size: 2.2rem;
+    margin-bottom: 16px;
   }
 
   .hero-subtitle {
     font-size: 1.05rem;
+    margin-bottom: 24px;
   }
 
   .features-title {

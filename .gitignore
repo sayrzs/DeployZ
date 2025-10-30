@@ -4,9 +4,13 @@ blocked_access.log
 package-lock.json
 debug.log
 certs/
-logs/
+../theme-verfication.html
 
 # React build artifacts (optional - built on deployment)
 webroot/index.html
 webroot/assets/index-*.js
 webroot/assets/index-*.css
+logs/debug.log
+webroot/theme-verification.html
+logs/debug.log
+logs/debug.log

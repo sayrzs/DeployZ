@@ -32,6 +32,23 @@
     <meta name="telegram:channel" content="@deployz" />
     <meta name="discord:server" content="https://discord.gg/fJqzvnFkpq" />
     <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+      /* Improved header styling */
+      .navbar.scrolled {
+        background-color: var(--surface-color) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      
+      .navbar-container {
+        transition: padding 0.3s ease;
+      }
+      
+      /* Fade-in animation classes */
+      .feature-card, .hero-content, .features-header, .cta-button {
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+    </style>
 </head>
 <!-- Restored the default theme since we're using CSS-based themes -->
 <body data-theme="github">
@@ -222,6 +239,8 @@
         <i class="fas fa-check-circle toast-icon"></i>
         <span class="toast-message" id="toast-message">Theme changed</span>
     </div>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/scroll-effects.js"></script>
     <script src="assets/js/index.js"></script>
 </body>
 </html>

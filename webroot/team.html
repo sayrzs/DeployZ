@@ -11,11 +11,28 @@
   <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
   <link rel="stylesheet" href="assets/css/index.css">
   <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    /* Improved header styling */
+    .navbar.scrolled {
+      background-color: var(--surface-color) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .navbar-container {
+      transition: padding 0.3s ease;
+    }
+    
+    /* Fade-in animation classes */
+    .feature-card, .hero-content, .features-header, .cta-button {
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+  </style>
 </head>
 <body data-theme="github">
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.html" class="logo">
+      <a href="/" class="logo">
         <img src="assets/images/logo.png" alt="DeployZ Logo" style="width: 2.5rem; height: 2.5rem;">
         DeployZ
       </a>
@@ -86,7 +103,6 @@
     </div>
   </section>
 
-  </section>
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-logo">
@@ -96,7 +112,7 @@
       <div class="footer-links">
         <a href="https://github.com/sayrzs/deployz" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="docs/" class="footer-link">Documentation</a>
-        <a href="index.html" class="footer-link">Home</a>
+        <a href="/" class="footer-link">Home</a>
         <a href="about.html" class="footer-link">About</a>
         <a href="test-api/" class="footer-link">API Testing</a>
       </div>
@@ -121,6 +137,8 @@
     <span class="feature-description" id="toast-message">Theme changed</span>
   </div>
 
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/scroll-effects.js"></script>
   <script src="assets/js/index.js"></script>
 </body>
 </html>

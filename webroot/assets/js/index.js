@@ -547,3 +547,5 @@ document.addEventListener("DOMContentLoaded", function() {
     // Load themes from CSS instead of JSON
     loadThemesFromCSS();
 });
+
+

@@ -1,22 +1,5 @@
 /* ===========================================
    DEPLOYZ COMPONENTS - Reusable UI Components
-   ===========================================
-
-   Enhanced component library with:
-   - Improved accessibility (ARIA, focus states, contrast)
-   - Responsive design patterns
-   - Better animation performance
-   - Component variants and modifiers
-   - Loading and disabled states
-   - Better semantic structure
-
-   Component Categories:
-   - Buttons (.cta-button, .test-button)
-   - Cards (.doc-card, .feature-card)
-   - Forms (.test-input, .result)
-   - Interactive Elements (.toast, .theme-switcher)
-   - Navigation (.navbar, .footer)
-   - Utilities (.new-badge, .cta-link)
    =========================================== */
 
 /* ===== CSS CUSTOM PROPERTIES (COLOR SYSTEM) ===== */
@@ -73,70 +56,6 @@
         --code-bg: #2a2a2a;
         --shadow-color: rgba(0, 0, 0, 0.3);
         --navbar-bg: rgba(15, 15, 15, 0.95);
-    }
-}
-
-/* ===== ANIMATION CLASSES ===== */
-
-/* Fade In Animations */
-.fadeInUp {
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-.fadeInDown {
-    animation: fadeInDown 0.6s ease forwards;
-}
-
-.fadeInLeft {
-    animation: fadeInLeft 0.6s ease forwards;
-}
-
-.fadeInRight {
-    animation: fadeInRight 0.6s ease forwards;
-}
-
-/* Enhanced fade-in animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
     }
 }
 
@@ -1030,25 +949,6 @@
     50% { opacity: 0.7; }
 }
 
-/* New Theme Badge */
-.theme-option.new-theme::after {
-    content: "NEW";
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
-    color: var(--bg-color);
-    padding: 2px 6px;
-    border-radius: 12px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    animation: pulse 2s infinite;
-    white-space: nowrap;
-    z-index: 2;
-}
-
 /* CTA Link */
 .cta-link {
     display: inline-flex;
@@ -1079,47 +979,6 @@
     outline-offset: 2px;
 }
 
-/* ===== SKELETON LOADING ===== */
-
-.skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    border-radius: 4px;
-}
-
-@keyframes skeleton-loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-.skeleton-text {
-    width: 100%;
-    height: 16px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-}
-
-.skeleton-text:last-child {
-    width: 80%;
-    margin-bottom: 0;
-}
-
-.skeleton-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.skeleton-button {
-    width: 100px;
-    height: 36px;
-    border-radius: 4px;
-}
 
 @keyframes spin {
     to { transform: rotate(360deg); }

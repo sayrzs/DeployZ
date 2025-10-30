@@ -19,6 +19,34 @@ if (config.appMode === 'react-app') {
 }
 
 let webroot = path.resolve(webrootPath);
+// Function to rebuild the React app
+function rebuildReactApp() {
+    const { exec } = require('child_process');
+    const reactAppPath = path.resolve(__dirname, '../react-app');
+    
+    debugLog('info', 'Starting React app rebuild...');
+    
+    // Execute npm run build in the react-app directory
+    const buildProcess = exec('npm run build', { cwd: reactAppPath });
+    
+    buildProcess.stdout.on('data', (data) => {
+        debugLog('debug', `Build output: ${data}`);
+    });
+    
+    buildProcess.stderr.on('data', (data) => {
+        debugLog('warn', `Build warning/error: ${data}`);
+    });
+    
+    buildProcess.on('close', (code) => {
+        if (code === 0) {
+            debugLog('info', 'React app rebuild completed successfully');
+            // Notify all connected clients to reload
+            notifyClientsToReload();
+        } else {
+            debugLog('error', `React app rebuild failed with code ${code}`);
+        }
+    });
+}
 
 // Function to generate self-signed certificates if they don't exist
 function generateCertificatesIfNeeded() {
@@ -79,9 +107,42 @@ if (!process.env.VERCEL) {
             debugLog('error', 'Failed to reload config, keeping previous config:', { error: e.message, configPath });
         }
     });
+
+    // Watch React app source files for changes in react-app mode
+    if (config.appMode === 'react-app') {
+        const reactAppSrcPath = path.resolve(__dirname, '../react-app/src');
+        const reactAppPublicPath = path.resolve(__dirname, '../react-app/public');
+        
+        debugLog('info', 'Setting up React app source watcher for hot reload');
+        
+        // Watch src directory
+        chokidar.watch(reactAppSrcPath, { ignoreInitial: true }).on('all', (event, filePath) => {
+            debugLog('info', `React app source change detected: ${event} ${filePath}`);
+            // Trigger rebuild
+            rebuildReactApp();
+        });
+        
+        // Watch public directory (if it exists)
+        if (fs.existsSync(reactAppPublicPath)) {
+            chokidar.watch(reactAppPublicPath, { ignoreInitial: true }).on('all', (event, filePath) => {
+                debugLog('info', `React app public change detected: ${event} ${filePath}`);
+                // Trigger rebuild
+                rebuildReactApp();
+            });
+        }
+    }
 }
 const clients = new Set(); // Store connected WebSocket clients
-const liveReloadPort = 35729; // Port for live reload server
+const liveReloadPort = 35730; // Port for live reload server
+
+// Function to notify all connected clients to reload
+function notifyClientsToReload() {
+    clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({ type: 'reload' }));
+        }
+    });
+}
 
 // Function to check if a file is blocked
 function isFileBlocked(filePath, config, req) {
@@ -456,7 +517,7 @@ function handleRequest(req, res) {
 
 // Start live reload server if enabled - only in local development
 if (config.liveReload && !process.env.VERCEL) {
-    // Simple live reload without WebSocket
+    // HTTP server to serve the livereload.js script and handle WebSocket upgrade
     const protocol = config.autoHttps ? 'https' : 'http';
     const livereloadServer = (config.autoHttps ? https : http).createServer((req, res) => {
         if (req.url === '/livereload.js') {
@@ -464,23 +525,58 @@ if (config.liveReload && !process.env.VERCEL) {
             res.end(`
                 (function() {
                     console.log('Live reload enabled');
-                    setInterval(function() {
-                        fetch(window.location.href, { method: 'HEAD' })
-                            .then(response => {
-                                if (response.status === 200) {
-                                    // Page is still accessible, do nothing
-                                }
-                            })
-                            .catch(() => {
-                                // If fetch fails, page might have changed, reload
-                                window.location.reload();
-                            });
-                    }, 1000);
+                    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                    const ws = new WebSocket(protocol + '//' + window.location.hostname + ':35730');
+                    
+                    ws.onmessage = function(event) {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'reload') {
+                            console.log('Reloading page due to file change');
+                            window.location.reload();
+                        }
+                    };
+                    
+                    ws.onopen = function() {
+                        console.log('Live reload WebSocket connected');
+                    };
+                    
+                    ws.onclose = function() {
+                        console.log('Live reload WebSocket disconnected');
+                    };
+                    
+                    ws.onerror = function(error) {
+                        console.error('Live reload WebSocket error:', error);
+                    };
                 })();
             `);
         } else {
             res.writeHead(404);
             res.end();
+        }
+    });
+    
+    // Handle WebSocket upgrade requests
+    livereloadServer.on('upgrade', (request, socket, head) => {
+        if (request.url === '/') {
+            const wss = new WebSocket.Server({ noServer: true });
+            wss.handleUpgrade(request, socket, head, (ws) => {
+                wss.emit('connection', ws, request);
+                
+                debugLog('info', 'Live reload client connected');
+                clients.add(ws);
+                
+                ws.on('close', () => {
+                    clients.delete(ws);
+                    debugLog('info', 'Live reload client disconnected');
+                });
+                
+                ws.on('error', (error) => {
+                    debugLog('error', 'Live reload client error:', { error: error.message });
+                    clients.delete(ws);
+                });
+            });
+        } else {
+            socket.destroy();
         }
     });
 

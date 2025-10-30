@@ -6,17 +6,17 @@ import '../App.css'
 function About() {
   const features = [
     {
-      icon: <Zap size={24} />,
+      icon: <Zap size={32} />,
       title: 'Super Fast',
       description: 'Deploy apps in seconds, not minutes. No complex setup needed.'
     },
     {
-      icon: <Shield size={24} />,
+      icon: <Shield size={32} />,
       title: 'Secure',
       description: 'Built-in HTTPS and file protection. Your apps are safe.'
     },
     {
-      icon: <RefreshCw size={24} />,
+      icon: <RefreshCw size={32} />,
       title: 'Live Reload',
       description: 'See changes instantly. No more manual refreshing.'
     }
@@ -27,7 +27,7 @@ function About() {
       <nav className="navbar">
         <div className="navbar-content">
           <div className="logo">
-            <img src="logo.png" alt="DeployZ Logo" />
+            <img src="../logo.png" alt="DeployZ Logo" />
             <span>DeployZ</span>
           </div>
           <ThemeSwitcher />
@@ -38,7 +38,7 @@ function About() {
         <div className="hero-content">
           <div className="hero-badge">
             <Info size={16} />
-            <span>About DeployZ</span>
+            <span>About DeployZ - Hot Reload Test</span>
           </div>
           <h1 className="hero-title">
             Simple Deployment Tools for <span className="highlight">Web Apps</span>
@@ -58,6 +58,7 @@ function About() {
           {features.map((feature, index) => (
             <div className="feature-card" key={index}>
               <div className="feature-icon">
+                <div className="icon-background"></div>
                 {feature.icon}
               </div>
               <h3>{feature.title}</h3>

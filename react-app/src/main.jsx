@@ -22,36 +22,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-// Simple routing based on URL path
-const getPath = () => {
-  // Get the path from the URL, removing any query parameters
-  const path = window.location.pathname.split('?')[0]
-  return path
-}
-
-const renderApp = () => {
-  const path = getPath()
-  
-  let ComponentToRender = App
-  
-  // Route matching
-  if (path === '/about') {
-    ComponentToRender = About
-  }
-  // Add more routes here as needed
-  // else if (path === '/changelogs') {
-  //   ComponentToRender = Changelogs
-  // }
-  
-  ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-      <ComponentToRender />
-    </React.StrictMode>
-  )
-}
-
-// Initial render
-renderApp()
-
-// Listen for back/forward button navigation
-window.addEventListener('popstate', renderApp)

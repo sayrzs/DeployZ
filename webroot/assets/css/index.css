@@ -1138,3 +1138,19 @@
             margin: 0;
             color: var(--accent-color);
         }
+    /* a fix for theme changer dropmenu */
+    .theme-option {
+            cursor: default;
+            opacity: 0.6;
+            transition: cursor 0.2s ease, opacity 0.2s ease;
+        }
+
+    /* Show pointer cursor only when dropdown is active */
+    .theme-dropdown.active .theme-option {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+    .theme-dropdown.active .theme-option:hover {
+            cursor: pointer;
+        }

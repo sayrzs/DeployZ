@@ -91,16 +91,40 @@ function handleSwipe() {
 themeButton.addEventListener("click", function(event) {
     event.stopPropagation();
     themeDropdown.classList.toggle("active");
+    updateThemeOptionsCursor(); // update cursor styles based on dropdown state
 });
 
 document.addEventListener("click", function(event) {
+    // Close DropDown if clicking outside the button and dropdown
     if (!themeButton.contains(event.target) && !themeDropdown.contains(event.target)) {
         themeDropdown.classList.remove("active");
+        updateThemeOptionsCursor();
     }
 });
 
+// Update cursor style based on dropdown state
+function updateThemeOptionsCursor() {
+    themeOptions.forEach(option => {
+        if (themeDropdown.classList.contains("active")) {
+            option.style.cursor = "default";
+            option.style.opacity = "1";
+        } else {
+            option.style.cursor = "default";
+            option.style.opacity = "0.6";
+        }
+    });
+}
+
 themeOptions.forEach(option => {
-    option.addEventListener("click", function() {
+    option.addEventListener("click", function(event) {
+        // Only allow theme change if dropdown is actually open
+        if (!themeDropdown.classList.contains("active")) {
+            event.stopPropagation();
+            return;
+        }
+        
+        event.stopPropagation();
+        
         const theme = this.getAttribute("data-theme");
         const themeName = this.getAttribute("data-name");
         
@@ -109,7 +133,9 @@ themeOptions.forEach(option => {
         themeOptions.forEach(opt => opt.classList.remove("active"));
         this.classList.add("active");
         
+        // Close dropdown after selection
         themeDropdown.classList.remove("active");
+        updateThemeOptionsCursor();
         
         localStorage.setItem("deployz-theme", theme);
         

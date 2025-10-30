@@ -1,531 +1,856 @@
 /* ===========================================
-   DEPLOYZ THEMES - CSS Custom Properties
+   DEPLOYZ THEMES CSS
    ===========================================
-   ALL THEMES FROM VSCODE THEMES + POPULAR THEMES
+   FULLYYYYYYYYY UPDATE FOR THEMSES CSS
    =========================================== */
 
 :root {
-    /* Default Theme: GitHub Dark */
+    /* Default Theme: GitHub Dark Enhanced */
     --bg-color: #0d1117;
     --surface-color: #161b22;
     --text-primary: #c9d1d9;
     --text-secondary: #8b949e;
     --accent-color: #58a6ff;
     --accent-hover: #79c0ff;
+    --accent-color-rgb: 88, 166, 255;
     --accent-color-alpha: rgba(88, 166, 255, 0.1);
     --border-color: #30363d;
+    --border-secondary: #1f2937;
+    --bg-secondary: #0a0e27;
     --code-bg: #0d1117;
     --gradient-start: #0d1117;
     --gradient-end: #161b22;
     --shadow-color: rgba(0, 0, 0, 0.3);
     --card-bg: #161b22;
-    --navbar-bg: rgba(13, 17, 23, 0.8);
+    --navbar-bg: rgba(13, 17, 23, 0.95);
     --transition-speed: 0.3s;
     --scrollbar-bg: #0d1117;
     --scrollbar-thumb: #30363d;
     --scrollbar-thumb-hover: #58a6ff;
+    
+    /* Semantic Colors */
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+    --error-color: #f85149;
+    --info-color: #58a6ff;
+    
+    /* Enhanced Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.25);
+    
+    /* Backdrop Blur Effects */
+    --backdrop-blur: blur(10px);
+    --backdrop-blur-strong: blur(20px);
 }
 
 [data-theme="github"] {
-    /* GitHub Dark Theme */
+    /* GitHub Dark - Professional Blue */
     --bg-color: #0d1117;
     --surface-color: #161b22;
     --text-primary: #c9d1d9;
     --text-secondary: #8b949e;
     --accent-color: #58a6ff;
     --accent-hover: #79c0ff;
-    --accent-color-alpha: rgba(88, 166, 255, 0.1);
+    --accent-color-rgb: 88, 166, 255;
+    --accent-color-alpha: rgba(88, 166, 255, 0.12);
     --border-color: #30363d;
+    --border-secondary: #1f2937;
+    --bg-secondary: #0a0e27;
     --code-bg: #0d1117;
     --gradient-start: #0d1117;
     --gradient-end: #161b22;
-    --shadow-color: rgba(88, 166, 255, 0.2);
+    --shadow-color: rgba(88, 166, 255, 0.15);
     --card-bg: #161b22;
-    --navbar-bg: rgba(13, 17, 23, 0.8);
+    --navbar-bg: rgba(13, 17, 23, 0.95);
     --scrollbar-bg: #0d1117;
     --scrollbar-thumb: #30363d;
     --scrollbar-thumb-hover: #58a6ff;
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+    --error-color: #f85149;
+    --info-color: #58a6ff;
 }
 
 [data-theme="matrix"] {
-    /* Matrix Theme - Green terminal aesthetic */
+    /* Matrix - Neon Green Terminal */
     --bg-color: #0a0a0a;
     --surface-color: #0f0f0f;
     --text-primary: #00ff41;
     --text-secondary: #00cc33;
     --accent-color: #00ff41;
-    --accent-hover: #00cc33;
-    --accent-color-alpha: rgba(0, 255, 65, 0.1);
+    --accent-hover: #00ff6e;
+    --accent-color-rgb: 0, 255, 65;
+    --accent-color-alpha: rgba(0, 255, 65, 0.15);
     --border-color: #00ff41;
+    --border-secondary: #009933;
+    --bg-secondary: #000000;
     --code-bg: #0a0a0a;
     --gradient-start: #0a0a0a;
-    --gradient-end: #0f0f0f;
-    --shadow-color: rgba(0, 255, 65, 0.2);
+    --gradient-end: #1a1a1a;
+    --shadow-color: rgba(0, 255, 65, 0.25);
     --card-bg: #0f0f0f;
-    --navbar-bg: rgba(10, 10, 10, 0.8);
+    --navbar-bg: rgba(10, 10, 10, 0.95);
     --scrollbar-bg: #0a0a0a;
     --scrollbar-thumb: #00ff41;
-    --scrollbar-thumb-hover: #00cc33;
+    --scrollbar-thumb-hover: #00ff6e;
+    --success-color: #00ff41;
+    --warning-color: #ffff00;
+    --error-color: #ff0000;
+    --info-color: #00ffff;
 }
 
 [data-theme="dracula"] {
-    /* Dracula Theme - Dark purple/pink aesthetic */
+    /* Dracula - Dark Purple/Pink */
     --bg-color: #282a36;
     --surface-color: #44475a;
     --text-primary: #f8f8f2;
     --text-secondary: #bd93f9;
     --accent-color: #bd93f9;
     --accent-hover: #ff79c6;
-    --accent-color-alpha: rgba(189, 147, 249, 0.1);
+    --accent-color-rgb: 189, 147, 249;
+    --accent-color-alpha: rgba(189, 147, 249, 0.12);
     --border-color: #6272a4;
+    --border-secondary: #44475a;
+    --bg-secondary: #21222c;
     --code-bg: #282a36;
     --gradient-start: #282a36;
     --gradient-end: #44475a;
     --shadow-color: rgba(189, 147, 249, 0.2);
     --card-bg: #44475a;
-    --navbar-bg: rgba(40, 42, 54, 0.8);
+    --navbar-bg: rgba(40, 42, 54, 0.95);
     --scrollbar-bg: #282a36;
     --scrollbar-thumb: #bd93f9;
     --scrollbar-thumb-hover: #ff79c6;
+    --success-color: #50fa7b;
+    --warning-color: #f1fa8c;
+    --error-color: #ff5555;
+    --info-color: #8be9fd;
 }
 
 [data-theme="nord"] {
-    /* Nord Theme - Arctic blue aesthetic */
+    /* Nord - Arctic Blue */
     --bg-color: #2e3440;
     --surface-color: #3b4252;
     --text-primary: #d8dee9;
     --text-secondary: #88c0d0;
     --accent-color: #88c0d0;
     --accent-hover: #81a1c1;
-    --accent-color-alpha: rgba(136, 192, 208, 0.1);
+    --accent-color-rgb: 136, 192, 208;
+    --accent-color-alpha: rgba(136, 192, 208, 0.12);
     --border-color: #434c5e;
+    --border-secondary: #3b4252;
+    --bg-secondary: #2e3440;
     --code-bg: #2e3440;
     --gradient-start: #2e3440;
     --gradient-end: #3b4252;
-    --shadow-color: rgba(136, 192, 208, 0.2);
+    --shadow-color: rgba(136, 192, 208, 0.15);
     --card-bg: #3b4252;
-    --navbar-bg: rgba(46, 52, 64, 0.8);
+    --navbar-bg: rgba(46, 52, 64, 0.95);
     --scrollbar-bg: #2e3440;
     --scrollbar-thumb: #88c0d0;
     --scrollbar-thumb-hover: #81a1c1;
+    --success-color: #a3be8c;
+    --warning-color: #ebcb8b;
+    --error-color: #bf616a;
+    --info-color: #5e81ac;
 }
 
 [data-theme="discord"] {
-    /* Discord Theme - Purple/blue aesthetic */
+    /* Discord - Purple Blue */
     --bg-color: #36393f;
     --surface-color: #2f3136;
     --text-primary: #dcddde;
     --text-secondary: #b9bbbe;
     --accent-color: #7289da;
     --accent-hover: #5a6ebf;
-    --accent-color-alpha: rgba(114, 137, 218, 0.1);
+    --accent-color-rgb: 114, 137, 218;
+    --accent-color-alpha: rgba(114, 137, 218, 0.12);
     --border-color: #202225;
+    --border-secondary: #1e2124;
+    --bg-secondary: #36393f;
     --code-bg: #2f3136;
     --gradient-start: #36393f;
     --gradient-end: #2f3136;
-    --shadow-color: rgba(114, 137, 218, 0.2);
+    --shadow-color: rgba(114, 137, 218, 0.15);
     --card-bg: #2f3136;
-    --navbar-bg: rgba(54, 57, 63, 0.8);
+    --navbar-bg: rgba(54, 57, 63, 0.95);
     --scrollbar-bg: #36393f;
     --scrollbar-thumb: #7289da;
     --scrollbar-thumb-hover: #5a6ebf;
+    --success-color: #43b581;
+    --warning-color: #faa61a;
+    --error-color: #f04747;
+    --info-color: #7289da;
 }
 
 [data-theme="monokai"] {
-    /* Monokai Theme - Classic green/orange */
+    /* Monokai - Classic Green/Orange */
     --bg-color: #272822;
     --surface-color: #3e3d32;
     --text-primary: #f8f8f2;
     --text-secondary: #75715e;
     --accent-color: #a6e22e;
     --accent-hover: #7ec844;
-    --accent-color-alpha: rgba(166, 226, 46, 0.1);
+    --accent-color-rgb: 166, 226, 46;
+    --accent-color-alpha: rgba(166, 226, 46, 0.12);
     --border-color: #75715e;
+    --border-secondary: #49483e;
+    --bg-secondary: #1e1f1c;
     --code-bg: #272822;
     --gradient-start: #272822;
     --gradient-end: #3e3d32;
-    --shadow-color: rgba(166, 226, 46, 0.2);
+    --shadow-color: rgba(166, 226, 46, 0.15);
     --card-bg: #3e3d32;
-    --navbar-bg: rgba(39, 40, 34, 0.8);
+    --navbar-bg: rgba(39, 40, 34, 0.95);
     --scrollbar-bg: #272822;
     --scrollbar-thumb: #a6e22e;
     --scrollbar-thumb-hover: #7ec844;
+    --success-color: #a6e22e;
+    --warning-color: #e6db74;
+    --error-color: #f92672;
+    --info-color: #66d9ef;
 }
 
 [data-theme="onedark"] {
-    /* One Dark Theme - VS Code inspired */
+    /* One Dark - VS Code Inspired */
     --bg-color: #282c34;
     --surface-color: #21252b;
     --text-primary: #abb2bf;
     --text-secondary: #5c6370;
     --accent-color: #61afef;
     --accent-hover: #528fcc;
-    --accent-color-alpha: rgba(97, 175, 239, 0.1);
+    --accent-color-rgb: 97, 175, 239;
+    --accent-color-alpha: rgba(97, 175, 239, 0.12);
     --border-color: #3e4451;
+    --border-secondary: #2c2f38;
+    --bg-secondary: #1a1e25;
     --code-bg: #282c34;
     --gradient-start: #282c34;
     --gradient-end: #21252b;
-    --shadow-color: rgba(97, 175, 239, 0.2);
+    --shadow-color: rgba(97, 175, 239, 0.15);
     --card-bg: #21252b;
-    --navbar-bg: rgba(40, 44, 52, 0.8);
+    --navbar-bg: rgba(40, 44, 52, 0.95);
     --scrollbar-bg: #282c34;
     --scrollbar-thumb: #61afef;
     --scrollbar-thumb-hover: #528fcc;
+    --success-color: #98c379;
+    --warning-color: #e5c07b;
+    --error-color: #e06c75;
+    --info-color: #56b6f6;
 }
 
 [data-theme="vscode"] {
-    /* VS Code Dark Theme */
+    /* VS Code Dark - Professional */
     --bg-color: #1e1e1e;
     --surface-color: #252526;
     --text-primary: #d4d4d4;
     --text-secondary: #969696;
     --accent-color: #007acc;
     --accent-hover: #005a9e;
-    --accent-color-alpha: rgba(0, 122, 204, 0.1);
+    --accent-color-rgb: 0, 122, 204;
+    --accent-color-alpha: rgba(0, 122, 204, 0.12);
     --border-color: #3e3e42;
+    --border-secondary: #2d2d30;
+    --bg-secondary: #1a1a1a;
     --code-bg: #1e1e1e;
     --gradient-start: #1e1e1e;
     --gradient-end: #252526;
-    --shadow-color: rgba(0, 122, 204, 0.2);
+    --shadow-color: rgba(0, 122, 204, 0.15);
     --card-bg: #252526;
-    --navbar-bg: rgba(30, 30, 30, 0.8);
+    --navbar-bg: rgba(30, 30, 30, 0.95);
     --scrollbar-bg: #1e1e1e;
     --scrollbar-thumb: #007acc;
     --scrollbar-thumb-hover: #005a9e;
+    --success-color: #6a9955;
+    --warning-color: #ce9178;
+    --error-color: #f44747;
+    --info-color: #007acc;
 }
 
 [data-theme="solarized-dark"] {
-    /* Solarized Dark Theme */
+    /* Solarized Dark - Precision Colors */
     --bg-color: #002b36;
     --surface-color: #073642;
     --text-primary: #839496;
     --text-secondary: #657b83;
     --accent-color: #268bd2;
     --accent-hover: #2aa198;
-    --accent-color-alpha: rgba(38, 139, 210, 0.1);
+    --accent-color-rgb: 38, 139, 210;
+    --accent-color-alpha: rgba(38, 139, 210, 0.12);
     --border-color: #586e75;
+    --border-secondary: #073642;
+    --bg-secondary: #001b26;
     --code-bg: #002b36;
     --gradient-start: #002b36;
     --gradient-end: #073642;
-    --shadow-color: rgba(38, 139, 210, 0.2);
+    --shadow-color: rgba(38, 139, 210, 0.15);
     --card-bg: #073642;
-    --navbar-bg: rgba(0, 43, 54, 0.8);
+    --navbar-bg: rgba(0, 43, 54, 0.95);
     --scrollbar-bg: #002b36;
     --scrollbar-thumb: #268bd2;
     --scrollbar-thumb-hover: #2aa198;
+    --success-color: #859900;
+    --warning-color: #b58900;
+    --error-color: #dc322f;
+    --info-color: #2aa198;
 }
 
 [data-theme="gruvbox-dark"] {
-    /* Gruvbox Dark Theme */
+    /* Gruvbox Dark - Warm & Earthy */
     --bg-color: #282828;
     --surface-color: #3c3836;
     --text-primary: #ebdbb2;
     --text-secondary: #928374;
     --accent-color: #fb4934;
     --accent-hover: #cc241d;
-    --accent-color-alpha: rgba(251, 73, 52, 0.1);
+    --accent-color-rgb: 251, 73, 52;
+    --accent-color-alpha: rgba(251, 73, 52, 0.12);
     --border-color: #665c54;
+    --border-secondary: #3c3836;
+    --bg-secondary: #1d2021;
     --code-bg: #282828;
     --gradient-start: #282828;
     --gradient-end: #3c3836;
-    --shadow-color: rgba(251, 73, 52, 0.2);
+    --shadow-color: rgba(251, 73, 52, 0.15);
     --card-bg: #3c3836;
-    --navbar-bg: rgba(40, 40, 40, 0.8);
+    --navbar-bg: rgba(40, 40, 40, 0.95);
     --scrollbar-bg: #282828;
     --scrollbar-thumb: #fb4934;
     --scrollbar-thumb-hover: #cc241d;
+    --success-color: #b8bb26;
+    --warning-color: #fabd2f;
+    --error-color: #fb4934;
+    --info-color: #83a598;
 }
 
 [data-theme="cyberpunk"] {
-    /* Cyberpunk Theme - Neon aesthetic */
+    /* Cyberpunk - Neon Pink & Cyan */
     --bg-color: #0a0e27;
     --surface-color: #151932;
     --text-primary: #eee;
     --text-secondary: #aaa;
     --accent-color: #ff00ff;
     --accent-hover: #ff00aa;
-    --accent-color-alpha: rgba(255, 0, 255, 0.1);
+    --accent-color-rgb: 255, 0, 255;
+    --accent-color-alpha: rgba(255, 0, 255, 0.15);
     --border-color: #ff00ff;
+    --border-secondary: #aa00aa;
+    --bg-secondary: #000014;
     --code-bg: #0a0e27;
     --gradient-start: #0a0e27;
     --gradient-end: #151932;
     --shadow-color: rgba(255, 0, 255, 0.3);
     --card-bg: #151932;
-    --navbar-bg: rgba(10, 14, 39, 0.8);
+    --navbar-bg: rgba(10, 14, 39, 0.95);
     --scrollbar-bg: #0a0e27;
     --scrollbar-thumb: #ff00ff;
     --scrollbar-thumb-hover: #ff00aa;
+    --success-color: #00ff00;
+    --warning-color: #ffff00;
+    --error-color: #ff0000;
+    --info-color: #00ffff;
 }
 
 [data-theme="rose-pine"] {
-    /* Rose Pine Theme - Warm dark aesthetic */
+    /* Rose Pine - Warm Aesthetic */
     --bg-color: #191724;
     --surface-color: #1f1d2e;
     --text-primary: #e0def4;
     --text-secondary: #908caa;
     --accent-color: #ebbcba;
     --accent-hover: #f6c177;
-    --accent-color-alpha: rgba(235, 188, 186, 0.1);
+    --accent-color-rgb: 235, 188, 186;
+    --accent-color-alpha: rgba(235, 188, 186, 0.12);
     --border-color: #6e6a86;
+    --border-secondary: #403d52;
+    --bg-secondary: #0e0b15;
     --code-bg: #191724;
     --gradient-start: #191724;
     --gradient-end: #1f1d2e;
-    --shadow-color: rgba(235, 188, 186, 0.2);
+    --shadow-color: rgba(235, 188, 186, 0.15);
     --card-bg: #1f1d2e;
-    --navbar-bg: rgba(25, 23, 36, 0.8);
+    --navbar-bg: rgba(25, 23, 36, 0.95);
     --scrollbar-bg: #191724;
     --scrollbar-thumb: #ebbcba;
     --scrollbar-thumb-hover: #f6c177;
+    --success-color: #9ccfd8;
+    --warning-color: #f6c177;
+    --error-color: #eb6f92;
+    --info-color: #31748f;
 }
 
 [data-theme="atom-one-dark"] {
-    /* Atom One Dark Theme */
+    /* Atom One Dark - Minimal */
     --bg-color: #21252b;
     --surface-color: #282c34;
     --text-primary: #abb2bf;
     --text-secondary: #8b92a3;
     --accent-color: #e06c75;
     --accent-hover: #be5046;
-    --accent-color-alpha: rgba(224, 108, 117, 0.1);
+    --accent-color-rgb: 224, 108, 117;
+    --accent-color-alpha: rgba(224, 108, 117, 0.12);
     --border-color: #3e4451;
+    --border-secondary: #282c34;
+    --bg-secondary: #1a1e25;
     --code-bg: #21252b;
     --gradient-start: #21252b;
     --gradient-end: #282c34;
-    --shadow-color: rgba(224, 108, 117, 0.2);
+    --shadow-color: rgba(224, 108, 117, 0.15);
     --card-bg: #282c34;
-    --navbar-bg: rgba(33, 37, 43, 0.8);
+    --navbar-bg: rgba(33, 37, 43, 0.95);
     --scrollbar-bg: #21252b;
     --scrollbar-thumb: #e06c75;
     --scrollbar-thumb-hover: #be5046;
+    --success-color: #98c379;
+    --warning-color: #e5c07b;
+    --error-color: #e06c75;
+    --info-color: #61afef;
 }
 
 [data-theme="material-dark"] {
-    /* Material Dark Theme */
+    /* Material Dark - Clean Modern */
     --bg-color: #121212;
     --surface-color: #1e1e1e;
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --accent-color: #bb86fc;
     --accent-hover: #3700b3;
-    --accent-color-alpha: rgba(187, 134, 252, 0.1);
+    --accent-color-rgb: 187, 134, 252;
+    --accent-color-alpha: rgba(187, 134, 252, 0.12);
     --border-color: #2c2c2c;
+    --border-secondary: #1a1a1a;
+    --bg-secondary: #0a0a0a;
     --code-bg: #121212;
     --gradient-start: #121212;
     --gradient-end: #1e1e1e;
-    --shadow-color: rgba(187, 134, 252, 0.2);
+    --shadow-color: rgba(187, 134, 252, 0.15);
     --card-bg: #1e1e1e;
-    --navbar-bg: rgba(18, 18, 18, 0.8);
+    --navbar-bg: rgba(18, 18, 18, 0.95);
     --scrollbar-bg: #121212;
     --scrollbar-thumb: #bb86fc;
     --scrollbar-thumb-hover: #3700b3;
+    --success-color: #6dd58d;
+    --warning-color: #ffc107;
+    --error-color: #cf6679;
+    --info-color: #bb86fc;
 }
 
 [data-theme="palenight"] {
-    /* Palenight Theme - Material inspired */
+    /* Palenight - Material Inspired */
     --bg-color: #292d3e;
     --surface-color: #32374c;
     --text-primary: #e0e0e0;
     --text-secondary: #a6accd;
     --accent-color: #82aaff;
     --accent-hover: #5c7bd9;
-    --accent-color-alpha: rgba(130, 170, 255, 0.1);
+    --accent-color-rgb: 130, 170, 255;
+    --accent-color-alpha: rgba(130, 170, 255, 0.12);
     --border-color: #444267;
+    --border-secondary: #2c3142;
+    --bg-secondary: #1e2132;
     --code-bg: #292d3e;
     --gradient-start: #292d3e;
     --gradient-end: #32374c;
-    --shadow-color: rgba(130, 170, 255, 0.2);
+    --shadow-color: rgba(130, 170, 255, 0.15);
     --card-bg: #32374c;
-    --navbar-bg: rgba(41, 45, 62, 0.8);
+    --navbar-bg: rgba(41, 45, 62, 0.95);
     --scrollbar-bg: #292d3e;
     --scrollbar-thumb: #82aaff;
     --scrollbar-thumb-hover: #5c7bd9;
+    --success-color: #c3e88d;
+    --warning-color: #ffcb8b;
+    --error-color: #ff5370;
+    --info-color: #82aaff;
 }
 
 [data-theme="night-owl"] {
-    /* Night Owl Theme - VS Code inspired */
+    /* Night Owl - Deep Blue */
     --bg-color: #011627;
     --surface-color: #0d2538;
     --text-primary: #d6deeb;
     --text-secondary: #637777;
     --accent-color: #7fdbca;
     --accent-hover: #5ebdab;
-    --accent-color-alpha: rgba(127, 219, 202, 0.1);
+    --accent-color-rgb: 127, 219, 202;
+    --accent-color-alpha: rgba(127, 219, 202, 0.12);
     --border-color: #1f3a4f;
+    --border-secondary: #0b1929;
+    --bg-secondary: #001a2a;
     --code-bg: #011627;
     --gradient-start: #011627;
     --gradient-end: #0d2538;
-    --shadow-color: rgba(127, 219, 202, 0.2);
+    --shadow-color: rgba(127, 219, 202, 0.15);
     --card-bg: #0d2538;
-    --navbar-bg: rgba(1, 22, 39, 0.8);
+    --navbar-bg: rgba(1, 22, 39, 0.95);
     --scrollbar-bg: #011627;
     --scrollbar-thumb: #7fdbca;
     --scrollbar-thumb-hover: #5ebdab;
+    --success-color: #7fdbca;
+    --warning-color: #ffc76d;
+    --error-color: #f78151;
+    --info-color: #5f7e97;
 }
 
 [data-theme="synthwave-84"] {
-    /* Synthwave '84 Theme - Retro neon */
+    /* Synthwave '84 - Retro Neon */
     --bg-color: #2a2139;
     --surface-color: #3d2f5b;
     --text-primary: #f8f8f2;
     --text-secondary: #e0e0e0;
     --accent-color: #f92aad;
     --accent-hover: #e8457c;
-    --accent-color-alpha: rgba(249, 42, 173, 0.1);
+    --accent-color-rgb: 249, 42, 173;
+    --accent-color-alpha: rgba(249, 42, 173, 0.15);
     --border-color: #6a4c93;
+    --border-secondary: #4a3873;
+    --bg-secondary: #1a1128;
     --code-bg: #2a2139;
     --gradient-start: #2a2139;
     --gradient-end: #3d2f5b;
-    --shadow-color: rgba(249, 42, 173, 0.3);
+    --shadow-color: rgba(249, 42, 173, 0.25);
     --card-bg: #3d2f5b;
-    --navbar-bg: rgba(42, 33, 57, 0.8);
+    --navbar-bg: rgba(42, 33, 57, 0.95);
     --scrollbar-bg: #2a2139;
     --scrollbar-thumb: #f92aad;
     --scrollbar-thumb-hover: #e8457c;
+    --success-color: #72f1b8;
+    --warning-color: #fad000;
+    --error-color: #ff2e88;
+    --info-color: #00d9ff;
 }
 
 [data-theme="github-high-contrast"] {
-    /* GitHub High Contrast Theme */
+    /* GitHub High Contrast - Maximum Visibility */
     --bg-color: #010409;
     --surface-color: #0d1117;
     --text-primary: #f0f6fc;
     --text-secondary: #8b949e;
     --accent-color: #58a6ff;
     --accent-hover: #79c0ff;
-    --accent-color-alpha: rgba(88, 166, 255, 0.1);
+    --accent-color-rgb: 88, 166, 255;
+    --accent-color-alpha: rgba(88, 166, 255, 0.12);
     --border-color: #30363d;
+    --border-secondary: #1f2937;
+    --bg-secondary: #000000;
     --code-bg: #010409;
     --gradient-start: #010409;
     --gradient-end: #0d1117;
-    --shadow-color: rgba(88, 166, 255, 0.3);
+    --shadow-color: rgba(88, 166, 255, 0.2);
     --card-bg: #0d1117;
-    --navbar-bg: rgba(1, 4, 9, 0.8);
+    --navbar-bg: rgba(1, 4, 9, 0.95);
     --scrollbar-bg: #010409;
     --scrollbar-thumb: #58a6ff;
     --scrollbar-thumb-hover: #79c0ff;
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+    --error-color: #f85149;
+    --info-color: #58a6ff;
 }
 
 [data-theme="ayu-dark"] {
-    /* Ayu Dark Theme */
+    /* Ayu Dark - Warm Yellow */
     --bg-color: #0f1419;
     --surface-color: #131721;
     --text-primary: #c5cdd3;
     --text-secondary: #707a8c;
     --accent-color: #ffcc66;
     --accent-hover: #ffb347;
-    --accent-color-alpha: rgba(255, 204, 102, 0.1);
+    --accent-color-rgb: 255, 204, 102;
+    --accent-color-alpha: rgba(255, 204, 102, 0.12);
     --border-color: #1a1f29;
+    --border-secondary: #0f1419;
+    --bg-secondary: #070a12;
     --code-bg: #0f1419;
     --gradient-start: #0f1419;
     --gradient-end: #131721;
-    --shadow-color: rgba(255, 204, 102, 0.2);
+    --shadow-color: rgba(255, 204, 102, 0.15);
     --card-bg: #131721;
-    --navbar-bg: rgba(15, 20, 25, 0.8);
+    --navbar-bg: rgba(15, 20, 25, 0.95);
     --scrollbar-bg: #0f1419;
     --scrollbar-thumb: #ffcc66;
     --scrollbar-thumb-hover: #ffb347;
+    --success-color: #bae67e;
+    --warning-color: #ffcc66;
+    --error-color: #f27983;
+    --info-color: #73d8ff;
 }
 
 [data-theme="catppuccin-mocha"] {
-    /* Catppuccin Mocha Theme */
+    /* Catppuccin Mocha - Warm Brown */
     --bg-color: #1e1e2e;
     --surface-color: #313244;
     --text-primary: #cdd6f4;
     --text-secondary: #a6adc8;
     --accent-color: #f38ba8;
     --accent-hover: #eba0ac;
-    --accent-color-alpha: rgba(243, 139, 168, 0.1);
+    --accent-color-rgb: 243, 139, 168;
+    --accent-color-alpha: rgba(243, 139, 168, 0.12);
     --border-color: #45475a;
+    --border-secondary: #313244;
+    --bg-secondary: #161620;
     --code-bg: #1e1e2e;
     --gradient-start: #1e1e2e;
     --gradient-end: #313244;
-    --shadow-color: rgba(243, 139, 168, 0.2);
+    --shadow-color: rgba(243, 139, 168, 0.15);
     --card-bg: #313244;
-    --navbar-bg: rgba(30, 30, 46, 0.8);
+    --navbar-bg: rgba(30, 30, 46, 0.95);
     --scrollbar-bg: #1e1e2e;
     --scrollbar-thumb: #f38ba8;
     --scrollbar-thumb-hover: #eba0ac;
+    --success-color: #a6e3a1;
+    --warning-color: #f9e2af;
+    --error-color: #f38ba8;
+    --info-color: #89b4fa;
 }
 
 [data-theme="gotham"] {
-    /* Gotham Theme */
+    /* Gotham - Dark Blue */
     --bg-color: #0c1014;
     --surface-color: #151920;
     --text-primary: #99a2b4;
     --text-secondary: #667380;
     --accent-color: #4e89ae;
     --accent-hover: #3a6b8a;
-    --accent-color-alpha: rgba(78, 137, 174, 0.1);
+    --accent-color-rgb: 78, 137, 174;
+    --accent-color-alpha: rgba(78, 137, 174, 0.12);
     --border-color: #1f242c;
+    --border-secondary: #0c1014;
+    --bg-secondary: #070a0f;
     --code-bg: #0c1014;
     --gradient-start: #0c1014;
     --gradient-end: #151920;
-    --shadow-color: rgba(78, 137, 174, 0.2);
+    --shadow-color: rgba(78, 137, 174, 0.15);
     --card-bg: #151920;
-    --navbar-bg: rgba(12, 16, 20, 0.8);
+    --navbar-bg: rgba(12, 16, 20, 0.95);
     --scrollbar-bg: #0c1014;
     --scrollbar-thumb: #4e89ae;
     --scrollbar-thumb-hover: #3a6b8a;
+    --success-color: #2da415;
+    --warning-color: #ce9e00;
+    --error-color: #d26487;
+    --info-color: #4e89ae;
 }
 
 [data-theme="one-pro"] {
-    /* One Pro Theme */
+    /* One Pro - Teal */
     --bg-color: #232830;
     --surface-color: #2c333b;
     --text-primary: #e6e6e6;
     --text-secondary: #a0a0a0;
     --accent-color: #2aacb8;
     --accent-hover: #1e8a94;
-    --accent-color-alpha: rgba(42, 172, 184, 0.1);
+    --accent-color-rgb: 42, 172, 184;
+    --accent-color-alpha: rgba(42, 172, 184, 0.12);
     --border-color: #3a414a;
+    --border-secondary: #232830;
+    --bg-secondary: #1a1e25;
     --code-bg: #232830;
     --gradient-start: #232830;
     --gradient-end: #2c333b;
-    --shadow-color: rgba(42, 172, 184, 0.2);
+    --shadow-color: rgba(42, 172, 184, 0.15);
     --card-bg: #2c333b;
-    --navbar-bg: rgba(35, 40, 48, 0.8);
+    --navbar-bg: rgba(35, 40, 48, 0.95);
     --scrollbar-bg: #232830;
     --scrollbar-thumb: #2aacb8;
     --scrollbar-thumb-hover: #1e8a94;
+    --success-color: #7fb069;
+    --warning-color: #d4a574;
+    --error-color: #d17878;
+    --info-color: #2aacb8;
 }
 
 [data-theme="dark-plus"] {
-    /* Dark+ Theme - VS Code default */
+    /* Dark+ - VS Code Default */
     --bg-color: #1a1d23;
     --surface-color: #242830;
     --text-primary: #e8e8e8;
     --text-secondary: #a0a0a0;
     --accent-color: #569cd6;
     --accent-hover: #4a8bc2;
-    --accent-color-alpha: rgba(86, 156, 214, 0.1);
+    --accent-color-rgb: 86, 156, 214;
+    --accent-color-alpha: rgba(86, 156, 214, 0.12);
     --border-color: #3a3f4b;
+    --border-secondary: #242830;
+    --bg-secondary: #0f1218;
     --code-bg: #1a1d23;
     --gradient-start: #1a1d23;
     --gradient-end: #242830;
-    --shadow-color: rgba(86, 156, 214, 0.2);
+    --shadow-color: rgba(86, 156, 214, 0.15);
     --card-bg: #242830;
-    --navbar-bg: rgba(26, 29, 35, 0.8);
+    --navbar-bg: rgba(26, 29, 35, 0.95);
     --scrollbar-bg: #1a1d23;
     --scrollbar-thumb: #569cd6;
     --scrollbar-thumb-hover: #4a8bc2;
+    --success-color: #6a9955;
+    --warning-color: #ce9178;
+    --error-color: #f44747;
+    --info-color: #569cd6;
 }
 
 [data-theme="neon"] {
-    /* Neon Theme - Bright cyan aesthetic */
+    /* Neon - Bright Cyan */
     --bg-color: #0a0a0a;
     --surface-color: #141414;
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
     --accent-color: #00ffff;
     --accent-hover: #00cccc;
-    --accent-color-alpha: rgba(0, 255, 255, 0.1);
+    --accent-color-rgb: 0, 255, 255;
+    --accent-color-alpha: rgba(0, 255, 255, 0.15);
     --border-color: #00ffff;
+    --border-secondary: #0099cc;
+    --bg-secondary: #000000;
     --code-bg: #0a0a0a;
     --gradient-start: #0a0a0a;
     --gradient-end: #141414;
-    --shadow-color: rgba(0, 255, 255, 0.3);
+    --shadow-color: rgba(0, 255, 255, 0.25);
     --card-bg: #141414;
-    --navbar-bg: rgba(10, 10, 10, 0.8);
+    --navbar-bg: rgba(10, 10, 10, 0.95);
     --scrollbar-bg: #0a0a0a;
     --scrollbar-thumb: #00ffff;
     --scrollbar-thumb-hover: #00cccc;
+    --success-color: #00ff00;
+    --warning-color: #ffff00;
+    --error-color: #ff0000;
+    --info-color: #00ffff;
+}
+
+/* Premium Theme - Glassmorphic Blue */
+[data-theme="glassmorphic"] {
+    --bg-color: #0a0f1e;
+    --surface-color: #131929;
+    --text-primary: #e8eef5;
+    --text-secondary: #a8b2c1;
+    --accent-color: #0ea5e9;
+    --accent-hover: #0284c7;
+    --accent-color-rgb: 14, 165, 233;
+    --accent-color-alpha: rgba(14, 165, 233, 0.12);
+    --border-color: #1e293b;
+    --border-secondary: #0f172a;
+    --bg-secondary: #050813;
+    --code-bg: #0a0f1e;
+    --gradient-start: #0a0f1e;
+    --gradient-end: #131929;
+    --shadow-color: rgba(14, 165, 233, 0.2);
+    --card-bg: #131929;
+    --navbar-bg: rgba(10, 15, 30, 0.8);
+    --scrollbar-bg: #0a0f1e;
+    --scrollbar-thumb: #0ea5e9;
+    --scrollbar-thumb-hover: #0284c7;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --info-color: #0ea5e9;
+}
+
+/* Minimal Theme - Ultra Clean */
+[data-theme="minimal"] {
+    --bg-color: #ffffff;
+    --surface-color: #f5f5f5;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --accent-color: #0066cc;
+    --accent-hover: #0052a3;
+    --accent-color-rgb: 0, 102, 204;
+    --accent-color-alpha: rgba(0, 102, 204, 0.08);
+    --border-color: #e0e0e0;
+    --border-secondary: #f0f0f0;
+    --bg-secondary: #fafafa;
+    --code-bg: #f5f5f5;
+    --gradient-start: #ffffff;
+    --gradient-end: #f5f5f5;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+    --navbar-bg: rgba(255, 255, 255, 0.8);
+    --scrollbar-bg: #ffffff;
+    --scrollbar-thumb: #d0d0d0;
+    --scrollbar-thumb-hover: #0066cc;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
+    --info-color: #0066cc;
+}
+
+/* Sunset Theme - Warm Gradient */
+[data-theme="sunset"] {
+    --bg-color: #1a1428;
+    --surface-color: #2d1b3d;
+    --text-primary: #f5e6d3;
+    --text-secondary: #c9a876;
+    --accent-color: #ff6b35;
+    --accent-hover: #e55d2e;
+    --accent-color-rgb: 255, 107, 53;
+    --accent-color-alpha: rgba(255, 107, 53, 0.12);
+    --border-color: #5a3a52;
+    --border-secondary: #3d2938;
+    --bg-secondary: #0d0814;
+    --code-bg: #1a1428;
+    --gradient-start: #1a1428;
+    --gradient-end: #2d1b3d;
+    --shadow-color: rgba(255, 107, 53, 0.2);
+    --card-bg: #2d1b3d;
+    --navbar-bg: rgba(26, 20, 40, 0.95);
+    --scrollbar-bg: #1a1428;
+    --scrollbar-thumb: #ff6b35;
+    --scrollbar-thumb-hover: #e55d2e;
+    --success-color: #95e77d;
+    --warning-color: #ffc857;
+    --error-color: #ff6b35;
+    --info-color: #4ecdc4;
+}
+
+/* Ocean Theme - Deep Blue Water */
+[data-theme="ocean"] {
+    --bg-color: #0b1e2d;
+    --surface-color: #1a2f42;
+    --text-primary: #d4e4f7;
+    --text-secondary: #8ba5ba;
+    --accent-color: #00d4ff;
+    --accent-hover: #00a8cc;
+    --accent-color-rgb: 0, 212, 255;
+    --accent-color-alpha: rgba(0, 212, 255, 0.12);
+    --border-color: #2a4558;
+    --border-secondary: #1a2f42;
+    --bg-secondary: #051019;
+    --code-bg: #0b1e2d;
+    --gradient-start: #0b1e2d;
+    --gradient-end: #1a2f42;
+    --shadow-color: rgba(0, 212, 255, 0.2);
+    --card-bg: #1a2f42;
+    --navbar-bg: rgba(11, 30, 45, 0.95);
+    --scrollbar-bg: #0b1e2d;
+    --scrollbar-thumb: #00d4ff;
+    --scrollbar-thumb-hover: #00a8cc;
+    --success-color: #6ddc5d;
+    --warning-color: #ffb84d;
+    --error-color: #ff6b6b;
+    --info-color: #00d4ff;
+}
+
+/* ==========================================
+   ACCESSIBILITY & UTILITIES
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-speed: 0.01s;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    @supports (color: light-dark(white, black)) {
+        :root {
+            color-scheme: dark;
+        }
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+    :root {
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --border-color: #666;
+    }
 }

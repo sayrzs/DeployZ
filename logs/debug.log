@@ -1,0 +1,118 @@
+2025-10-30T11:14:43.194Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:14:43.204Z [INFO] Live reload server started on port {"port":35729}
+2025-10-30T11:15:00.336Z [INFO] Config file change detected, attempting reload...
+2025-10-30T11:15:00.339Z [INFO] Config successfully reloaded with changes: {"webroot":{},"port":{"from":3000,"to":3000},"domains":{"from":2,"to":2},"routes":{"from":4,"to":4}}
+2025-10-30T11:16:15.558Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:16:15.577Z [INFO] Live reload server started on port {"port":35729}
+2025-10-30T11:17:29.760Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:17:29.771Z [INFO] Live reload server started on port {"port":35729}
+2025-10-30T11:19:14.990Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:19:15.006Z [INFO] Live reload server started on port {"port":35729}
+2025-10-30T11:19:55.775Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:19:55.785Z [INFO] Live reload server started on port {"port":35729}
+2025-10-30T11:26:07.202Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:26:07.209Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:26:37.744Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:26:37.749Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:26:37.753Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:26:48.859Z [INFO] Config file change detected, attempting reload...
+2025-10-30T11:26:48.861Z [INFO] Config successfully reloaded with changes: {"webroot":{},"port":{"from":3000,"to":3001},"domains":{"from":2,"to":2},"routes":{"from":4,"to":4}}
+2025-10-30T11:26:51.812Z [INFO] Config file change detected, attempting reload...
+2025-10-30T11:26:51.813Z [INFO] Config successfully reloaded with changes: {"webroot":{},"port":{"from":3001,"to":3001},"domains":{"from":2,"to":2},"routes":{"from":4,"to":4}}
+2025-10-30T11:26:52.182Z [INFO] Config file change detected, attempting reload...
+2025-10-30T11:26:52.183Z [INFO] Config successfully reloaded with changes: {"webroot":{},"port":{"from":3001,"to":3001},"domains":{"from":2,"to":2},"routes":{"from":4,"to":4}}
+2025-10-30T11:26:57.745Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:26:57.753Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:26:57.758Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:30:43.163Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:30:43.174Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:30:43.187Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:31:09.561Z [INFO] React app source change detected: change C:\Users\hp\Documents\deployz-main\DeployZ\react-app\src\components\About.jsx
+2025-10-30T11:31:09.562Z [INFO] Starting React app rebuild...
+2025-10-30T11:31:14.845Z [INFO] React app rebuild completed successfully
+2025-10-30T11:31:32.316Z [INFO] React app source change detected: change C:\Users\hp\Documents\deployz-main\DeployZ\react-app\src\components\About.jsx
+2025-10-30T11:31:32.317Z [INFO] Starting React app rebuild...
+2025-10-30T11:31:35.769Z [INFO] React app rebuild completed successfully
+2025-10-30T11:32:21.609Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:32:21.616Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:32:39.471Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:32:39.478Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:32:39.483Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:32:43.607Z [INFO] Live reload client connected
+2025-10-30T11:33:17.033Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:33:17.042Z [INFO] Setting up React app source watcher for hot reload
+2025-10-30T11:33:17.046Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:33:20.079Z [INFO] Live reload client connected
+2025-10-30T11:33:32.515Z [INFO] Config file change detected, attempting reload...
+2025-10-30T11:33:32.517Z [INFO] Config successfully reloaded with changes: {"webroot":{},"port":{"from":3000,"to":3000},"domains":{"from":2,"to":2},"routes":{"from":4,"to":4}}
+2025-10-30T11:33:34.328Z [INFO] Live reload client disconnected
+2025-10-30T11:33:34.569Z [INFO] Live reload client connected
+2025-10-30T11:33:39.978Z [INFO] Live reload client disconnected
+2025-10-30T11:33:40.086Z [INFO] Live reload client connected
+2025-10-30T11:33:40.745Z [INFO] Live reload client disconnected
+2025-10-30T11:33:40.832Z [INFO] Live reload client connected
+2025-10-30T11:39:32.777Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:39:32.794Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:42:17.518Z [INFO] Setting up config file watcher for automatic reload
+2025-10-30T11:42:17.528Z [INFO] Live reload server started on port {"port":35730}
+2025-10-30T11:42:20.850Z [INFO] Live reload client connected
+2025-10-30T11:42:27.606Z [INFO] Live reload client disconnected
+2025-10-30T11:42:27.692Z [INFO] Live reload client connected
+2025-10-30T11:42:27.875Z [INFO] Live reload client disconnected
+2025-10-30T11:42:27.960Z [INFO] Live reload client connected
+2025-10-30T11:46:14.780Z [INFO] Live reload client disconnected
+2025-10-30T11:46:15.084Z [INFO] Live reload client connected
+2025-10-30T11:48:51.969Z [INFO] Live reload client disconnected
+2025-10-30T11:48:52.142Z [INFO] Live reload client connected
+2025-10-30T11:49:44.964Z [INFO] Live reload client disconnected
+2025-10-30T11:49:45.185Z [INFO] Live reload client connected
+2025-10-30T11:49:52.616Z [INFO] Live reload client disconnected
+2025-10-30T11:49:52.733Z [INFO] Live reload client connected
+2025-10-30T11:50:08.239Z [INFO] Live reload client disconnected
+2025-10-30T11:50:08.338Z [INFO] Live reload client connected
+2025-10-30T11:50:10.976Z [INFO] Live reload client disconnected
+2025-10-30T11:50:11.102Z [INFO] Live reload client connected
+2025-10-30T11:50:59.367Z [INFO] Live reload client disconnected
+2025-10-30T11:50:59.574Z [INFO] Live reload client connected
+2025-10-30T11:51:00.435Z [INFO] Live reload client disconnected
+2025-10-30T11:51:00.587Z [INFO] Live reload client connected
+2025-10-30T11:51:06.900Z [INFO] Live reload client disconnected
+2025-10-30T11:51:06.980Z [INFO] Live reload client connected
+2025-10-30T11:51:24.236Z [INFO] Live reload client disconnected
+2025-10-30T11:51:24.430Z [INFO] Live reload client connected
+2025-10-30T11:51:44.239Z [INFO] Live reload client disconnected
+2025-10-30T11:51:44.434Z [INFO] Live reload client connected
+2025-10-30T11:52:08.396Z [INFO] Live reload client disconnected
+2025-10-30T11:52:08.584Z [INFO] Live reload client connected
+2025-10-30T11:52:22.475Z [INFO] Live reload client disconnected
+2025-10-30T11:52:22.615Z [INFO] Live reload client connected
+2025-10-30T11:52:27.428Z [INFO] Live reload client disconnected
+2025-10-30T11:52:27.511Z [INFO] Live reload client connected
+2025-10-30T11:52:47.008Z [INFO] Live reload client disconnected
+2025-10-30T11:52:47.190Z [INFO] Live reload client connected
+2025-10-30T11:53:13.707Z [INFO] Live reload client disconnected
+2025-10-30T11:53:13.880Z [INFO] Live reload client connected
+2025-10-30T11:53:27.446Z [INFO] Live reload client disconnected
+2025-10-30T11:53:27.549Z [INFO] Live reload client connected
+2025-10-30T11:54:00.754Z [INFO] Live reload client disconnected
+2025-10-30T11:54:00.926Z [INFO] Live reload client connected
+2025-10-30T12:11:36.846Z [INFO] Live reload client disconnected
+2025-10-30T12:11:37.229Z [INFO] Live reload client connected
+2025-10-30T12:12:05.518Z [INFO] Live reload client disconnected
+2025-10-30T12:12:05.710Z [INFO] Live reload client connected
+2025-10-30T12:12:06.976Z [INFO] Live reload client disconnected
+2025-10-30T12:12:07.172Z [INFO] Live reload client connected
+2025-10-30T12:13:35.507Z [INFO] Live reload client disconnected
+2025-10-30T12:13:35.674Z [INFO] Live reload client connected
+2025-10-30T12:14:27.770Z [INFO] Live reload client disconnected
+2025-10-30T12:14:27.879Z [INFO] Live reload client connected
+2025-10-30T12:14:36.107Z [INFO] Live reload client disconnected
+2025-10-30T12:14:36.316Z [INFO] Live reload client connected
+2025-10-30T12:14:40.762Z [INFO] Live reload client disconnected
+2025-10-30T12:14:40.847Z [INFO] Live reload client connected
+2025-10-30T12:17:46.414Z [INFO] Live reload client disconnected
+2025-10-30T12:17:46.633Z [INFO] Live reload client connected
+2025-10-30T12:22:46.603Z [INFO] Live reload client disconnected
+2025-10-30T12:22:46.858Z [INFO] Live reload client connected
+2025-10-30T12:22:58.900Z [INFO] Live reload client disconnected
+2025-10-30T12:22:59.120Z [INFO] Live reload client connected

@@ -4,8 +4,8 @@
     "routes": {
         "/": "index.html",
         "/test-api": "test-api/index.html",
-        "/docs/": "docs/index.html",
-        "/changelogs/": "changelogs/index.html"
+        "/docs": "docs/index.html",
+        "/changelogs": "changelogs/index.html"
     },
     "domains": {
         "sayrz.com": "index.html",

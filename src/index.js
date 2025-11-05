@@ -16,6 +16,26 @@ let webroot = path.resolve(config.webroot);
 debugLog('debug', 'Webroot path:', { webroot });
 debugLog('debug', 'Current directory:', { currentDirectory: __dirname });
 
+// Function to normalize URLs for route matching (try both with and without trailing slash)
+function findMatchingRoute(url, routeConfig) {
+    // Try exact match first
+    if (routeConfig[url]) {
+        return routeConfig[url];
+    }
+    
+    // Try with trailing slash added
+    if (!url.endsWith('/') && routeConfig[url + '/']) {
+        return routeConfig[url + '/'];
+    }
+    
+    // Try with trailing slash removed
+    if (url.endsWith('/') && url !== '/' && routeConfig[url.slice(0, -1)]) {
+        return routeConfig[url.slice(0, -1)];
+    }
+    
+    return null;
+}
+
 // Function to generate self-signed certificates if they don't exist
 function generateCertificatesIfNeeded() {
     const certDir = path.join(__dirname, '../certs');
@@ -194,13 +214,6 @@ function sendFile(res, filePath, req, config, domainWebroot = null) {
 // Inject live reload script into HTML - only in local development
 function injectLiveReload(content, config) {
     if (!config.liveReload || process.env.VERCEL) return content;
-    const script = `<script src="http://localhost:${liveReloadPort}/livereload.js"></script>`;
-    return content.replace('</body>', script + '</body>');
-}
-
-// Inject live reload script into HTML - only in local development
-function injectLiveReload(content, config) {
-    if (!config.liveReload || process.env.VERCEL) return content;
     const protocol = config.autoHttps ? 'https' : 'http';
     const script = `<script src="${protocol}://localhost:${liveReloadPort}/livereload.js"></script>`;
     return content.replace('</body>', script + '</body>');
@@ -324,6 +337,7 @@ function handleRequest(req, res) {
 
     let domainMatched = false;
     let domainWebroot = webroot; // Default to main webroot
+    
     // Per-domain HTML mapping: if config.domains exists and matches host, use that file
     if (config.domains && config.domains[host]) {
         const domainConfig = config.domains[host];
@@ -350,14 +364,17 @@ function handleRequest(req, res) {
                 domainMatched = true;
             }
         }
-    } else if (config.routes[req.url]) {
-        // Support custom routes from config
-        filePath = config.routes[req.url];
-        debugLog('debug', 'Route matched, filePath set:', { filePath });
-    } else if (req.url === '/' && !domainMatched) {
-        // Fallback to index.html for root if nothing matches AND no domain was matched
-        filePath = 'index.html';
-        debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
+    } else {
+        // Check for route match with normalized URL (tries both with and without trailing slash)
+        const matchedRoute = findMatchingRoute(req.url, config.routes || {});
+        if (matchedRoute) {
+            filePath = matchedRoute;
+            debugLog('debug', 'Route matched, filePath set:', { url: req.url, filePath });
+        } else if (req.url === '/') {
+            // Fallback to index.html for root if nothing matches AND no domain was matched
+            filePath = 'index.html';
+            debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
+        }
     }
 
     debugLog('debug', 'Final filePath before fullPath calculation:', { filePath });

@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node src/index.js"
+    "dev": "node src/index.js",
+    "build:react": "cd react-app && npm install && npm run build",
+    "build": "npm run build:react"
   },
   "author": "sayrz",
   "website": "sayrz.com",

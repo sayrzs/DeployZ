@@ -1,74 +1,349 @@
-/* ===== MOBILE (< 768px) ===== */
+/* ===========================================
+   DEPLOYZ RESPONSIVE MEDIA QUERIES
+   ===========================================
+/* ===== SMALL MOBILE PHONES (< 480px) ===== */
 
-@media (max-width: 768px) {
-    /* Hero Section Mobile */
+@media screen and (max-width: 479px) {
+    /* ===== Typography Mobile ===== */
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    /* ===== Spacing Mobile ===== */
+    :root {
+        --spacing-lg: 16px;
+        --spacing-xl: 20px;
+        --spacing-2xl: 24px;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    section {
+        padding: 30px 16px;
+    }
+
+    /* ===== Hero Section Mobile ===== */
     .hero-container {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 24px;
         text-align: center;
+        padding: 20px 16px;
     }
 
     .hero-content {
         padding-right: 0;
+        padding: 0;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
     }
 
     .hero-buttons {
+        flex-direction: column;
         justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
     }
 
-    /* Features Section Mobile */
+    .hero-buttons button,
+    .hero-buttons a {
+        width: 100%;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ===== Features Section Mobile ===== */
     .features-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .features-subtitle {
+        font-size: 0.95rem;
     }
 
     .features-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 20px;
     }
 
     .feature-card {
-        padding: 30px 20px;
+        padding: 20px 16px;
+        text-align: center;
     }
 
-    /* CTA Section Mobile */
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+        margin: 0 auto 16px;
+    }
+
+    .feature-title {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .feature-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* ===== CTA Section Mobile ===== */
+    .cta-section {
+        padding: 30px 16px;
     }
 
     .cta-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 16px;
     }
 
-    /* Theme Switcher Mobile */
+    .cta-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .cta-buttons button,
+    .cta-buttons a {
+        width: 100%;
+    }
+
+    /* ===== Documentation Cards Mobile ===== */
+    .docs-section {
+        padding: 30px 16px;
+    }
+
+    .docs-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .doc-card {
+        padding: 20px 16px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+
+    .doc-title {
+        font-size: 1.2rem;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .doc-title i {
+        font-size: 1.4rem;
+    }
+
+    .doc-content h3 {
+        font-size: 1.1rem;
+        margin-top: 16px;
+        margin-bottom: 12px;
+    }
+
+    .doc-content p {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .doc-content code {
+        font-size: 0.85em;
+        padding: 0.2em 0.4em;
+    }
+
+    .doc-content pre {
+        font-size: 0.8rem;
+        padding: 12px;
+        margin: 12px 0;
+    }
+
+    .doc-content ol,
+    .doc-content ul {
+        padding-left: 20px;
+        margin-bottom: 12px;
+    }
+
+    .doc-content li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    /* ===== Navigation Mobile ===== */
+    .navbar {
+        padding: 12px 0;
+    }
+
+    .navbar-container {
+        padding: 0 12px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        gap: 8px;
+    }
+
+    .logo i {
+        font-size: 1.4rem;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* ===== Footer Mobile ===== */
+    .footer {
+        padding: 30px 16px;
+    }
+
+    .footer-logo {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+        gap: 8px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .footer-link {
+        font-size: 0.95rem;
+    }
+
+    .social-links {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .copyright {
+        font-size: 0.85rem;
+    }
+
+    /* ===== Forms Mobile ===== */
+    .test-input {
+        width: 100%;
+        padding: 12px 12px;
+        font-size: 1rem;
+        margin: 8px 0;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-label {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .form-help {
+        font-size: 0.85rem;
+        margin-top: 6px;
+    }
+
+    /* ===== Buttons Mobile ===== */
+    .cta-button {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 1rem;
+        gap: 8px;
+    }
+
+    .cta-button.large {
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+
+    .test-button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        gap: 6px;
+    }
+
+    /* ===== Theme Switcher Mobile ===== */
     .theme-dropdown {
-        width: 320px;
-        right: -10px;
+        width: 100vw;
+        right: -16px;
+        left: auto;
+        max-width: calc(100vw - 32px);
+        box-sizing: border-box;
     }
 
     .theme-grid-container {
-        height: 180px;
+        height: 150px;
+        margin-bottom: 16px;
     }
 
     .theme-page {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .theme-option {
-        padding: 12px;
+        padding: 10px;
+        gap: 8px;
     }
 
     .theme-option i {
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .theme-colors {
+        gap: 2px;
     }
 
     .theme-color {
         width: 12px;
         height: 12px;
+    }
+
+    .theme-name {
+        font-size: 0.6rem;
+        bottom: -20px;
+        padding: 2px 6px;
     }
 
     .theme-arrow {
@@ -77,129 +352,286 @@
         font-size: 12px;
     }
 
-    /* Toast Mobile */
+    .theme-pagination {
+        gap: 5px;
+    }
+
+    .theme-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    /* ===== Toast Mobile ===== */
     .toast {
-        right: 20px;
-        left: 20px;
-        transform: translateY(100px);
+        right: 12px;
+        left: 12px;
+        bottom: 16px;
+        max-width: none;
+        padding: 12px 16px;
+        font-size: 0.9rem;
     }
 
-    .toast.show {
-        transform: translateY(0);
+    .toast-icon {
+        font-size: 1rem;
     }
 
-    /* Legacy Docs Mobile */
-    .docs-title {
-        font-size: 2.5rem;
+    .toast-message {
+        font-size: 0.9rem;
     }
 
-    .doc-card {
-        padding: 30px 20px;
+    /* ===== Results Mobile ===== */
+    .result {
+        padding: 12px;
+        font-size: 0.8rem;
+        max-height: 300px;
+        margin: 12px 0;
+    }
+
+    .result-header {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
     }
 }
 
-/* ===== SMALL MOBILE (< 480px) ===== */
+/* ===== MOBILE LANDSCAPE (< 768px AND landscape) ===== */
 
-@media (max-width: 480px) {
-    /* Hero Section Small Mobile */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    section {
+        padding: 20px 16px;
+    }
+
+    .hero-container {
+        gap: 20px;
+    }
+
     .hero-title {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .hero-buttons {
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .navbar {
+        padding: 8px 0;
+    }
+
+    .footer {
+        padding: 20px 16px;
+    }
+}
+
+/* ===== MEDIUM MOBILE / SMALL TABLET (480px - 768px) ===== */
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    /* ===== Typography Tablet ===== */
+    h1 {
         font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    /* ===== Hero Section Tablet ===== */
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
     }
 
     .hero-subtitle {
         font-size: 1.1rem;
     }
 
-    /* Features Section Small Mobile */
-    .features-title {
-        font-size: 1.8rem;
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
     }
 
-    .cta-title {
+    .hero-buttons button,
+    .hero-buttons a {
+        min-width: 150px;
+    }
+
+    /* ===== Features Section Tablet ===== */
+    .features-title {
         font-size: 2rem;
     }
 
-    /* Theme Switcher Small Mobile */
-    .theme-dropdown {
-        width: 300px;
-    }
-
-    .theme-grid-container {
-        height: 160px;
-    }
-
-    .theme-page {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .theme-option {
-        padding: 10px;
-    }
-
-    .theme-option i {
-        font-size: 1rem;
-    }
-
-    .theme-name {
-        font-size: 0.65rem;
-    }
-
-    /* Navigation Small Mobile */
-    .navbar-container {
-        padding: 0 15px;
-    }
-
-    .logo {
-        font-size: 1.3rem;
-    }
-
-    .logo i {
-        font-size: 1.5rem;
-    }
-
-    /* Footer Small Mobile */
-    .footer-links {
-        flex-direction: column;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-
-    .social-links {
-        gap: 15px;
-    }
-}
-
-/* ===== TABLET (768px - 1024px) ===== */
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* Hero Section Tablet */
-    .hero-container {
-        gap: 40px;
-    }
-
-    .hero-content {
-        padding-right: 20px;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-
-    /* Features Section Tablet */
     .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .feature-card {
-        padding: 35px 25px;
+        padding: 28px 20px;
     }
 
-    /* Theme Switcher Tablet */
+    .feature-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem;
+    }
+
+    .feature-title {
+        font-size: 1.2rem;
+    }
+
+    /* ===== CTA Section Tablet ===== */
+    .cta-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* ===== Theme Switcher Tablet ===== */
+    .theme-dropdown {
+        width: 340px;
+    }
+
+    .theme-grid-container {
+        height: 170px;
+    }
+
+    .theme-page {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* ===== Documentation Cards Tablet ===== */
+    .docs-title {
+        font-size: 2rem;
+    }
+
+    .doc-card {
+        padding: 28px 20px;
+    }
+
+    .doc-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===== TABLET / SMALL DESKTOP (768px - 1024px) ===== */
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* ===== Typography Tablet ===== */
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    /* ===== Hero Section Tablet ===== */
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 30px 24px;
+    }
+
+    .hero-content {
+        padding-right: 0;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+        margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ===== Features Section Tablet ===== */
+    .features-title {
+        font-size: 2.2rem;
+        margin-bottom: 24px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+
+    .feature-card {
+        padding: 32px 24px;
+    }
+
+    .feature-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .feature-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .feature-description {
+        font-size: 1rem;
+    }
+
+    /* ===== CTA Section Tablet ===== */
+    .cta-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .cta-buttons button,
+    .cta-buttons a {
+        min-width: 160px;
+    }
+
+    /* ===== Theme Switcher Tablet ===== */
     .theme-dropdown {
         width: 380px;
     }
@@ -207,73 +639,374 @@
     .theme-grid-container {
         height: 190px;
     }
-}
 
-/* ===== LARGE SCREENS (> 1200px) ===== */
-
-@media (min-width: 1201px) {
-    /* Hero Section Large Screens */
-    .hero-container {
-        max-width: 1400px;
+    .theme-page {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
     }
 
-    .hero-title {
-        font-size: 4rem;
+    /* ===== Navigation Tablet ===== */
+    .navbar-container {
+        padding: 0 24px;
     }
 
-    .hero-subtitle {
+    .logo {
         font-size: 1.4rem;
     }
 
-    /* Features Section Large Screens */
+    /* ===== Documentation Tablet ===== */
+    .docs-title {
+        font-size: 2.2rem;
+    }
+
+    .doc-card {
+        padding: 32px 24px;
+    }
+
+    .doc-title {
+        font-size: 1.6rem;
+        gap: 16px;
+    }
+
+    .doc-content h3 {
+        font-size: 1.3rem;
+        margin-top: 24px;
+    }
+}
+
+/* ===== DESKTOP (1024px - 1440px) ===== */
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    /* ===== Typography Desktop ===== */
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    /* ===== Hero Section Desktop ===== */
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: left;
+        padding: 40px 32px;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+        justify-content: flex-start;
+        gap: 16px;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ===== Features Section Desktop ===== */
     .features-container {
-        max-width: 1400px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .features-title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
     }
 
     .features-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 50px;
+        gap: 32px;
+    }
+
+    .feature-card {
+        padding: 40px 28px;
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+        margin-bottom: 24px;
+    }
+
+    .feature-title {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+    }
+
+    /* ===== CTA Section Desktop ===== */
+    .cta-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .cta-title {
+        font-size: 2.2rem;
+        margin-bottom: 24px;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    /* ===== Theme Switcher Desktop ===== */
+    .theme-dropdown {
+        width: 420px;
+    }
+
+    .theme-grid-container {
+        height: 220px;
+    }
+
+    .theme-page {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    /* ===== Documentation Desktop ===== */
+    .docs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 32px;
+    }
+
+    .docs-title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .doc-card {
+        padding: 40px;
+        margin-bottom: 32px;
+    }
+
+    .doc-title {
+        font-size: 1.8rem;
+        gap: 16px;
+    }
+}
+
+/* ===== LARGE DESKTOP (> 1440px) ===== */
+
+@media screen and (min-width: 1440px) {
+    /* ===== Typography Large Desktop ===== */
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    body {
+        font-size: 1.05rem;
+    }
+
+    /* ===== Hero Section Large Desktop ===== */
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 40px;
+    }
+
+    .hero-title {
+        font-size: 3.8rem;
+        margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 28px;
+        line-height: 1.8;
+    }
+
+    .hero-buttons {
+        gap: 20px;
+    }
+
+    /* ===== Features Section Large Desktop ===== */
+    .features-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 40px;
+    }
+
+    .features-title {
+        font-size: 3rem;
+        margin-bottom: 50px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
     }
 
     .feature-card {
         padding: 45px 35px;
     }
 
-    /* CTA Section Large Screens */
+    .feature-icon {
+        width: 90px;
+        height: 90px;
+        font-size: 2.2rem;
+        margin-bottom: 28px;
+    }
+
+    .feature-title {
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+    }
+
+    .feature-description {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    /* ===== CTA Section Large Desktop ===== */
     .cta-container {
-        max-width: 1000px;
-    }
-}
-
-/* ===== DARK MODE PREFERENCES ===== */
-
-@media (prefers-color-scheme: dark) {
-    /* Additional dark mode adjustments if needed */
-    /* Most themes are already dark, but this can be used for system preference detection */
-}
-
-/* ===== HIGH CONTRAST MODE ===== */
-
-@media (prefers-contrast: high) {
-    /* High contrast adjustments */
-    .theme-option {
-        border: 2px solid var(--border-color);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 40px;
     }
 
-    .theme-option.active {
-        border-color: var(--accent-color);
+    .cta-title {
+        font-size: 2.6rem;
+        margin-bottom: 28px;
     }
 
-    .feature-card,
+    /* ===== Theme Switcher Large Desktop ===== */
+    .theme-dropdown {
+        width: 480px;
+    }
+
+    .theme-grid-container {
+        height: 240px;
+    }
+
+    .theme-page {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+    }
+
+    /* ===== Documentation Large Desktop ===== */
+    .docs-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 40px;
+    }
+
+    .docs-title {
+        font-size: 3rem;
+        margin-bottom: 50px;
+    }
+
     .doc-card {
-        border-width: 2px;
+        padding: 50px;
+        margin-bottom: 40px;
+    }
+
+    .doc-title {
+        font-size: 2rem;
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+
+    .doc-content p {
+        font-size: 1.05rem;
+        line-height: 1.8;
     }
 }
 
-/* ===== REDUCED MOTION ===== */
+/* ===== 4K DISPLAYS (> 1920px) ===== */
+
+@media screen and (min-width: 1920px) {
+    /* Scale up for ultra-wide displays */
+    :root {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero-container {
+        max-width: 1600px;
+        gap: 80px;
+    }
+
+    .features-container,
+    .docs-container {
+        max-width: 1600px;
+    }
+
+    .features-grid {
+        gap: 50px;
+    }
+
+    .feature-card {
+        padding: 50px 40px;
+    }
+
+    .feature-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 2.4rem;
+    }
+
+    .theme-dropdown {
+        width: 520px;
+    }
+
+    .theme-page {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* ===== ACCESSIBILITY: REDUCED MOTION ===== */
 
 @media (prefers-reduced-motion: reduce) {
-    /* Reduce animations for users who prefer less motion */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
     .hero,
     .features,
     .cta-section,
@@ -287,60 +1020,295 @@
     .social-link,
     .theme-option,
     .theme-arrow,
-    .theme-dot {
-        transition: none;
-    }
-
-    .loader-spinner {
-        animation: none;
-    }
-
+    .theme-dot,
     .new-badge {
-        animation: none;
+        transition: none !important;
+        animation: none !important;
     }
 
     .theme-page {
-        transition: none;
+        transition: none !important;
+    }
+
+    .feature-card:hover,
+    .doc-card:hover {
+        transform: none !important;
+    }
+}
+
+/* ===== ACCESSIBILITY: HIGH CONTRAST MODE ===== */
+
+@media (prefers-contrast: high) {
+    :root {
+        --text-primary: #000000;
+        --text-secondary: #333333;
+    }
+
+    .theme-option {
+        border: 2px solid var(--border-color);
+    }
+
+    .theme-option.active {
+        border: 3px solid var(--accent-color);
+    }
+
+    .feature-card,
+    .doc-card {
+        border-width: 2px;
+    }
+
+    button,
+    a {
+        border-width: 2px;
+    }
+
+    .cta-button,
+    .test-button {
+        border: 2px solid transparent;
+    }
+
+    .cta-button:focus-visible,
+    .test-button:focus-visible {
+        outline-width: 3px;
+    }
+}
+
+/* ===== ACCESSIBILITY: FORCED COLORS ===== */
+
+@media (forced-colors: active) {
+    .feature-icon {
+        border: 2px solid;
+    }
+
+    .cta-button,
+    .test-button {
+        border: 2px solid buttonBorder;
+    }
+
+    .cta-button:focus-visible {
+        outline: 3px solid;
+    }
+}
+
+/* ===== SYSTEM COLOR SCHEME PREFERENCE ===== */
+
+@media (prefers-color-scheme: dark) {
+    /* Dark mode adjustments - mainly for system preference detection */
+    /* Most components already support dark mode via CSS variables */
+}
+
+@media (prefers-color-scheme: light) {
+    /* Light mode adjustments if needed */
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+
+@media (hover: none) and (pointer: coarse) {
+    /* Touchscreen devices */
+    
+    /* Larger touch targets */
+    button,
+    a,
+    .theme-option,
+    .social-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .feature-card:hover {
+        transform: none;
+    }
+
+    .doc-card:hover {
+        transform: none;
+    }
+
+    /* Add active/pressed states instead */
+    .feature-card:active {
+        opacity: 0.9;
+    }
+
+    .doc-card:active {
+        opacity: 0.9;
+    }
+
+    /* Increase tap area */
+    .cta-button,
+    .test-button {
+        padding: 16px 20px;
+        min-height: 48px;
+    }
+
+    /* No tap highlighting */
+    * {
+        -webkit-tap-highlight-color: transparent;
     }
 }
 
 /* ===== PRINT STYLES ===== */
 
 @media print {
-    /* Hide interactive elements when printing */
+    /* ===== Hide Non-Content Elements ===== */
     .navbar,
     .theme-switcher,
     .toast,
     .hero-buttons,
     .cta-buttons,
-    .social-links {
+    .social-links,
+    button:not(.print),
+    a[href]:not(.print)::after {
         display: none !important;
     }
 
-    /* Adjust colors for printing */
+    /* ===== Page Setup ===== */
+    html,
     body {
-        background: white !important;
-        color: black !important;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: white;
+        color: black;
     }
 
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        font-family: Georgia, serif;
+    }
+
+    /* ===== Typography Print ===== */
+    h1,
+    h2,
+    h3 {
+        page-break-after: avoid;
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 24pt;
+    }
+
+    h2 {
+        font-size: 18pt;
+    }
+
+    h3 {
+        font-size: 14pt;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+        page-break-inside: avoid;
+    }
+
+    /* ===== Links Print ===== */
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+    }
+
+    a[href^="#"]::after {
+        content: "";
+    }
+
+    /* ===== Content Styling Print ===== */
     .hero,
     .features,
-    .cta-section {
+    .cta-section,
+    .docs-section {
         background: white !important;
+        color: black !important;
+        page-break-inside: avoid;
     }
 
     .feature-card,
     .doc-card {
         border: 1px solid #ccc !important;
         box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 12pt;
     }
 
-    /* Ensure text is readable */
-    .hero-title .highlight,
+    .feature-card,
+    .doc-card {
+        background: white !important;
+        border: 1px solid #333 !important;
+    }
+
     .feature-icon {
         color: black !important;
-        background: none !important;
-        -webkit-background-clip: unset !important;
-        background-clip: unset !important;
+        background: white !important;
+        border: 1px solid #ccc !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* ===== Code Blocks Print ===== */
+    .result,
+    pre,
+    code {
+        background: #f5f5f5 !important;
+        border: 1px solid #ccc !important;
+        color: black !important;
+        font-family: 'Courier New', monospace;
+        page-break-inside: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* ===== Lists Print ===== */
+    ul,
+    ol {
+        page-break-inside: avoid;
+    }
+
+    li {
+        page-break-inside: avoid;
+    }
+
+    /* ===== Tables Print ===== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        page-break-inside: avoid;
+    }
+
+    tr,
+    td {
+        page-break-inside: avoid;
+        border: 1px solid #ccc;
+    }
+
+    /* ===== Footer Print ===== */
+    .footer {
+        margin-top: 2cm;
+        padding-top: 1cm;
+        border-top: 1px solid #ccc;
+        font-size: 10pt;
+        color: #666;
+    }
+
+    .copyright {
+        margin-top: 1cm;
+        text-align: center;
+        font-size: 9pt;
+    }
+
+    /* ===== Page Breaks ===== */
+    .page-break {
+        page-break-after: always;
+    }
+
+    section {
+        page-break-inside: avoid;
     }
 }

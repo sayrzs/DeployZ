@@ -11,10 +11,42 @@ const selfsigned = require('selfsigned');
 // Set up for variables
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-let webroot = path.resolve(config.webroot);
-// Enhanced debug logs
-debugLog('debug', 'Webroot path:', { webroot });
-debugLog('debug', 'Current directory:', { currentDirectory: __dirname });
+
+// Determine webroot based on appMode
+let webrootPath = config.webroot || 'webroot'; // Default to 'webroot' if not specified
+if (config.appMode === 'react-app') {
+    webrootPath = 'react-app/dist'; // Vite builds to dist by default
+}
+
+let webroot = path.resolve(webrootPath);
+// Function to rebuild the React app
+function rebuildReactApp() {
+    const { exec } = require('child_process');
+    const reactAppPath = path.resolve(__dirname, '../react-app');
+    
+    debugLog('info', 'Starting React app rebuild...');
+    
+    // Execute npm run build in the react-app directory
+    const buildProcess = exec('npm run build', { cwd: reactAppPath });
+    
+    buildProcess.stdout.on('data', (data) => {
+        debugLog('debug', `Build output: ${data}`);
+    });
+    
+    buildProcess.stderr.on('data', (data) => {
+        debugLog('warn', `Build warning/error: ${data}`);
+    });
+    
+    buildProcess.on('close', (code) => {
+        if (code === 0) {
+            debugLog('info', 'React app rebuild completed successfully');
+            // Notify all connected clients to reload
+            notifyClientsToReload();
+        } else {
+            debugLog('error', `React app rebuild failed with code ${code}`);
+        }
+    });
+}
 
 // Function to normalize URLs for route matching (try both with and without trailing slash)
 function findMatchingRoute(url, routeConfig) {
@@ -43,7 +75,7 @@ function generateCertificatesIfNeeded() {
     const certPath = path.join(certDir, 'cert.pem');
 
     if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
-        debugLog('info', 'SSL certificates not found, generating self-signed certificates...');
+        debugLog('info', 'SSL certificates not found, generating self-signed certificates...(BETA VERSION)');
         try {
             // Ensure certs directory exists
             if (!fs.existsSync(certDir)) {
@@ -82,16 +114,55 @@ if (!process.env.VERCEL) {
             };
 
             config = newConfig;
-            webroot = path.resolve(config.webroot);
+            // Determine webroot based on appMode (same logic as initial setup)
+            let webrootPath = config.webroot || 'webroot'; // Default to 'webroot' if not specified
+            if (config.appMode === 'react-app') {
+                webrootPath = 'react-app/dist'; // VITEE builds to dist by default
+            }
+            
+            webroot = path.resolve(webrootPath);
 
             debugLog('info', 'Config successfully reloaded with changes:', configChanges);
         } catch (e) {
             debugLog('error', 'Failed to reload config, keeping previous config:', { error: e.message, configPath });
         }
     });
+
+    // Watch React app source files for changes in react-app mode
+    if (config.appMode === 'react-app') {
+        const reactAppSrcPath = path.resolve(__dirname, '../react-app/src');
+        const reactAppPublicPath = path.resolve(__dirname, '../react-app/public');
+        
+        debugLog('info', 'Setting up React app source watcher for hot reload');
+        
+        // Watch src directory
+        chokidar.watch(reactAppSrcPath, { ignoreInitial: true }).on('all', (event, filePath) => {
+            debugLog('info', `React app source change detected: ${event} ${filePath}`);
+            // Trigger rebuild
+            rebuildReactApp();
+        });
+        
+        // Watch public directory (if it exists)
+        if (fs.existsSync(reactAppPublicPath)) {
+            chokidar.watch(reactAppPublicPath, { ignoreInitial: true }).on('all', (event, filePath) => {
+                debugLog('info', `React app public change detected: ${event} ${filePath}`);
+                // Trigger rebuild
+                rebuildReactApp();
+            });
+        }
+    }
 }
 const clients = new Set(); // Store connected WebSocket clients
-const liveReloadPort = 35729; // Port for live reload server
+const liveReloadPort = 35730; // Port for live reload server
+
+// Function to notify all connected clients to reload
+function notifyClientsToReload() {
+    clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({ type: 'reload' }));
+        }
+    });
+}
 
 // Function to check if a file is blocked
 function isFileBlocked(filePath, config, req) {
@@ -221,6 +292,9 @@ function injectLiveReload(content, config) {
 
 // Log HTTP requests to the console and file
 function logRequest(req, res, startTime) {
+    // Skip logging HEAD requests (live reload polling)
+    if (req.method === 'HEAD') return;
+    
     const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
     const timestamp = new Date().toISOString();
     const method = req.method;
@@ -364,6 +438,7 @@ function handleRequest(req, res) {
                 domainMatched = true;
             }
         }
+<<<<<<< HEAD
     } else {
         // Check for route match with normalized URL (tries both with and without trailing slash)
         const matchedRoute = findMatchingRoute(req.url, config.routes || {});
@@ -375,6 +450,24 @@ function handleRequest(req, res) {
             filePath = 'index.html';
             debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
         }
+=======
+    // Handle react-app mode - serve index.html for all non-API, non-asset routes
+    } else if (config.appMode === 'react-app' && !req.url.startsWith('/api/') && !req.url.startsWith('/assets/')) {
+        // For react-app mode, serve index.html for client-side routing
+        filePath = 'index.html';
+        debugLog('debug', 'React-app mode: Serving index.html for client-side routing');
+    } else if (config.routes && config.routes[req.url] && config.appMode !== 'react-app') {
+        // Support custom routes from config, but not in react-app mode
+        filePath = config.routes[req.url];
+        debugLog('debug', 'Route matched, filePath set:', { filePath });
+    } else if (req.url === '/' && !domainMatched) {
+        // Fallback to index.html for root if nothing matches AND no domain was matched
+        // But only if not in react-app mode (since that's handled by the webroot logic)
+        if (config.appMode !== 'react-app') {
+            filePath = 'index.html';
+        }
+        debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
+>>>>>>> 8aa8712a2532b9f85f4e59dbf861deaa9b081632
     }
 
     debugLog('debug', 'Final filePath before fullPath calculation:', { filePath });
@@ -459,7 +552,7 @@ function handleRequest(req, res) {
 
 // Start live reload server if enabled - only in local development
 if (config.liveReload && !process.env.VERCEL) {
-    // Simple live reload without WebSocket
+    // HTTP server to serve the livereload.js script and handle WebSocket upgrade
     const protocol = config.autoHttps ? 'https' : 'http';
     const livereloadServer = (config.autoHttps ? https : http).createServer((req, res) => {
         if (req.url === '/livereload.js') {
@@ -467,23 +560,58 @@ if (config.liveReload && !process.env.VERCEL) {
             res.end(`
                 (function() {
                     console.log('Live reload enabled');
-                    setInterval(function() {
-                        fetch(window.location.href, { method: 'HEAD' })
-                            .then(response => {
-                                if (response.status === 200) {
-                                    // Page is still accessible, do nothing
-                                }
-                            })
-                            .catch(() => {
-                                // If fetch fails, page might have changed, reload
-                                window.location.reload();
-                            });
-                    }, 1000);
+                    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                    const ws = new WebSocket(protocol + '//' + window.location.hostname + ':35730');
+                    
+                    ws.onmessage = function(event) {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'reload') {
+                            console.log('Reloading page due to file change');
+                            window.location.reload();
+                        }
+                    };
+                    
+                    ws.onopen = function() {
+                        console.log('Live reload WebSocket connected');
+                    };
+                    
+                    ws.onclose = function() {
+                        console.log('Live reload WebSocket disconnected');
+                    };
+                    
+                    ws.onerror = function(error) {
+                        console.error('Live reload WebSocket error:', error);
+                    };
                 })();
             `);
         } else {
             res.writeHead(404);
             res.end();
+        }
+    });
+    
+    // Handle WebSocket upgrade requests
+    livereloadServer.on('upgrade', (request, socket, head) => {
+        if (request.url === '/') {
+            const wss = new WebSocket.Server({ noServer: true });
+            wss.handleUpgrade(request, socket, head, (ws) => {
+                wss.emit('connection', ws, request);
+                
+                debugLog('info', 'Live reload client connected');
+                clients.add(ws);
+                
+                ws.on('close', () => {
+                    clients.delete(ws);
+                    debugLog('info', 'Live reload client disconnected');
+                });
+                
+                ws.on('error', (error) => {
+                    debugLog('error', 'Live reload client error:', { error: error.message });
+                    clients.delete(ws);
+                });
+            });
+        } else {
+            socket.destroy();
         }
     });
 

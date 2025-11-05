@@ -438,7 +438,6 @@ function handleRequest(req, res) {
                 domainMatched = true;
             }
         }
-<<<<<<< HEAD
     } else {
         // Check for route match with normalized URL (tries both with and without trailing slash)
         const matchedRoute = findMatchingRoute(req.url, config.routes || {});
@@ -450,24 +449,6 @@ function handleRequest(req, res) {
             filePath = 'index.html';
             debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
         }
-=======
-    // Handle react-app mode - serve index.html for all non-API, non-asset routes
-    } else if (config.appMode === 'react-app' && !req.url.startsWith('/api/') && !req.url.startsWith('/assets/')) {
-        // For react-app mode, serve index.html for client-side routing
-        filePath = 'index.html';
-        debugLog('debug', 'React-app mode: Serving index.html for client-side routing');
-    } else if (config.routes && config.routes[req.url] && config.appMode !== 'react-app') {
-        // Support custom routes from config, but not in react-app mode
-        filePath = config.routes[req.url];
-        debugLog('debug', 'Route matched, filePath set:', { filePath });
-    } else if (req.url === '/' && !domainMatched) {
-        // Fallback to index.html for root if nothing matches AND no domain was matched
-        // But only if not in react-app mode (since that's handled by the webroot logic)
-        if (config.appMode !== 'react-app') {
-            filePath = 'index.html';
-        }
-        debugLog('debug', 'Fallback to index.html, filePath set:', { filePath });
->>>>>>> 8aa8712a2532b9f85f4e59dbf861deaa9b081632
     }
 
     debugLog('debug', 'Final filePath before fullPath calculation:', { filePath });

@@ -324,6 +324,9 @@ function createThemeElement(theme, isActive) {
             localStorage.setItem('deployz-theme', theme.id);
         }
 
+        // Update logo filter based on theme
+        updateLogoFilter(theme.id);
+
         showToast(`Theme changed to ${theme.name}`);
     });
 
@@ -480,6 +483,35 @@ function updateThemeOptionsCursor() {
     });
 }
 
+function updateLogoFilter(themeId) {
+    const logos = document.querySelectorAll('.logo img');
+    logos.forEach(logo => {
+        // Remove existing filter classes
+        logo.classList.remove('logo-filter-github', 'logo-filter-matrix', 'logo-filter-dracula', 'logo-filter-nord', 'logo-filter-discord', 'logo-filter-monokai', 'logo-filter-onedark', 'logo-filter-vscode', 'logo-filter-light', 'logo-filter-dark');
+
+        // Add appropriate filter class based on theme
+        if (themeId === 'github' || themeId === 'github-high-contrast') {
+            logo.classList.add('logo-filter-github');
+        } else if (themeId === 'matrix') {
+            logo.classList.add('logo-filter-matrix');
+        } else if (themeId === 'dracula') {
+            logo.classList.add('logo-filter-dracula');
+        } else if (themeId === 'nord') {
+            logo.classList.add('logo-filter-nord');
+        } else if (themeId === 'discord') {
+            logo.classList.add('logo-filter-discord');
+        } else if (themeId === 'monokai') {
+            logo.classList.add('logo-filter-monokai');
+        } else if (themeId === 'onedark' || themeId === 'vscode') {
+            logo.classList.add('logo-filter-onedark');
+        } else if (themeId.includes('light')) {
+            logo.classList.add('logo-filter-light');
+        } else {
+            logo.classList.add('logo-filter-dark');
+        }
+    });
+}
+
 function restoreSavedTheme() {
     // Only sync theme if not on docs page
     if (window.location.pathname.includes('/docs/')) {
@@ -498,6 +530,9 @@ function restoreSavedTheme() {
 
         // Set the data-theme attribute so CSS themes can be applied
         body.setAttribute("data-theme", savedTheme);
+
+        // Update logo filter
+        updateLogoFilter(savedTheme);
 
         // you/we need to wait for the DOM to be updated before trying to find the element
         setTimeout(() => {
@@ -551,9 +586,13 @@ document.addEventListener("DOMContentLoaded", function() {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
-    
+
     // Load themes from CSS instead of JSON
     loadThemesFromCSS();
+
+    // Apply logo filter based on current theme
+    const currentTheme = body.getAttribute('data-theme') || 'github';
+    updateLogoFilter(currentTheme);
 });
 
 

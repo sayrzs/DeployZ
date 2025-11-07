@@ -31,6 +31,61 @@
     <meta name="telegram:channel" content="@deployz" />
     <meta name="discord:server" content="https://discord.gg/fJqzvnFkpq" />
     <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/themes.css">
+    <style>
+        /* Logo color adaptation for themes */
+        [data-theme="github"] .logo img,
+        [data-theme="github-high-contrast"] .logo img {
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="matrix"] .logo img {
+            filter: brightness(0) invert(0) sepia(1) saturate(5) hue-rotate(87deg) brightness(1.2);
+        }
+
+        [data-theme="dracula"] .logo img {
+            filter: brightness(0) invert(0) sepia(1) saturate(5) hue-rotate(258deg) brightness(1.2);
+        }
+
+        [data-theme="nord"] .logo img {
+            filter: brightness(0) invert(0) sepia(1) saturate(5) hue-rotate(180deg) brightness(1.2);
+        }
+
+        [data-theme="discord"] .logo img {
+            filter: brightness(0) invert(0) sepia(1) saturate(5) hue-rotate(220deg) brightness(1.2);
+        }
+
+        [data-theme="monokai"] .logo img {
+            filter: brightness(0) invert(0) sepia(1) saturate(5) hue-rotate(80deg) brightness(1.2);
+        }
+
+        [data-theme="onedark"] .logo img,
+        [data-theme="vscode"] .logo img {
+            filter: brightness(0) invert(0) sepia(1) saturate(5) hue-rotate(200deg) brightness(1.2);
+        }
+
+        /* Default for dark themes */
+        [data-theme*="dark"] .logo img,
+        [data-theme*="night"] .logo img,
+        [data-theme*="cyberpunk"] .logo img,
+        [data-theme*="synthwave"] .logo img,
+        [data-theme*="ayu"] .logo img,
+        [data-theme*="catppuccin"] .logo img,
+        [data-theme*="gotham"] .logo img,
+        [data-theme*="palenight"] .logo img,
+        [data-theme*="rose-pine"] .logo img,
+        [data-theme*="atom"] .logo img,
+        [data-theme*="material"] .logo img,
+        [data-theme*="gruvbox"] .logo img,
+        [data-theme*="solarized"] .logo img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Light themes */
+        [data-theme*="light"] .logo img {
+            filter: brightness(0) invert(0);
+        }
+    </style>
 </head>
 <body data-theme="github">
     <nav class="navbar">
@@ -45,7 +100,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="theme-dropdown" id="theme-dropdown">
-                    <div class="theme-grid-container">
+                    <div class="theme-grid-container" id="theme-grid-container">
                         <!-- Page 1: First 8 themes -->
                         <div class="theme-page active" id="page-0">
                             <div class="theme-option active" data-theme="github" data-name="GitHub">
@@ -272,11 +327,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="theme-navigation">
+                    <div class="theme-navigation" id="theme-navigation">
                         <button class="theme-arrow" id="prev-arrow" disabled>
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <div class="theme-pagination">
+                        <div class="theme-pagination" id="theme-pagination">
                             <div class="theme-dot active" data-page="0"></div>
                             <div class="theme-dot" data-page="1"></div>
                             <div class="theme-dot" data-page="2"></div>
@@ -337,6 +392,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../assets/js/index.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/scroll-effects.js"></script>
     <script>
         // Load changelog content
         async function loadChangelog() {

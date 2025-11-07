@@ -20,3 +20,15 @@
 2025-10-30T18:32:48.312Z [INFO] Live reload client connected
 2025-10-30T18:36:52.572Z [INFO] Live reload client disconnected
 2025-10-30T18:36:53.188Z [INFO] Live reload client connected
+2025-11-07T00:40:13.625Z [INFO] Setting up config file watcher for automatic reload
+2025-11-07T00:40:13.629Z [INFO] Live reload server started on port {"port":35729}
+2025-11-07T00:40:28.572Z [INFO] Redirecting to trailing slash: /docs -> /docs/
+2025-11-07T00:40:32.487Z [INFO] Redirecting to trailing slash: /docs -> /docs/
+2025-11-07T00:42:32.277Z [INFO] Setting up config file watcher for automatic reload
+2025-11-07T00:42:32.283Z [INFO] Live reload server started on port {"port":35729}
+2025-11-07T00:43:29.873Z [INFO] Config file change detected, attempting reload...
+2025-11-07T00:43:29.874Z [INFO] Config successfully reloaded with changes: {"webroot":{"from":"./webroot","to":"./webroot"},"port":{"from":8000,"to":8000},"domains":{"from":2,"to":2},"routes":{"from":4,"to":4}}
+2025-11-07T00:44:27.695Z [INFO] Setting up config file watcher for automatic reload
+2025-11-07T00:44:27.704Z [INFO] Live reload server started on port {"port":35729}
+2025-11-07T00:44:56.802Z [INFO] Redirecting to trailing slash: /docs -> /docs/
+2025-11-07T00:45:01.556Z [INFO] Redirecting to trailing slash: /changelogs -> /changelogs/

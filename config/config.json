@@ -1,5 +1,6 @@
 {
     "port": 8000,
+    "webroot": "./webroot",
     "appMode": "webroot",
     "routes": {
         "/": "index.html",

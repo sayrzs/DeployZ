@@ -11,6 +11,13 @@ const selfsigned = require('selfsigned');
 // Set up for variables
 const configPath = path.resolve(__dirname, '../config/config.json');
 let config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+
+// Validate and set webroot with fallback to default
+if (!config.webroot) {
+    console.warn('[WARN] config.webroot is not defined, using default: ./webroot');
+    config.webroot = './webroot';
+}
+
 let webroot = path.resolve(config.webroot);
 // Enhanced debug logs
 debugLog('debug', 'Webroot path:', { webroot });
@@ -74,6 +81,13 @@ if (!process.env.VERCEL) {
             const oldPort = config.port;
 
             const newConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            
+            // Validate webroot in reloaded config
+            if (!newConfig.webroot) {
+                debugLog('warn', 'Reloaded config missing webroot, keeping previous value');
+                newConfig.webroot = config.webroot;
+            }
+            
             const configChanges = {
                 webroot: { from: oldWebroot, to: newConfig.webroot },
                 port: { from: oldPort, to: newConfig.port },

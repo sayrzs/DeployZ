@@ -251,12 +251,12 @@ function createThemeElement(theme, isActive) {
     if (isActive) themeOption.classList.add('active');
     themeOption.setAttribute('data-theme', theme.id);
     themeOption.setAttribute('data-name', theme.name);
-    
+
     // Add "new" badge if theme is new
     if (theme.new) {
         themeOption.classList.add('new-theme');
     }
-    
+
     // Handle special case for Night Owl image
     if (theme.icon === 'img/owl') {
         const img = document.createElement('img');
@@ -270,26 +270,26 @@ function createThemeElement(theme, isActive) {
         icon.className = theme.icon;
         themeOption.appendChild(icon);
     }
-    
+
     // Create color swatches
     const colorContainer = document.createElement('div');
     colorContainer.className = 'theme-colors';
-    
+
     theme.colors.forEach(color => {
         const colorDiv = document.createElement('div');
         colorDiv.className = 'theme-color';
         colorDiv.style.background = color;
         colorContainer.appendChild(colorDiv);
     });
-    
+
     themeOption.appendChild(colorContainer);
-    
+
     // Theme name
     const nameSpan = document.createElement('span');
     nameSpan.className = 'theme-name';
     nameSpan.textContent = theme.name;
     themeOption.appendChild(nameSpan);
-    
+
     // Add click event
     themeOption.addEventListener('click', function(event) {
         // Only allow theme change if dropdown is actually open
@@ -297,33 +297,36 @@ function createThemeElement(theme, isActive) {
             event.stopPropagation();
             return;
         }
-        
+
         event.stopPropagation();
-        
+
         // Apply theme colors dynamically for themes that don't have CSS definitions
         // For themes that have CSS definitions, we'll rely on the data-theme attribute
         applyThemeColors(theme);
-        
+
         // Set the data-theme attribute so CSS themes can be applied
         body.setAttribute('data-theme', theme.id);
-        
+
         // Remove active class from all theme options
         document.querySelectorAll('.theme-option').forEach(opt => {
             opt.classList.remove('active');
         });
-        
+
         // Add active class to clicked theme
         this.classList.add('active');
-        
+
         // Close dropdown after selection
         themeDropdown.classList.remove('active');
         updateThemeOptionsCursor();
-        
-        localStorage.setItem('deployz-theme', theme.id);
-        
+
+        // Sync theme across pages except docs
+        if (!window.location.pathname.includes('/docs/')) {
+            localStorage.setItem('deployz-theme', theme.id);
+        }
+
         showToast(`Theme changed to ${theme.name}`);
     });
-    
+
     return themeOption;
 }
 
@@ -478,6 +481,11 @@ function updateThemeOptionsCursor() {
 }
 
 function restoreSavedTheme() {
+    // Only sync theme if not on docs page
+    if (window.location.pathname.includes('/docs/')) {
+        return;
+    }
+
     const savedTheme = localStorage.getItem("deployz-theme");
     if (savedTheme) {
         // Find the theme object
@@ -487,10 +495,10 @@ function restoreSavedTheme() {
             // For themes that have CSS definitions, we'll rely on the data-theme attribute
             applyThemeColors(theme);
         }
-        
+
         // Set the data-theme attribute so CSS themes can be applied
         body.setAttribute("data-theme", savedTheme);
-        
+
         // you/we need to wait for the DOM to be updated before trying to find the element
         setTimeout(() => {
             const allThemeOptions = document.querySelectorAll('.theme-option');
